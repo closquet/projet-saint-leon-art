@@ -26,3 +26,4 @@ node_modules
 /app/wp-content/plugins/
 app/wp-content/index.php
 app/wp-content/themes/index.php
+/doc/schéma navigation.ai
