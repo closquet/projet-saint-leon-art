@@ -93,7 +93,7 @@ TODO
 
 Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier, largement multiculturelle, et l’art sous toutes ses formes, tout en créant des liens durables entre habitants et artistes qui s’y côtoient chaque jours. Cette initiative souhaite également rendre l’art, l’artiste et la culture accessibles à tous, toutes origines, toutes classes sociales confondues, en offrant un accès libre et gratuit à l’événement.
 
-### Contenu
+### Schéma de navigation indirect
 
 
 
@@ -107,9 +107,9 @@ Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier
 
 ### Polices
 
-[polices titre du site : Abril Fatface] (https://fonts.google.com/specimen/Abril+Fatface)
-[polices titres : Patua One] (https://fonts.google.com/specimen/Patua+One)
-[police texte labeur : Archivo Narrow] (https://fonts.google.com/specimen/Archivo+Narrow)
+- [polices titre du site : Abril Fatface](https://fonts.google.com/specimen/Abril+Fatface)
+- [polices titres : Patua One](https://fonts.google.com/specimen/Patua+One)
+- [police texte labeur : Archivo Narrow](https://fonts.google.com/specimen/Archivo+Narrow)
 
 
 
