@@ -1,6 +1,7 @@
 # Projet - Saint Léon'Art
 
-Premier projet du cours de projet web avec un vrai clien.
+Premier projet du cours de projet web avec un vrai client.
+Ce projet consiste à créer un site web, ce site permettra aux organisateurs de l’évènement « Saint Léon’Art » de communiquer avec les potentiels visiteurs et artistes et de mettre en avant cet évènement et tous ceux qui en découlent.
 
 
 ## Définition
