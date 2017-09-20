@@ -95,8 +95,7 @@ Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier
 
 ### Schéma de navigation indirect
 
-
-
+![Schéma de navigation indirect](https://github.com/closquet/projet-saint-leon-art/blob/master/doc/sch%C3%A9ma-navigation.png "Schéma de navigation indirect")
 
 # Compléments d'information
 
