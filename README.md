@@ -131,3 +131,7 @@ grille : ...
 grille totale = ...
 
 ### Couleurs:
+
+#821d49 Claret
+#fdc848 Bright Sun
+#c22717 Thunderbird
