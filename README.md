@@ -58,10 +58,10 @@ http://www.saint-leonard.be
 
 ### Prochain évènement
 
-Macadam Party & Lancement de l'appel à candidature
-Quand : 24/09/2017
-Où : Place Vieille-Montagne, 4000 Liège
-[Lien Facebook](https://www.facebook.com/events/306416716494466/?acontext=%7B%22action_history%22%3A%22[%7B%5C%22surface%5C%22%3A%5C%22page%5C%22%2C%5C%22mechanism%5C%22%3A%5C%22page_upcoming_events_card%5C%22%2C%5C%22extra_data%5C%22%3A[]%7D]%22%2C%22has_source%22%3Atrue%7D)
+- Macadam Party & Lancement de l'appel à candidature
+- Quand : 24/09/2017
+- Où : Place Vieille-Montagne, 4000 Liège
+- [Lien Facebook](https://www.facebook.com/events/306416716494466/?acontext=%7B%22action_history%22%3A%22[%7B%5C%22surface%5C%22%3A%5C%22page%5C%22%2C%5C%22mechanism%5C%22%3A%5C%22page_upcoming_events_card%5C%22%2C%5C%22extra_data%5C%22%3A[]%7D]%22%2C%22has_source%22%3Atrue%7D)
 
 
 ### Tableau Pinterest
