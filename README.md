@@ -112,26 +112,23 @@ Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier
 
 
 
-taille de polices (ratio) 1.500x
-labeur : 18px / 1em
-(h4 : 1.25 ou 22.5px)
-h3 : 1.5em ou 27px
-h2 : 2.25em ou 40.5px
-h1 : 3.375em ou 60.75px (page)
+- taille de polices (ratio) 1.500x
+- labeur : 18px / 1em
+- (h4 : 1.25 ou 22.5px)
+- h3 : 1.5em ou 27px
+- h2 : 2.25em ou 40.5px
+- h1 : 3.375em ou 60.75px (page)
+- h1 : 5.063em ou 91.125px (site)
 
-h1 : 5.063em ou 91.125px (site)
+- hauteur de police : 1.5em
+- inter paragraphe : 0.7em
+- interbloc : ...
 
-hauteur de police : 1.5em
-
-inter paragraphe : 0.7em
-
-interbloc : ...
-
-grille : ...
-grille totale = ...
+- grille : ...
+- grille totale = ...
 
 ### Couleurs:
 
-#821d49 Claret
-#fdc848 Bright Sun
-#c22717 Thunderbird
+- #821d49 Claret
+- #fdc848 Bright Sun
+- #c22717 Thunderbird
