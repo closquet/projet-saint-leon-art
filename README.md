@@ -101,11 +101,13 @@ Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier
   - filtre date
   - filtre heure
   - filtre catégorie
+- Fiche d'un évènement
 - Artistes
   - filtre lieu
   - filtre date
   - filtre heure
   - filtre catégorie
+- Fiche d'un artiste
 - À propos
 - Contacter (formulaire)
 - Partenaires
