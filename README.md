@@ -93,6 +93,24 @@ TODO
 
 Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier, largement multiculturelle, et l’art sous toutes ses formes, tout en créant des liens durables entre habitants et artistes qui s’y côtoient chaque jours. Cette initiative souhaite également rendre l’art, l’artiste et la culture accessibles à tous, toutes origines, toutes classes sociales confondues, en offrant un accès libre et gratuit à l’événement.
 
+### Liste des pages
+
+- Accueil
+- Évènements
+  - filtre lieu
+  - filtre date
+  - filtre heure
+  - filtre catégorie
+- Artistes
+  - filtre lieu
+  - filtre date
+  - filtre heure
+  - filtre catégorie
+- À propos
+- Contacter (formulaire)
+- Partenaires
+- Pratique (google map)
+
 ### Schéma de navigation indirect
 
 ![Schéma de navigation indirect](https://github.com/closquet/projet-saint-leon-art/blob/master/doc/sch%C3%A9ma-navigation.png "Schéma de navigation indirect")
