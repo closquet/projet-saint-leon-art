@@ -113,6 +113,12 @@ Saint-Léon’Art vise à favoriser la rencontre entre la population du quartier
 - Partenaires
 - Pratique (google map)
 
+### Structure du contenu principal
+
+- Un évènement (Saint Léon'Art)
+  - Des activités
+  - Des artistes
+
 ### Schéma de navigation indirect
 
 ![Schéma de navigation indirect](https://github.com/closquet/projet-saint-leon-art/blob/master/doc/sch%C3%A9ma-navigation.png "Schéma de navigation indirect")
