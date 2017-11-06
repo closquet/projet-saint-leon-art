@@ -16,6 +16,9 @@
         <meta name="author" content="Eric Closquet">
         <meta name="keywords" content="Province de Liège, Art, Artiste, Saint Léonard, Lencreuse, Parcours artistique">
         <link rel="shortcut icon" href="favicon.ico">
+        
+        <?php ec_the_cta_style( 23, '.intro-cta__info-list', '/');?>
+        
         <?php wp_head(); ?>
     </head>
 
@@ -29,7 +32,9 @@
             </a>
             <meta itemprop="url" content="http://<?= $_SERVER['HTTP_HOST'] ?>">
             <nav aria-labelledby="main-nav__title" role="navigation" class="main-nav">
-                <h2 id="main-nav__title" role="heading" aria-level="2" class="visually-hidden">Menu Principal</h2>
+                <h2 id="main-nav__title" role="heading" aria-level="2" class="visually-hidden">
+                    Menu Principal
+                </h2>
                 <input type="checkbox" id="burger-menu" class="burger-menu-input">
                 <label class="burger-menu-label" for="burger-menu">
                     <span class="fa fa-bars burger-menu-open" aria-hidden="true"></span>

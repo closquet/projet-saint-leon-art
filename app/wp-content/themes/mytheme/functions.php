@@ -39,7 +39,7 @@ function remove_menus () {
 // __('Tools'),
 // __('Users'),
 // __('Settings'),
-// __('Comments'),
+ __('Comments'),
 // __('Plugins')
 );    end ($menu);
 	while (prev($menu)){
@@ -58,6 +58,7 @@ add_action('admin_menu', 'remove_menus');
 add_action('init','ec_init_types');
 function ec_init_types()
 {
+	
 	register_post_type('artistes', [
 		'label' => 'Artistes',
 		'labels' => [
@@ -66,7 +67,6 @@ function ec_init_types()
 			'all_items' => 'Tous les artistes'
 		],
 		'description' => 'Type d\'article permettant d\'ajouter des artistes à la section artistes du site.',
-		'menu_position' => 4,
 		'public' => true,
 		'capability_type' => 'post',
 		'supports' => [
@@ -85,7 +85,6 @@ function ec_init_types()
 			'all_items' => 'Toutes les activités'
 		],
 		'description' => 'Type d\'article permettant d\'ajouter des activités à la section activités du site.',
-		'menu_position' => 5,
 		'public' => true,
 		'capability_type' => 'post',
 		'supports' => [
@@ -96,15 +95,48 @@ function ec_init_types()
 		]
 	]);
 	
+	register_post_type('cta', [
+		'label' => 'CTA',
+		'labels' => [
+			'singular_name' => 'cta',
+			'add_new' => 'Ajouter un cta',
+			'all_items' => 'Tous les artistes'
+		],
+		'description' => 'Type d\'article permettant d\'éditer des CTA présent dans le site site.',
+		'public' => true,
+		'capability_type' => 'post',
+		'capabilities' => [
+			//'create_posts' => 'do_not_allow',
+			//'delete_posts' => 'do_not_allow',
+		],
+		'supports' => [
+			'title',
+			'editor',
+			'thumbnail',
+			'excerpt'
+		]
+	]);
 	
-	register_taxonomy('cat', ['activites', 'artistes'], [
+	register_taxonomy('cat', [ 'artistes'], [
 		'label' => 'Types d\'oeuvre',
 		'labels' => [
 			'singular_name' => 'type d\'oeuvre',
 			'edit_item' => 'Éditer le type',
 			'add_new_item' => 'Ajouter un nouveau type'
 		],
-		'description' => 'Type d\'oeuvre au quel appartiennent les activités et artistes.',
+		'description' => 'Type d\'oeuvres aux quelles appartiennent les activités et artistes.',
+		'public' => true,
+		'hierarchical' => true
+	]);
+	
+	register_taxonomy('places', [ 'artistes'], [
+		'label' => 'Endroits',
+		'labels' => [
+			'singular_name' => 'endroit',
+			'edit_item' => 'Éditer l\'endroit',
+			'add_new_item' => 'Ajouter un nouvel endroit'
+		],
+		'description' => 'Endroits où se produisent les artistes.',
 		'public' => true,
 		'hierarchical' => true
 	]);
@@ -227,46 +259,48 @@ function ec_the_excerpt($length = null)
 }
 
 /*
- * fil d'ariane
+ * return a converted  date format from aaaa-mm-jj to jj/mm/aaaa
  */
-function ec_fildarian(){
-	$def = "index";
-	$dPath = strchr( $_SERVER['REQUEST_URI'], 'images') ? '/Galerie/' : $_SERVER['REQUEST_URI'];
-	$dChunks = explode("/", $dPath);
-	
-	echo('<a class="link" href="/">Accueil</a><span class="arian-sep">  >  </span>');
-	for($i=1; $i<count($dChunks)-1; $i++ ){
-		echo('<a class="link" href="/');
-		for($j=1; $j<=$i; $j++ ){
-			echo($dChunks[$j]);
-			if($j!=count($dChunks)-1){ echo("/");}
-		}
-		
-		if($i==count($dChunks)-2){
-			$prChunks = explode(".", $dChunks[$i]);
-			if ($prChunks[0] == $def) $prChunks[0] = "";
-			$prChunks[0] = ucfirst($prChunks[0]) . "</a>";
-		}
-		else $prChunks[0] = ucfirst($dChunks[$i]) . '</a><span class="dynNav">  >  </span>';
-		echo('">');
-		echo(str_replace("_" , " " , $prChunks[0]));
-	}
-}
-
-/*
- * Get a converted  date format from jj/mm/aaa to jj-mm-aaaa
- */
-
-function ec_get_html_date_field($field_name){
-    $mydate = get_field($field_name);
-    $mydate = str_replace( '/', '-', $mydate);
+function ec_get_human_date_from_html_date($html_date_format, $new_delimiter = '/'){
+    $mydate = explode( '-', $html_date_format);
+	$mydate = $mydate[2].$new_delimiter.$mydate[1].$new_delimiter.$mydate[0];
     return $mydate;
 }
 
 /*
  * Output a converted  date format from jj/mm/aaa to jj-mm-aaaa
  */
+function ec_the_human_date_from_html_date($html_date_format, $new_delimiter = '/'){
+	echo ec_get_human_date_from_html_date($html_date_format, $new_delimiter);
+}
 
-function ec_the_html_date_field($field_name){
-	echo ec_get_html_date_field($field_name);
+/*
+ * get the cta stlyle and create a <style> html tag
+ */
+function ec_get_the_cta_style(int $post_id, string $class_name, string $uri){
+
+	if ( $_SERVER['REQUEST_URI'] == $uri ){
+		return '
+			<style>
+				' . $class_name . '{
+					background-image:url( ' . get_field( 'image_de_fond', $post_id )['sizes']['1366_prev'] . ');
+				}
+				@media (max-width: 740px) {
+					' . $class_name . '{
+						background-image:url( ' . get_field( 'image_de_fond', $post_id)['sizes']['740_prev'] . ');
+					}
+				}
+				@media (max-width: 320px) {
+					' . $class_name . '{
+						background-image:url( ' . get_field( 'image_de_fond', $post_id)['sizes']['320_prev'] . ');
+					}
+				}
+			</style>';
+	}
+}
+/*
+ * output the cta stlyle and create a <style> html tag
+ */
+function ec_the_cta_style(int $post_id, string $class_name, string $uri){
+	echo ec_get_the_cta_style($post_id, $class_name, $uri);
 }

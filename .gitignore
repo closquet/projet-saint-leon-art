@@ -37,3 +37,4 @@ doc/icones/instagram-icon.svg
 *.xd
 /doc/images/src/
 /app/wp-content/themes/mytheme/assets/
+app/wp-content/uploads/
