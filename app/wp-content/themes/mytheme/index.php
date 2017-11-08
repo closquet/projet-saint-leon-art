@@ -1,3 +1,4 @@
+<?php require 'vendor/autoload.php';?>
 <?php //setlocale(LC_ALL, 'fr_BE.utf8'); ?>
 <?php get_header(); ?>
     <div class="cta-container intro-cta">
@@ -130,7 +131,7 @@
 		<?php endif; ?>
         <a href="<?php echo get_page_link(17); ?>">Tous les artistes</a>
     </section>
-
+ 
 
 
 <?php get_footer(); ?>
