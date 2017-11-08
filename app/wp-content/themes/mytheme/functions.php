@@ -22,16 +22,12 @@ if ( function_exists( 'add_theme_support' ) ) {
 add_action( 'admin_menu', 'remove_links_tab_menu_pages' );
 function remove_links_tab_menu_pages() {
 	remove_menu_page('index.php'); //tableau de board (dashboard)
-	add_filter('acf/settings/show_admin', '__return_false');
+	//add_filter('acf/settings/show_admin', '__return_false');
 }
-//function remove_acf_menu() {
-//	remove_menu_page('edit.php?post_type=acf');
-//}
-add_action( 'admin_menu', 'remove_acf_menu', 999);
 function remove_menus () {
 	global $menu;
 	$restricted = array(__('Dashboard'),
- __('Posts'),
+		__('Posts'),
 // __('Media'),
 // __('Links'),
 // __('Pages'),
@@ -39,9 +35,9 @@ function remove_menus () {
 // __('Tools'),
 // __('Users'),
 // __('Settings'),
- __('Comments'),
+		__('Comments'),
 // __('Plugins')
-);    end ($menu);
+	);    end ($menu);
 	while (prev($menu)){
 		$value = explode(' ',$menu[key($menu)][0]);
 		if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){unset($menu[key($menu)]);}
@@ -174,13 +170,13 @@ function ec_the_terms($glue = '', $prefix = '', $suffix = '', $taxo)
 
 
 
-
 /*
  * Register navigation menu
  */
 register_nav_menus([
-	'header'=>'Menu du header.'
-	]);
+	'header'=>'Menu du header.',
+	'other'=>'Autres liens.'
+]);
 
 /*
  * Get menu items
@@ -226,14 +222,14 @@ function ec_get_nav_id($location)
  * Get theme asset URI (pour avoir un bon chemin url pour les fichiers css/js)
 */
 function ec_get_uri_asset($resource){
-return get_template_directory_uri() . '/assets/' . trim($resource, '/'); //trim, enlève le second éléments (le /) de la string du premier élément ($resouce) au début et à la fin.
+	return get_template_directory_uri() . '/assets/' . trim($resource, '/'); //trim, enlève le second éléments (le /) de la string du premier élément ($resouce) au début et à la fin.
 }
 
 /*
  * Output theme asset URI
  */
 function ec_asset($resource){
-echo ec_get_uri_asset($resource);
+	echo ec_get_uri_asset($resource);
 }
 
 /**
@@ -262,9 +258,9 @@ function ec_the_excerpt($length = null)
  * return a converted  date format from aaaa-mm-jj to jj/mm/aaaa
  */
 function ec_get_human_date_from_html_date($html_date_format, $new_delimiter = '/'){
-    $mydate = explode( '-', $html_date_format);
+	$mydate = explode( '-', $html_date_format);
 	$mydate = $mydate[2].$new_delimiter.$mydate[1].$new_delimiter.$mydate[0];
-    return $mydate;
+	return $mydate;
 }
 
 /*
@@ -278,7 +274,7 @@ function ec_the_human_date_from_html_date($html_date_format, $new_delimiter = '/
  * get the cta stlyle and create a <style> html tag
  */
 function ec_get_the_cta_style(int $post_id, string $class_name, string $uri){
-
+	
 	if ( $_SERVER['REQUEST_URI'] == $uri ){
 		return '
 			<style>
@@ -303,4 +299,31 @@ function ec_get_the_cta_style(int $post_id, string $class_name, string $uri){
  */
 function ec_the_cta_style(int $post_id, string $class_name, string $uri){
 	echo ec_get_the_cta_style($post_id, $class_name, $uri);
+}
+
+function ec_get_instagram_feed()
+{
+	$auth_config = [
+		'user_id'             => '1372181382',
+		'token'             => '1372181382.043edd4.d01f98d404e8499eb21983bd7d554b01',
+		'limit'             => '4',
+		//'scope'             => array( 'likes', 'comments', 'relationships' )
+	];
+	
+	$recent_media_url = sprintf( 'https://api.instagram.com/v1/users/%s/media/recent/?access_token=%s&count=%s', $auth_config['user_id'], $auth_config['token'], $auth_config['limit'] );
+	$curl = curl_init($recent_media_url);
+	curl_setopt( $curl, CURLOPT_CONNECTTIMEOUT, 3);
+	curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false);
+	$curl_return = json_decode( curl_exec( $curl) );
+	
+	//var_dump( $data);
+	if(curl_errno($curl)){
+		echo '<script>console.error(\'backend error -> Instagram API : ' . curl_error($curl) . '\')</script>';
+	}elseif ($curl_return->meta->error_message){
+		echo '<script>console.error(\'backend error -> Instagram API : ' . $curl_return->meta->error_message . '\')</script>';
+	}else{
+		return $curl_return->data;
+	}
+	return false;
 }
