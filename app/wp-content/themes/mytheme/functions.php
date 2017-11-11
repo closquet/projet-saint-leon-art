@@ -175,7 +175,7 @@ function ec_the_terms($glue = '', $prefix = '', $suffix = '', $taxo)
  */
 register_nav_menus([
 	'header'=>'Menu du header.',
-	'other'=>'Autres liens.'
+	'footer'=>'Liens du footer.'
 ]);
 
 /*
