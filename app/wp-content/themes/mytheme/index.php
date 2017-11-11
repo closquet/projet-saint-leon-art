@@ -38,40 +38,42 @@
             ]);
         ?>
         <?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); $the_artist_id = get_field('artistes')['0']->ID; ?>
-            <article class="main-section__post activities-section__post" aria-labelledby="main-section__post__title activities-section__post__title">
-                <h3 class="main-section__post__title activities-section__post__title" id="main-section__post__title activities-section__post__title" role="heading" aria-level="2">
-	                <?php the_title(); ?>
-                </h3>
-	            <?php $img_320 =  get_field('thumbnail'); ?>
-                <img
-                    class="main-section__post__thumbnail activities-section__post__thumbnail"
-                    src="<?php echo $img_320['sizes']['320_prev']; ?>"
-                    width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
-                    height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
-                    alt="<?php echo $img_320['alt']; ?>"
-                >
-	            <ul class="main-section__post__info-list activities-section__post__info-list">
-                    <?php foreach(get_field('quand') as $item): ?>
-                        <li class="main-section__post__info-list__info activities-section__post__info-list__info  activities-section__post__info-list__date">
-                            <time class="activities-section__post__info-list__date__day" datetime="<?php echo $item['date']; ?>"><?php ec_the_human_date_from_html_date( $item['date']); ?></time><span class="activities-section__post__info-list__date__time"> de <time class="activities-section__post__info-list__date__time__from" datetime="<?php echo $item['heure_de_debut']; ?>"><?php echo $item['heure_de_debut']; ?></time> à <time class="activities-section__post__info-list__date__time__to" datetime="<?php echo $item['heure_de_fin']; ?>"><?php echo $item['heure_de_fin']; ?></time></span>
+            <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
+                <article class="main-section__permalink__post activities-section__permalink__post" aria-labelledby="main-section__permalink__post__title activities-section__permalink__post__title">
+                    <h3 class="main-section__permalink__post__title activities-section__permalink__post__title" id="main-section__permalink__post__title activities-section__permalink__post__title" role="heading" aria-level="3">
+			            <?php the_title(); ?>
+                    </h3>
+		            <?php $img_320 =  get_field('thumbnail'); ?>
+                    <img
+                            class="main-section__permalink__post__thumbnail activities-section__permalink__post__thumbnail"
+                            src="<?php echo $img_320['sizes']['320_prev']; ?>"
+                            width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
+                            height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
+                            alt="<?php echo $img_320['alt']; ?>"
+                    >
+                    <ul class="main-section__permalink__post__info-list activities-section__permalink__post__info-list">
+			            <?php foreach(get_field('quand') as $item): ?>
+                            <li class="main-section__permalink__post__info-list__info activities-section__permalink__post__info-list__info  activities-section__permalink__post__info-list__date">
+                                <time class="activities-section__permalink__post__info-list__date__day" datetime="<?php echo $item['date']; ?>"><?php ec_the_human_date_from_html_date( $item['date']); ?></time><span class="activities-section__permalink__post__info-list__date__time"> de <time class="activities-section__permalink__post__info-list__date__time__from" datetime="<?php echo $item['heure_de_debut']; ?>"><?php echo $item['heure_de_debut']; ?></time> à <time class="activities-section__permalink__post__info-list__date__time__to" datetime="<?php echo $item['heure_de_fin']; ?>"><?php echo $item['heure_de_fin']; ?></time></span>
+                            </li>
+			            <?php endforeach; ?>
+                        <li class="main-section__permalink__post__info-list__info activities-section__permalink__post__info-list__info activities-section__permalink__post__info-list__place">
+                            <span><?= $term_list = wp_get_post_terms($the_artist_id, 'places')[0]->name; ?></span>
                         </li>
-                    <?php endforeach; ?>
-                    <li class="main-section__post__info-list__info activities-section__post__info-list__info activities-section__post__info-list__place">
-                        <span><?= $term_list = wp_get_post_terms($the_artist_id, 'places')[0]->name; ?></span>
-                    </li>
-                    <?php $term_list = wp_get_post_terms($the_artist_id, 'cat'); if ( count( $term_list ) > 0 ): ?>
-                        <li class="main-section__post__info-list__info main-section__post__info-list__terms activities-section__post__info-list__info activities-section__post__info-list__terms"><!--
+			            <?php $term_list = wp_get_post_terms($the_artist_id, 'cat'); if ( count( $term_list ) > 0 ): ?>
+                            <li class="main-section__permalink__post__info-list__info main-section__permalink__post__info-list__terms activities-section__permalink__post__info-list__info activities-section__permalink__post__info-list__terms"><!--
                         <?php if ( count( $term_list ) > 1 ): ?>
 		                    <?php for( $i = 0; $i < count( $term_list ); $i++ ): ?>
-                                --><span class="main-section__post__info-list__info__term main-section__post__info-list__terms__term activities-section__post__info-list__info__term activities-section__post__info-list__terms__term"><?php echo ($i == 0 ? $term_list[$i]->name : ', '.$term_list[$i]->name); ?></span><!--
+                                --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo ($i == 0 ? $term_list[$i]->name : ', '.$term_list[$i]->name); ?></span><!--
 		                    <?php endfor; ?>
                         <?php else: ?>
-                            --><span class="main-section__post__info-list__info__term main-section__post__info-list__terms__term activities-section__post__info-list__info__term activities-section__post__info-list__terms__term"><?php echo $term_list[0]->name; ?></span><!--
+                            --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo $term_list[0]->name; ?></span><!--
 	                    <?php endif; ?>
                         --></li>
-                    <?php endif; ?>
-                </ul>
-            </article>
+			            <?php endif; ?>
+                    </ul>
+                </article>
+            </a>
         <?php endwhile; else: ?>
             <p>
                 Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
@@ -93,36 +95,37 @@
 		]);
 		?>
 		<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
-            <article class="main-section__post artists-section__post" aria-labelledby="main-section__post__title artists-section__post__title">
-                <h3 class="main-section__post__title artists-section__post__title" id="main-section__post__title artists-section__post__title" role="heading" aria-level="2">
-					<?php the_title(); ?>
-                </h3>
-				<?php $img_320 =  get_field('thumbnail'); ?>
-                <img
-                    class="main-section__post__thumbnail artists-section__post__thumbnail"
-                    src="<?php echo $img_320['sizes']['320_prev']; ?>"
-                    width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
-                    height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
-                    alt="<?php echo $img_320['alt']; ?>"
-                >
-                <ul class="main-section__post__info-list artists-section__post__info-list">
-					
-                    <li class="main-section__post__info-list__info artists-section__post__info-list__info artists-section__post__info-list__place">
-                        <span><?= $term_list = wp_get_post_terms($post->ID, 'places')[0]->name; ?></span>
-                    </li>
-					<?php $term_list = wp_get_post_terms($post->ID, 'cat'); if ( count( $term_list ) > 0 ): ?>
-                        <li class="main-section__post__info-list__info main-section__post__info-list__terms artists-section__post__info-list__info artists-section__post__info-list__terms"><!--
+            <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
+                <article class="main-section__permalink__post artists-section__permalink__post" aria-labelledby="main-section__permalink__post__title artists-section__permalink__post__title">
+                    <h3 class="main-section__permalink__post__title artists-section__permalink__post__title" id="main-section__permalink__post__title artists-section__permalink__post__title" role="heading" aria-level="3">
+			            <?php the_title(); ?>
+                    </h3>
+		            <?php $img_320 =  get_field('thumbnail'); ?>
+                    <img
+                            class="main-section__permalink__post__thumbnail artists-section__permalink__post__thumbnail"
+                            src="<?php echo $img_320['sizes']['320_prev']; ?>"
+                            width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
+                            height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
+                            alt="<?php echo $img_320['alt']; ?>"
+                    >
+                    <ul class="main-section__permalink__post__info-list artists-section__permalink__post__info-list">
+                        <li class="main-section__permalink__post__info-list__info artists-section__permalink__post__info-list__info artists-section__permalink__post__info-list__place">
+                            <span><?= $term_list = wp_get_post_terms($post->ID, 'places')[0]->name; ?></span>
+                        </li>
+			            <?php $term_list = wp_get_post_terms($post->ID, 'cat'); if ( count( $term_list ) > 0 ): ?>
+                            <li class="main-section__permalink__post__info-list__info main-section__permalink__post__info-list__terms artists-section__permalink__post__info-list__info artists-section__permalink__post__info-list__terms"><!--
                         <?php if ( count( $term_list ) > 1 ): ?>
                             <?php for( $i = 0; $i < count( $term_list ); $i++ ): ?>
-                                --><span class="main-section__post__info-list__info__term main-section__post__info-list__terms__term artists-section__post__info-list__info__term artists-section__post__info-list__terms__term"><?php echo ($i == 0 ? $term_list[$i]->name : ', '.$term_list[$i]->name); ?></span><!--
+                                --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term artists-section__permalink__post__info-list__info__term artists-section__permalink__post__info-list__terms__term"><?php echo ($i == 0 ? $term_list[$i]->name : ', '.$term_list[$i]->name); ?></span><!--
                             <?php endfor; ?>
                         <?php else: ?>
-                            --><span class="main-section__post__info-list__info__term main-section__post__info-list__terms__term artists-section__post__info-list__info__term artists-section__post__info-list__terms__term"><?php echo $term_list[0]->name; ?></span><!--
+                            --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term artists-section__permalink__post__info-list__info__term artists-section__permalink__post__info-list__terms__term"><?php echo $term_list[0]->name; ?></span><!--
                         <?php endif; ?>
                         --></li>
-					<?php endif; ?>
-                </ul>
-            </article>
+			            <?php endif; ?>
+                    </ul>
+                </article>
+            </a>
 		<?php endwhile; else: ?>
             <p>
                 Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
@@ -143,7 +146,12 @@
 		            <?php //var_dump( $item->images->low_resolution ); ?>
                 <?php endforeach; ?>
             </div>
-            <a href="<?= wp_get_nav_menu_items(ec_get_nav_id('other'))[0]->url ?>">Voir le reste sur Instagram</a>
+	        <?php foreach (wp_get_nav_menu_items(ec_get_nav_id('other')) as $item): ?>
+                <?php if ($item->title == 'Instagram'): ?>
+                    <a href="<?= $item->url ?>">Voir le reste sur Instagram</a>
+                <?php endif; ?>
+	        <?php endforeach; ?>
+         
         </section>
     <?php endif; ?>
 <?php get_footer(); ?>
