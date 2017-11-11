@@ -35,10 +35,10 @@
                 <h2 id="main-nav__title" role="heading" aria-level="2" class="visually-hidden">
                     Menu Principal
                 </h2>
-                <input type="checkbox" id="burger-menu" class="burger-menu-input">
+                <input class="burger-menu-input" aria-hidden="true" type="checkbox" id="burger-menu">
                 <label class="burger-menu-label" for="burger-menu">
-                    <span class="fa fa-bars burger-menu-open" aria-hidden="true"></span>
-                    <span class="fa fa-times burger-menu-close" aria-hidden="true"></span>
+                    <span class="burger-menu-open" aria-hidden="true">burger menu open</span>
+                    <span class="burger-menu-close" aria-hidden="true">burger menu close</span>
                 </label>
                 <ul class="main-nav__links-list">
                     <li class="main-nav__item">
