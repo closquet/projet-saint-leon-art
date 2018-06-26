@@ -1,4 +1,15 @@
 <?php
+// filter for acf sub field (repeater) query for activities'dates
+function my_activities_dates( $where ) {
+	
+	$where = str_replace("meta_key = 'quand_%", "meta_key LIKE 'quand_%", $where);
+	
+	return $where;
+}
+
+add_filter('posts_where', 'my_activities_dates');
+
+
 /*
 * Create own thumbnails++
 */
@@ -326,4 +337,113 @@ function ec_get_instagram_feed()
 		return $curl_return->data;
 	}
 	return false;
+}
+
+
+/*
+ * get activities that have same (artist's) terms of chosen terms.
+ */
+function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in)
+{
+	//find artist(s) with same terms of "cat" taxonomy
+	$artists_list_for_query = new WP_Query();
+	$artists_list_for_query -> query([
+		'post_type' => 'artistes',
+		'tax_query' => [
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'slug',
+				'terms'    => $terms_list??'',
+			]
+		],
+	]);
+	if (!$artists_list_for_query->have_posts()){
+		return new wp_query();
+	}
+	
+	//get only the IDs of the artists previously found
+	$Artist_id_list = [];
+	foreach ($artists_list_for_query->posts as $artist){
+		$Artist_id_list[] = '"' . $artist->ID . '"';
+	}
+	
+	//build meta query to have a dynamic array of what we search
+	$meta_query = ['relation' => 'OR'];
+	foreach ($Artist_id_list as $value) {
+		$meta_query[] = [
+			'key'       => 'artistes',
+			'value'     => $value,
+			'compare'   => 'LIKE',
+		];
+	}
+	
+	//build the arg for the get_posts instruction
+	$arg = [
+		'post_type' => 'activites',
+		'post__not_in' => [$post_not_in],
+		'showposts' => '3',
+		'orderby' => 'rand',
+		'meta_query' => $meta_query
+	];
+	
+	return new wp_query($arg);
+}
+/*
+ * get terms for current activity from a taxonomy
+
+ */
+function ec_get_terms_for_current_activity($taxonomy, $artist = null)
+{
+	if(!$artist){
+		$artists_list = get_field('artistes', $post->ID);
+	}else{
+		$artists_list = $artist;
+	}
+	$terms_list = [];
+	foreach ($artists_list as $an_artist){
+		foreach (wp_get_post_terms($an_artist, $taxonomy) as $a_term){
+			!in_array( $a_term->name, $terms_list) && $terms_list[] =  $a_term->name;
+		}
+	}
+	return $terms_list;
+}
+
+/*
+ * Get dates of the current activity
+ */
+function ec_get_current_activity_dates(){
+	$dates_list = [];
+	foreach ( get_field( 'quand' ) as $q ) {
+		!in_array( $q['date'], $dates_list) && $dates_list[] =  $q['date'];
+	}
+	return $dates_list;
+}
+
+
+/*
+ * get activities that have same (artist's) terms of chosen terms.
+ */
+function ec_get_activities_from_dates($dates_list, $post_not_in)
+{
+	
+	//build meta query to have a dynamic array of what we search
+	$meta_query = ['relation' => 'OR'];
+	foreach ($dates_list as $value) {
+		$meta_query[] = [
+			'key'       => 'quand_%_date',
+			'value'     => $value,
+			'compare'   => 'LIKE',
+		];
+	}
+	
+	//build the arg for the get_posts instruction
+	$arg = [
+		'post_type' => 'activites',
+		'post__not_in' => [$post_not_in],
+		'showposts' => '3',
+		'orderby' => 'rand',
+		'meta_query' => $meta_query
+	];
+	
+	return new wp_query($arg);
 }
