@@ -25,8 +25,8 @@
             </p>
 	    <?php endif; ?>
     </div>
-    <section class="main-section activities-section" aria-labelledby="main-section__title activities-section__title">
-        <h2 class="main-section__title activities-section__title" id="main-section__title activities-section__title" role="heading" aria-level="2">
+    <section class="main-section activities-section" aria-labelledby="activities-section__title">
+        <h2 class="main-section__title activities-section__title" id="activities-section__title" role="heading" aria-level="2">
             Activités
         </h2>
         <?php
@@ -38,8 +38,8 @@
         ?>
         <?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
             <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
-                <article class="main-section__permalink__post activities-section__permalink__post" aria-labelledby="main-section__permalink__post__title activities-section__permalink__post__title">
-                    <h3 class="main-section__permalink__post__title activities-section__permalink__post__title" id="main-section__permalink__post__title activities-section__permalink__post__title" role="heading" aria-level="3">
+                <article class="main-section__permalink__post activities-section__permalink__post" aria-labelledby="activities-section__permalink__post__title">
+                    <h3 class="main-section__permalink__post__title activities-section__permalink__post__title" id="activities-section__permalink__post__title" role="heading" aria-level="3">
 			            <?php the_title(); ?>
                     </h3>
 		            <?php $img_320 =  get_field('thumbnail'); ?>
@@ -93,8 +93,8 @@
         <a class="main-section__all-posts-page-link activities-section__all-posts-page-link" aria-labelledby="main-section__title activities-section__title" href="<?php echo get_page_link(13); ?>">Toutes les activités</a>
     </section>
 
-    <section class="main-section artists-section" aria-labelledby="main-section__title artists-section__title">
-        <h2 class="main-section__title artists-section__title" id="main-section__title artists-section__title" role="heading" aria-level="2">
+    <section class="main-section artists-section" aria-labelledby="artists-section__title">
+        <h2 class="main-section__title artists-section__title" id="artists-section__title" role="heading" aria-level="2">
             Artistes
         </h2>
 		<?php
@@ -106,8 +106,8 @@
 		?>
 		<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
             <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
-                <article class="main-section__permalink__post artists-section__permalink__post" aria-labelledby="main-section__permalink__post__title artists-section__permalink__post__title">
-                    <h3 class="main-section__permalink__post__title artists-section__permalink__post__title" id="main-section__permalink__post__title artists-section__permalink__post__title" role="heading" aria-level="3">
+                <article class="main-section__permalink__post artists-section__permalink__post" aria-labelledby="artists-section__permalink__post__title">
+                    <h3 class="main-section__permalink__post__title artists-section__permalink__post__title" id="artists-section__permalink__post__title" role="heading" aria-level="3">
 			            <?php the_title(); ?>
                     </h3>
 		            <?php $img_320 =  get_field('thumbnail'); ?>
@@ -158,8 +158,8 @@
     </section>
     <?php $data = ec_get_instagram_feed(); ?>
     <?php if ($data): ?>
-        <section class="main-section instagram-section" aria-labelledby="main-section__title instagram-section__title">
-            <h2 class="main-section__title instagram-section__title" id="main-section__title instagram-section__title" role="heading" aria-level="2">
+        <section class="main-section instagram-section" aria-labelledby="instagram-section__title">
+            <h2 class="main-section__title instagram-section__title" id="instagram-section__title" role="heading" aria-level="2">
                 Nos derniers posts Instagram
             </h2>
             <div class="main-section__feed instagram-section__feed">
