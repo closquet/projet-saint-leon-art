@@ -53,7 +53,7 @@
                     <ul class="main-section__permalink__post__info-list activities-section__permalink__post__info-list">
 			            <?php foreach(get_field('quand') as $item): ?>
                             <li class="main-section__permalink__post__info-list__info activities-section__permalink__post__info-list__info  activities-section__permalink__post__info-list__date">
-                                <time class="main-section__permalink__post__info-list__date__day activities-section__permalink__post__info-list__date__day" datetime="<?php echo $item['date']; ?>"><?php ec_the_human_date_from_html_date( $item['date']); ?></time><span class="main-section__permalink__post__info-list__date__time activities-section__permalink__post__info-list__date__time"> de <time class="main-section__permalink__post__info-list__date__time__from activities-section__permalink__post__info-list__date__time__from" datetime="<?php echo $item['heure_de_debut']; ?>"><?php echo $item['heure_de_debut']; ?></time> à <time class="main-section__permalink__post__info-list__date__time__to activities-section__permalink__post__info-list__date__time__to" datetime="<?php echo $item['heure_de_fin']; ?>"><?php echo $item['heure_de_fin']; ?></time></span>
+                                <time class="main-section__permalink__post__info-list__date__day activities-section__permalink__post__info-list__date__day" datetime="<?= $item['date'] ?>"><?php ec_the_human_date_from_html_date( $item['date']); ?></time><span class="main-section__permalink__post__info-list__date__time activities-section__permalink__post__info-list__date__time"> de <time class="main-section__permalink__post__info-list__date__time__from activities-section__permalink__post__info-list__date__time__from" datetime="<?= $item['heure_de_debut'] ?>"><?= $item['heure_de_debut'] ?></time> à <time class="main-section__permalink__post__info-list__date__time__to activities-section__permalink__post__info-list__date__time__to" datetime="<?= $item['heure_de_fin'] ?>"><?= $item['heure_de_fin'] ?></time></span>
                             </li>
 			            <?php endforeach; ?>
                         <?php
@@ -61,24 +61,42 @@
                         $cat_terms_list = ec_get_terms_for_current_activity('cat');
                         ?>
 	                    <?php if ( count( $places_terms_list ) > 0 ): ?>
-                            <li class="main-section__permalink__post__info-list__info main-section__permalink__post__info-list__terms activities-section__permalink__post__info-list__info activities-section__permalink__post__info-list__terms"><!--
+                            <li class="main-section__permalink__post__info-list__info
+                                    main-section__permalink__post__info-list__terms
+                                    activities-section__permalink__post__info-list__info
+                                    activities-section__permalink__post__info-list__terms"><!--
                             <?php if ( count( $places_terms_list ) > 1 ): ?>
                                 <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
-                                    --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo ($i == 0 ? $places_terms_list[$i] : ', '.$places_terms_list[$i]); ?></span><!--
+                                    --><span class="main-section__permalink__post__info-list__info__term
+                                                main-section__permalink__post__info-list__terms__term
+                                                activities-section__permalink__post__info-list__info__term
+                                                activities-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
                                 <?php endfor; ?>
                             <?php else: ?>
-                                --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo $places_terms_list[0]; ?></span><!--
+                                --><span class="main-section__permalink__post__info-list__info__term
+                                            main-section__permalink__post__info-list__terms__term
+                                            activities-section__permalink__post__info-list__info__term
+                                            activities-section__permalink__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
 	                        <?php endif; ?>
                             --></li>
 	                    <?php endif; ?>
 			            <?php if ( count( $cat_terms_list ) > 0 ): ?>
-                            <li class="main-section__permalink__post__info-list__info main-section__permalink__post__info-list__terms activities-section__permalink__post__info-list__info activities-section__permalink__post__info-list__terms"><!--
+                            <li class="main-section__permalink__post__info-list__info
+                                    main-section__permalink__post__info-list__terms
+                                    activities-section__permalink__post__info-list__info
+                                    activities-section__permalink__post__info-list__terms"><!--
                             <?php if ( count( $cat_terms_list ) > 1 ): ?>
                                 <?php for( $i = 0; $i < count( $cat_terms_list ); $i++ ): ?>
-                                    --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo ($i == 0 ? $cat_terms_list[$i] : ', '.$cat_terms_list[$i]); ?></span><!--
+                                    --><span class="main-section__permalink__post__info-list__info__term
+                                                main-section__permalink__post__info-list__terms__term
+                                                activities-section__permalink__post__info-list__info__term
+                                                activities-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $cat_terms_list[$i] : ', ' . $cat_terms_list[$i]) ?></span><!--
                                 <?php endfor; ?>
                             <?php else: ?>
-                                --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo $cat_terms_list[0]; ?></span><!--
+                                --><span class="main-section__permalink__post__info-list__info__term
+                                main-section__permalink__post__info-list__terms__term
+                                activities-section__permalink__post__info-list__info__term
+                                activities-section__permalink__post__info-list__terms__term"><?= $cat_terms_list[0] ?></span><!--
 	                        <?php endif; ?>
                             --></li>
 			            <?php endif; ?>
@@ -90,7 +108,7 @@
                 Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
             </p>
         <?php endif; ?>
-        <a class="main-section__all-posts-page-link activities-section__all-posts-page-link" aria-labelledby="main-section__title activities-section__title" href="<?php echo get_page_link(13); ?>">Toutes les activités</a>
+        <a class="main-section__all-posts-page-link activities-section__all-posts-page-link" href="<?php echo get_page_link(13); ?>">Toutes les activités</a>
     </section>
 
     <section class="main-section artists-section" aria-labelledby="artists-section__title">
@@ -124,25 +142,43 @@
 	                    $cat_terms_list = ec_get_terms_for_current_activity('cat', $post);
 	                    ?>
 	                    <?php if ( count( $places_terms_list ) > 0 ): ?>
-                            <li class="main-section__permalink__post__info-list__info main-section__permalink__post__info-list__terms activities-section__permalink__post__info-list__info activities-section__permalink__post__info-list__terms"><!--
+                            <li class="main-section__permalink__post__info-list__info
+                                    main-section__permalink__post__info-list__terms
+                                    activities-section__permalink__post__info-list__info
+                                    activities-section__permalink__post__info-list__terms"><!--
                             <?php if ( count( $places_terms_list ) > 1 ): ?>
                                 <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
-                                    --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo ($i == 0 ? $places_terms_list[$i] : ', '.$places_terms_list[$i]); ?></span><!--
+                                    --><span class="main-section__permalink__post__info-list__info__term
+                                                main-section__permalink__post__info-list__terms__term
+                                                activities-section__permalink__post__info-list__info__term
+                                                activities-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
                                 <?php endfor; ?>
                             <?php else: ?>
-                                --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term activities-section__permalink__post__info-list__info__term activities-section__permalink__post__info-list__terms__term"><?php echo $places_terms_list[0]; ?></span><!--
+                                --><span class="main-section__permalink__post__info-list__info__term
+                                            main-section__permalink__post__info-list__terms__term
+                                            activities-section__permalink__post__info-list__info__term
+                                            activities-section__permalink__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
 	                        <?php endif; ?>
                             --></li>
 	                    <?php endif; ?>
                      
 			            <?php if ( count( $cat_terms_list ) > 0 ): ?>
-                            <li class="main-section__permalink__post__info-list__info main-section__permalink__post__info-list__terms artists-section__permalink__post__info-list__info artists-section__permalink__post__info-list__terms"><!--
+                            <li class="main-section__permalink__post__info-list__info
+                                    main-section__permalink__post__info-list__terms
+                                    artists-section__permalink__post__info-list__info
+                                    artists-section__permalink__post__info-list__terms"><!--
                         <?php if ( count( $cat_terms_list ) > 1 ): ?>
                             <?php for( $i = 0; $i < count( $cat_terms_list ); $i++ ): ?>
-                                --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term artists-section__permalink__post__info-list__info__term artists-section__permalink__post__info-list__terms__term"><?php echo ($i == 0 ? $cat_terms_list[$i] : ', '.$cat_terms_list[$i]); ?></span><!--
+                                --><span class="main-section__permalink__post__info-list__info__term
+                                            main-section__permalink__post__info-list__terms__term
+                                            artists-section__permalink__post__info-list__info__term
+                                            artists-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $cat_terms_list[$i] : ', ' . $cat_terms_list[$i]) ?></span><!--
                             <?php endfor; ?>
                         <?php else: ?>
-                            --><span class="main-section__permalink__post__info-list__info__term main-section__permalink__post__info-list__terms__term artists-section__permalink__post__info-list__info__term artists-section__permalink__post__info-list__terms__term"><?php echo $cat_terms_list[0]; ?></span><!--
+                            --><span class="main-section__permalink__post__info-list__info__term 
+                                        main-section__permalink__post__info-list__terms__term 
+                                        artists-section__permalink__post__info-list__info__term 
+                                        artists-section__permalink__post__info-list__terms__term"><?= $cat_terms_list[0] ?></span><!--
                         <?php endif; ?>
                         --></li>
 			            <?php endif; ?>
@@ -154,18 +190,22 @@
                 Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
             </p>
 		<?php endif; ?>
-        <a class="main-section__all-posts-page-link activities-section__all-posts-page-link" aria-labelledby="main-section__title activities-section__title" href="<?php echo get_page_link(17); ?>">Tous les artistes</a>
+        <a class="main-section__all-posts-page-link activities-section__all-posts-page-link" href="<?php echo get_page_link(17); ?>">Tous les artistes</a>
     </section>
-    <?php $data = ec_get_instagram_feed(); ?>
-    <?php if ($data): ?>
+    <?php $instagram_data = ec_get_instagram_feed(); ?>
+    <?php if ($instagram_data): ?>
         <section class="main-section instagram-section" aria-labelledby="instagram-section__title">
             <h2 class="main-section__title instagram-section__title" id="instagram-section__title" role="heading" aria-level="2">
                 Nos derniers posts Instagram
             </h2>
             <div class="main-section__feed instagram-section__feed">
-	            <?php foreach ($data as $item): ?>
+	            <?php foreach ($instagram_data as $item): ?>
 		            <?php $width = $item->images->low_resolution->width; $height = $item->images->low_resolution->height; $url = $item->images->low_resolution->url; ?>
-                    <img class="main-section__feed__image instagram-section__feed__image" src="<?= $url ?>" alt="Image récente provenant du compte instagram de Saintléonart" width="<?= $width ?>" height="<?= $height ?>">
+                    <img class="main-section__feed__image instagram-section__feed__image"
+                         src="<?= $url ?>"
+                         alt="Image récente provenant du compte Instagram de Saintléonart"
+                         width="<?= $width ?>"
+                         height="<?= $height ?>">
 		            <?php //var_dump( $item->images->low_resolution ); ?>
                 <?php endforeach; ?>
             </div>
