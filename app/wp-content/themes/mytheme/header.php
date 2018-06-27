@@ -23,7 +23,7 @@
     </head>
 
     <body itemscope itemtype="http://schema.org/NGO" class="h-card " <?php //body_class(); ?>>
-        <header role="banner">
+        <header class="top-bar" role="banner">
             <h1 class="site-title <?php if( have_posts() ) echo 'visually-hidden' ?>" role="heading" aria-level="1" >
                 Saint Léon&rsquo;Art
             </h1>
@@ -35,12 +35,22 @@
                 <h2 id="main-nav__title" role="heading" aria-level="2" class="visually-hidden">
                     Menu Principal
                 </h2>
-                <input class="burger-menu-input" aria-hidden="true" type="checkbox" id="burger-menu">
-                <label class="burger-menu-label" for="burger-menu">
-                    <span class="burger-menu-open" aria-hidden="true">burger menu open</span>
-                    <span class="burger-menu-close" aria-hidden="true">burger menu close</span>
-                </label>
-                <ul class="main-nav__links-list">
+                <a href="javascript:void(0);" class="burger-link" id="burgerMenuLink" title="Menu">
+                    <svg version="1.2" baseProfile="tiny" id="Calque_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 51"
+                         xml:space="preserve">
+        <metadata>
+            <sfw  xmlns="&ns_sfw;">
+                <slices></slices>
+                <sliceSourceBounds  bottomLeftOrigin="true" height="51" width="48" x="0" y="-51"></sliceSourceBounds>
+            </sfw>
+        </metadata>
+                        <line fill="none" stroke="#ffffff" stroke-width="11" stroke-miterlimit="10" x1="0" y1="5.5" x2="60" y2="5.5"/>
+                        <line fill="none" stroke="#ffffff" stroke-width="11" stroke-miterlimit="10" x1="0" y1="25.5" x2="60" y2="25.5"/>
+                        <line fill="none" stroke="#ffffff" stroke-width="11" stroke-miterlimit="10" x1="0" y1="45.5" x2="60" y2="45.5"/>
+    </svg>
+                </a>
+                <ul class="main-nav__links-list" id="myTopNav">
                     <li class="main-nav__item">
                         <a href="/" class="main-nav__link<?php echo ($_SERVER['REQUEST_URI'] == '/') ? ' main-nav__link--current-page' : '' ;?>">Accueil</a>
                     </li>
