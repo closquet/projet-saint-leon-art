@@ -1,0 +1,15 @@
+html{
+  font-size: $global-font-size;
+}
+
+body{
+  font-family: $labour-font;
+
+  line-height: $global-line-height;
+  color: $color3;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+}
