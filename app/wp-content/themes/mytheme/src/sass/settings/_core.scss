@@ -1,24 +1,24 @@
 @font-face {
   font-family: 'Archivo-Narrow';
-  src: url('../fonts/Archivo_Narrow/ArchivoNarro-Regular.ttf');
+  src: url('../fonts/Archivo_Narrow/ArchivoNarrow-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Archivo-Narrow';
-  src: url('../fonts/Archivo_Narrow/ArchivoNarro-Italic.ttf');
+  src: url('../fonts/Archivo_Narrow/ArchivoNarrow-Italic.ttf');
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: 'Archivo-Narrow';
-  src: url('../fonts/Archivo_Narrow/ArchivoNarro-Bold.ttf');
+  src: url('../fonts/Archivo_Narrow/ArchivoNarrow-Bold.ttf');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'Archivo-Narrow';
-  src: url('../fonts/Archivo_Narrow/ArchivoNarro-BoldItalic.ttf');
+  src: url('../fonts/Archivo_Narrow/ArchivoNarrow-BoldItalic.ttf');
   font-weight: bold;
   font-style: italic;
 }
@@ -40,7 +40,7 @@
 $global-font-size: 16px;
 $global-line-height: 1.5;
 
-$site-title-font-size: 1.875em; //30
+$site-title-font-size: 1.875rem; //30
 $titles-font-size-h1: 1.5rem;   //24
 $titles-font-size-h2: 1.25rem;  //20
 $titles-font-size-h3: 1rem;     //16
@@ -56,4 +56,10 @@ $spacing-l: 3.125rem;   //50
 
 
 
-$color1: #FFFFFF;
+$color0: transparent;
+$color1: #fff;
+$color2: #000;
+$color3: #393939;
+$color4: #861C48;
+$color5: #BE3B72;
+$color6: #FFE2EE;
