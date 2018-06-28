@@ -24,9 +24,11 @@
 
     <body itemscope itemtype="http://schema.org/NGO" class="h-card " <?php //body_class(); ?>>
         <header class="top-bar" role="banner">
-            <h1 class="site-title <?php if( have_posts() ) echo 'visually-hidden' ?>" role="heading" aria-level="1" >
-                Saint Léon&rsquo;Art
-            </h1>
+                <h1 class="site-title <?php //if( have_posts() ) echo 'visually-hidden' ?>" role="heading" aria-level="1" >
+                    <a class="site-title__link" href="http://<?= $_SERVER['HTTP_HOST'] ?>">
+                        Saint Léon&rsquo;Art
+                    </a>
+                </h1>
             <a class="u-url site-logo-link" href="http://<?= $_SERVER['HTTP_HOST'] ?>">
                 <img itemprop="logo" class="u-logo" src="<?php ec_asset( 'images/site-logo.svg' ); ?>" alt="Logo Saint Léon'art" width="24" height="27" title="Saint Léon'art">
             </a>

@@ -1,0 +1,32 @@
+.main-nav__links-list{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  transition: 0.5s;
+  list-style-type: none;
+  padding: 0;
+}
+
+// responsive navigation menu
+
+@media screen and (max-width: 992px) {
+
+  .main-nav__links-list {
+    display: block;
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 60px;
+    left: -100vw;
+    z-index: 2;
+    margin-top: 0;
+
+    &.responsive{
+      background-color: $color4;
+      width: 100vw;
+      min-height: 100vh;
+      left: 0;
+      position: fixed;
+    }
+  }
+}
