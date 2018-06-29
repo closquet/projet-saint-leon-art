@@ -1,41 +1,36 @@
 .main-nav__link{
   font-family: $titles-font;
+  float: none;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: $color6;
+  min-height: 2.75rem;
+  padding-left: 15px;
+  position: relative;
 
-  @media screen and (max-width: 992px) {
-    float: none;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    text-decoration: none;
-    font-size: 1.25rem;
-    color: $color6;
-    min-height: 2.75rem;
-    padding-left: 15px;
-    position: relative;
+  &:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: 7px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-left-color: $color6;
+    //transform: rotate(270deg);
+  }
+
+  &--current-page{
+    background-color: $color6;
+    color: $color4;
 
     &:after{
-      content: '';
-      display: block;
-      position: absolute;
-      top: 14px;
-      right: 7px;
-      width: 0;
-      height: 0;
-      border: 8px solid transparent;
-      border-left-color: $color6;
-      //transform: rotate(270deg);
+      display: none;
     }
-
-    &--current-page{
-      background-color: $color6;
-      color: $color4;
-
-      &:after{
-        display: none;
-      }
-    }
-
-
   }
 }
 

@@ -1,5 +1,5 @@
 .burger-link{
-  display: none;
+  display: block;
   transition: 0.6s;
   color: $color2 !important;
   text-decoration: none;
@@ -15,12 +15,6 @@
   }
 }
 
-@media screen and (max-width: 992px) {
-  .burger-link {
-    display: block;
-  }
-
-  .main-nav__links-list.responsive .burger-link{
-    right: 135px;
-  }
+.main-nav__links-list.responsive .burger-link{
+  right: 135px;
 }
