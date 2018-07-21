@@ -15,7 +15,7 @@
         <meta name="description" content="Un vaste parcours artistique citoyen, mis sur pied par les artistes eux-mêmes et les associations du quartier, va être organisé, pour la quatrième fois en septembre 2018 : Saint Léon’ART!">
         <meta name="author" content="Eric Closquet">
         <meta name="keywords" content="Province de Liège, Art, Artiste, Saint Léonard, Lencreuse, Parcours artistique">
-        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="<?php ec_asset('../favicon.png');?>">
         
         <?php ec_the_cta_style( 23, '.intro-cta__info-list', '/');?>
         
