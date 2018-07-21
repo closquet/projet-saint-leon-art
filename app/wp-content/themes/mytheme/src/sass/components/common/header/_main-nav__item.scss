@@ -1,3 +1,8 @@
 .main-nav__item{
   border-top: 1px solid $color5;
+
+  @media screen and (min-width: 1121px){
+    border-top: 0;
+    display: flex;
+  }
 }

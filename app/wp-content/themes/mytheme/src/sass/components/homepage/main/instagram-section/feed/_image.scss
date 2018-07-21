@@ -1,0 +1,26 @@
+.instagram-section__feed__image{
+  height: auto;
+  width: 137px;
+  border: 1px solid $color2;
+
+  &:nth-child(2n+1){
+    margin-right: $spacing-xs;
+  }
+
+  &:nth-last-child(1n+3){
+    margin-bottom: $spacing-xs;
+  }
+
+  @media screen and (min-width: 624px) {
+    margin-right: $spacing-xs;
+    width: 23%;
+
+    &:nth-last-child(1){
+      margin-right: 0;
+    }
+
+    &:nth-last-child(1n+3){
+      margin-bottom: 0;
+    }
+  }
+}

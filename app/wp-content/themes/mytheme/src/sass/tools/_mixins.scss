@@ -1,0 +1,9 @@
+@mixin footerLinkBeforeContent($fileName){
+  background-color: $color0;
+  background-image: url("../images/#{$fileName}");
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+  border: none;
+}

@@ -1,0 +1,27 @@
+.instagram-section__feed{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 290px;
+  margin-bottom: $spacing-l;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media screen and (min-width: 624px) {
+    padding-left: $spacing-xs;
+    padding-right: $spacing-xs;
+    max-width: none;
+    width: auto;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1021px) {
+    max-width: 1021px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (min-width: 1091px) {
+    max-width: 1091px;
+  }
+}

@@ -1,6 +1,12 @@
 .top-bar{
   background-color: $color4;
   position: fixed;
+  z-index: 1000;
   width: 100%;
   min-height: 3.75rem;
+
+  @media screen and (min-width: 1121px){
+    display: flex;
+    padding: $spacing-xs $spacing-xs 0;
+  }
 }

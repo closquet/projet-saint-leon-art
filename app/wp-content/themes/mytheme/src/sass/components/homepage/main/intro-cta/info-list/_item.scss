@@ -1,0 +1,26 @@
+.intro-cta__info-list__item {
+  background-color: rgba($color1, 0.7);
+  color: $color7;
+  font-family: $titles-font;
+  font-size: $titles-font-size-h2;
+  padding: 0.625rem 0.625rem 0.625rem $spacing-xs;
+  line-height: 1.5rem;
+  width: 80%;
+  max-width: 19rem;
+  border-radius: 0 10px 10px 0;
+
+  @media screen and (min-width: 740px){
+    margin: 0 auto;
+    font-size: $site-title-font-size;
+    line-height: 1.5;
+    max-width: 30rem;
+
+    &:nth-child(1){
+      border-radius: 10px 10px 0 0;
+    }
+
+    &:nth-child(2){
+      border-radius: 0 0 10px 10px;
+    }
+  }
+}

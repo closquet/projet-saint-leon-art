@@ -1,0 +1,12 @@
+.newsletter-section__submit{
+  background-color: $color0;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0.2rem 0;
+
+  &:hover, &:focus{
+    cursor: pointer;
+  }
+}

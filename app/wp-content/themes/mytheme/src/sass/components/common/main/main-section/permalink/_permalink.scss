@@ -1,0 +1,33 @@
+.main-section__permalink {
+  display: block;
+  width: 320px;
+  margin-bottom: $spacing-l;
+  color: $color4;
+  text-decoration: none;
+
+  &:hover, &:focus{
+    outline-color: $color0;
+  }
+
+  @media screen and (min-width: 671px) {
+    &:nth-child(2n + 1) {
+      margin-right: $spacing-xs;
+    }
+  }
+
+  @media screen and (min-width: 1020px) {
+    &:nth-child(2n + 1) {
+      margin-right: 0;
+    }
+
+    &:nth-child(1n):not(:nth-last-child(1)) {
+      margin-right: $spacing-xs;
+    }
+  }
+
+  @media screen and (min-width: 1091px) {
+    &:nth-child(1n):not(:nth-last-child(1)) {
+      margin-right: $spacing-l;
+    }
+  }
+}

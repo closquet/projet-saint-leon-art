@@ -1,0 +1,37 @@
+.footer-info-and-links-section__links-list__item__link{
+  color: $color3;
+  text-decoration: none;
+  padding: $spacing-xs 0 $spacing-xs $spacing-xs;
+  display: flex;
+  align-items: center;
+  font-family: $titles-font;
+  font-size: $titles-font-size-h2;
+  
+  &:before{
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: $color3;
+    color: $color3;
+    margin-right: 10px;
+    border-radius: 12px;
+    border: 5px solid $color8;
+  }
+
+  &--facebook:before{
+    @include footerLinkBeforeContent('facebook.svg');
+  }
+  &--twitter:before{
+    @include footerLinkBeforeContent('twitter.svg');
+  }
+  &--instagram:before{
+    @include footerLinkBeforeContent('instagram.svg');
+  }
+  &--contacter:before{
+    @include footerLinkBeforeContent('contacter.svg');
+  }
+  &--partenaires:before{
+    @include footerLinkBeforeContent('partenaires.svg');
+  }
+}

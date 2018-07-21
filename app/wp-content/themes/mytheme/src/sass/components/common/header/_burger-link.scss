@@ -4,7 +4,7 @@
   color: $color2 !important;
   text-decoration: none;
   position: absolute;
-  left: 15px;
+  left: $spacing-xs;
   top: 21px;
   z-index: 3;
   width: 1.4em;
@@ -12,6 +12,10 @@
 
   &:active{
     background-color: transparent;
+  }
+
+  @media screen and (min-width: 1121px){
+    display: none;
   }
 }
 

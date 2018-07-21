@@ -291,6 +291,9 @@ function ec_get_the_cta_style(int $post_id, string $class_name, string $uri){
 			<style>
 				' . $class_name . '{
 					background-image:url( ' . get_field( 'image_de_fond', $post_id )['sizes']['1366_prev'] . ');
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: cover;
 				}
 				@media (max-width: 740px) {
 					' . $class_name . '{

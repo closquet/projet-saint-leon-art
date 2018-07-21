@@ -1,0 +1,12 @@
+.main-section__permalink__post__title-container{
+  position: absolute;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  padding: $spacing-xs;
+
+  &.no-image{
+    position: static;
+    padding: 0;
+  }
+}

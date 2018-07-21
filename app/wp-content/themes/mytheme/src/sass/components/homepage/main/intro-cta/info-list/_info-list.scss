@@ -1,0 +1,9 @@
+.intro-cta__info-list{
+  margin: 0;
+  list-style-type: none;
+  padding: $spacing-m 0;
+
+  @media screen and (min-width: 740px){
+    padding: 7em 0;
+  }
+}

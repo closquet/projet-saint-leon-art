@@ -73,4 +73,4 @@
                 </ul>
             </nav>
         </header>
-        <main role="main" id="main" class="content">
+        <main role="main" id="main">

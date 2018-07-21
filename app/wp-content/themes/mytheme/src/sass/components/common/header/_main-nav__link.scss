@@ -8,7 +8,7 @@
   font-size: 1.25rem;
   color: $color6;
   min-height: 2.75rem;
-  padding-left: 15px;
+  padding-left: $spacing-xs;
   position: relative;
 
   &:after{
@@ -21,7 +21,6 @@
     height: 0;
     border: 8px solid transparent;
     border-left-color: $color6;
-    //transform: rotate(270deg);
   }
 
   &--current-page{
@@ -30,6 +29,27 @@
 
     &:after{
       display: none;
+    }
+  }
+
+  @media screen and (min-width: 1121px){
+    padding-left: 0;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s;
+
+    &:hover, &:focus{
+      color: $color8;
+      outline-color: $color0;
+    }
+
+    &:after{
+      display: none;
+    }
+
+    &--current-page {
+      background-color: $color4;
+      color: $color6;
+      border-bottom: 3px solid $color8;
     }
   }
 }

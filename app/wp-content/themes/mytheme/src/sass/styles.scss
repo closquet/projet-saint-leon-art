@@ -6,11 +6,18 @@
 @import "generic/box-sizing";
 @import "generic/normalize";
 @import "generic/visually-hidden";
+@import "generic/container";
+
+@import "tools/mixins";
+
 
 @import "base/titles";
 @import "base/page";
+@import "base/main";
+
 
 @import "components/common/header/top-bar";
+@import "components/common/header/main-nav";
 @import "components/common/header/main-nav__links-list";
 @import "components/common/header/main-nav__item";
 @import "components/common/header/main-nav__link";
@@ -18,6 +25,46 @@
 @import "components/common/header/site-title";
 @import "components/common/header/site-title__link";
 @import "components/common/header/burger-link";
+@import "components/common/main/btn1";
+@import "components/common/main/main-section/main-section";
+@import "components/common/main/main-section/title";
+@import "components/common/main/main-section/posts-container";
+@import "components/common/main/main-section/all-posts-page-link-container";
+@import "components/common/main/main-section/permalink/permalink";
+@import "components/common/main/main-section/permalink/post/top";
+@import "components/common/main/main-section/permalink/post/title-container";
+@import "components/common/main/main-section/permalink/post/title";
+@import "components/common/main/main-section/permalink/post/thumbnail";
+@import "components/common/main/main-section/permalink/post/info-list/info-list";
+@import "components/common/main/main-section/permalink/post/info-list/info";
+@import "components/common/main/main-section/permalink/post/info-list/calendar-icon";
+@import "components/common/main/main-section/permalink/post/info-list/clock-icon";
+@import "components/common/main/main-section/permalink/post/info-list/place-icon";
+@import "components/common/main/main-section/permalink/post/info-list/cat-icon";
+@import "components/common/main/main-section/permalink/post/info-list/date/day";
+@import "components/common/main/main-section/permalink/post/info-list/cat-term";
+@import "components/common/main/main-section/permalink/post/info-list/info/term-container";
+
+@import "components/common/footer/site-footer";
+@import "components/common/footer/newsletter-section/newsletter-section";
+@import "components/common/footer/newsletter-section/form/form";
+@import "components/common/footer/newsletter-section/form/result";
+@import "components/common/footer/newsletter-section/title";
+@import "components/common/footer/newsletter-section/field";
+@import "components/common/footer/newsletter-section/submit/submit";
+@import "components/common/footer/newsletter-section/submit/icon";
+@import "components/common/footer/footer-info-and-links-section/copyright";
+@import "components/common/footer/footer-info-and-links-section/links-list/links-list";
+@import "components/common/footer/footer-info-and-links-section/links-list/item/item";
+@import "components/common/footer/footer-info-and-links-section/links-list/item/link";
+
+@import "components/homepage/main/intro-cta/info-list/info-list";
+@import "components/homepage/main/intro-cta/info-list/item";
+@import "components/homepage/main/intro-cta/place";
+@import "components/homepage/main/intro-cta/teasing";
+@import "components/homepage/main/intro-cta/link-container";
+@import "components/homepage/main/instagram-section/feed/feed";
+@import "components/homepage/main/instagram-section/feed/image";
 
 
 

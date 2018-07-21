@@ -22,6 +22,18 @@
   font-weight: bold;
   font-style: italic;
 }
+@font-face {
+  font-family: 'Archivo-Narrow';
+  src: url('../fonts/Archivo_Narrow/ArchivoNarrow-Medium.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Archivo-Narrow';
+  src: url('../fonts/Archivo_Narrow/ArchivoNarrow-MediumItalic.ttf');
+  font-weight: 500;
+  font-style: italic;
+}
 
 @font-face {
   font-family: 'Abril-Fatface';
@@ -41,9 +53,8 @@ $global-font-size: 16px;
 $global-line-height: 1.5;
 
 $site-title-font-size: 1.875rem; //30
-$titles-font-size-h1: 1.5rem;   //24
-$titles-font-size-h2: 1.25rem;  //20
-$titles-font-size-h3: 1rem;     //16
+$titles-font-size-h2: 1.5rem;   //24
+$titles-font-size-h3: 1.25rem;  //20
 
 $site-title-font: 'Abril-Fatface';
 $titles-font: 'Patua-One';
@@ -63,3 +74,6 @@ $color3: #393939;
 $color4: #861C48;
 $color5: #BE3B72;
 $color6: #FFE2EE;
+$color7: #D83C2B;
+$color8: #FED178;
+$color9: #D1D1D1;
