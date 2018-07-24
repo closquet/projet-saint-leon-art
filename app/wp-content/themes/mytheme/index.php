@@ -28,6 +28,7 @@
             </p>
 	    <?php endif; ?>
     </div>
+
     <div class="content container">
         <section class="main-section activities-section" aria-labelledby="activities-section__title">
             <h2 class="main-section__title activities-section__title" id="activities-section__title" role="heading" aria-level="2">
@@ -45,17 +46,17 @@
             <div class="main-section__posts-container">
 	            <?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
                     <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
-                        <article class="main-section__permalink__post activities-section__permalink__post" aria-labelledby="activities-section__permalink__post__title">
-                            <div class="main-section__permalink__post__top">
+                        <article class="main-section__post activities-section__post" aria-labelledby="activities-section__post__title">
+                            <div class="main-section__post__top">
 					            <?php $img_320 =  get_field('thumbnail'); ?>
-                                <div class="main-section__permalink__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
-                                    <h3 class="main-section__permalink__post__title activities-section__permalink__post__title" id="activities-section__permalink__post__title" role="heading" aria-level="3">
+                                <div class="main-section__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
+                                    <h3 class="main-section__post__title activities-section__post__title" id="activities-section__post__title" role="heading" aria-level="3">
 							            <?php the_title(); ?>
                                     </h3>
                                 </div>
 					            <?php if ($img_320): ?>
                                     <img
-                                            class="main-section__permalink__post__thumbnail activities-section__permalink__post__thumbnail"
+                                            class="main-section__post__thumbnail activities-section__post__thumbnail"
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                             width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
@@ -63,22 +64,22 @@
                                     >
 					            <?php endif; ?>
                             </div>
-                            <ul class="main-section__permalink__post__info-list activities-section__permalink__post__info-list">
+                            <ul class="main-section__post__info-list activities-section__post__info-list">
 					            <?php foreach(get_field('quand') as $item): ?>
-                                    <li class="main-section__permalink__post__info-list__info activities-section__permalink__post__info-list__info  activities-section__permalink__post__info-list__date">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__permalink__post__info-list__calendar-icon">
+                                    <li class="main-section__post__info-list__info activities-section__post__info-list__info  activities-section__post__info-list__date">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__post__info-list__calendar-icon">
                                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                             <line x1="16" y1="2" x2="16" y2="6"></line>
                                             <line x1="8" y1="2" x2="8" y2="6"></line>
                                             <line x1="3" y1="10" x2="21" y2="10"></line>
                                         </svg><!--
-                                --><time class="main-section__permalink__post__info-list__date__day activities-section__permalink__post__info-list__date__day" datetime="<?= $item['date'] ?>"><?php ec_the_human_date_from_html_date( $item['date']); ?></time>
-                                        <svg fill="currentColor" stroke="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__permalink__post__info-list__clock-icon">
+                                     --><time class="main-section__post__info-list__date__day activities-section__post__info-list__date__day" datetime="<?= $item['date'] ?>"><?php ec_the_human_date_from_html_date( $item['date']); ?></time>
+                                        <svg fill="currentColor" stroke="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__post__info-list__clock-icon">
                                             <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
                                             <path d="M0 0h24v24H0z" fill="none"/>
                                             <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                                         </svg><!--
-                                --><span class="main-section__permalink__post__info-list__date__time activities-section__permalink__post__info-list__date__time"> de <time class="main-section__permalink__post__info-list__date__time__from activities-section__permalink__post__info-list__date__time__from" datetime="<?= $item['heure_de_debut'] ?>"><?= $item['heure_de_debut'] ?></time> à <time class="main-section__permalink__post__info-list__date__time__to activities-section__permalink__post__info-list__date__time__to" datetime="<?= $item['heure_de_fin'] ?>"><?= $item['heure_de_fin'] ?></time></span>
+                                     --><span class="main-section__post__info-list__date__time "> de <time class="main-section__post__info-list__date__time__from" datetime="<?= $item['heure_de_debut'] ?>"><?= $item['heure_de_debut'] ?></time> à <time class="main-section__post__info-list__date__time__to" datetime="<?= $item['heure_de_fin'] ?>"><?= $item['heure_de_fin'] ?></time></span>
                                     </li>
 					            <?php endforeach; ?>
 					            <?php
@@ -86,56 +87,43 @@
 					            $cat_terms_list = ec_get_terms_for_current_activity('cat');
 					            ?>
 					            <?php if ( count( $places_terms_list ) > 0 ): ?>
-                                    <li class="main-section__permalink__post__info-list__info
-                                    main-section__permalink__post__info-list__terms
-                                    activities-section__permalink__post__info-list__info
-                                    activities-section__permalink__post__info-list__terms">
-                                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__permalink__post__info-list__place-icon">
+                                    <li class="main-section__post__info-list__info">
+                                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__post__info-list__place-icon">
                                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                             <path d="M0 0h24v24H0z" fill="none"/>
                                         </svg><!--
-                            <?php if ( count( $places_terms_list ) > 1 ): ?>
-                                <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
-                                    --><span class="main-section__permalink__post__info-list__info__term
-                                                main-section__permalink__post__info-list__terms__term
-                                                activities-section__permalink__post__info-list__info__term
-                                                activities-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
-                                <?php endfor; ?>
-                            <?php else: ?>
-                                --><span class="main-section__permalink__post__info-list__info__term
-                                            main-section__permalink__post__info-list__terms__term
-                                            activities-section__permalink__post__info-list__info__term
-                                            activities-section__permalink__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
-	                        <?php endif; ?>
-                            --></li>
+                                        <?php if ( count( $places_terms_list ) > 1 ): ?>
+                                            <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
+                                                --><span class="main-section__post__info-list__info__term
+                                                            main-section__post__info-list__terms__term
+                                                            activities-section__post__info-list__info__term
+                                                            activities-section__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
+                                            <?php endfor; ?>
+                                        <?php else: ?>
+                                            --><span class="main-section__post__info-list__info__term
+                                                        main-section__post__info-list__terms__term
+                                                        activities-section__post__info-list__info__term
+                                                        activities-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
+                                        <?php endif; ?>
+                                 --></li>
 					            <?php endif; ?>
 					            <?php if ( count( $cat_terms_list ) > 0 ): ?>
-                                    <li class="main-section__permalink__post__info-list__info
-                                    main-section__permalink__post__info-list__terms
-                                    main-section__permalink__post__info-list__cat-term
-                                    activities-section__permalink__post__info-list__info
-                                    activities-section__permalink__post__info-list__terms">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__permalink__post__info-list__cat-icon">
+                                    <li class="main-section__post__info-list__info">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__post__info-list__cat-icon">
                                             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
                                             <line x1="7" y1="7" x2="7" y2="7"/>
                                         </svg><!--
-                                --><span class="main-section__permalink__post__info-list__info__term-container"><!--
-                                    <?php if ( count( $cat_terms_list ) > 1 ): ?>
-                                        <?php for( $i = 0; $i < count( $cat_terms_list ); $i++ ): ?>
-                                            --><span class="main-section__permalink__post__info-list__info__term
-                                                        main-section__permalink__post__info-list__terms__term
-                                                        activities-section__permalink__post__info-list__info__term
-                                                        activities-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $cat_terms_list[$i] : ', ' . $cat_terms_list[$i]) ?></span><!--
-                                        <?php endfor; ?>
-                                    <?php else: ?>
-                                        --><span class="main-section__permalink__post__info-list__info__term
-                                        main-section__permalink__post__info-list__terms__term
-                                        activities-section__permalink__post__info-list__info__term
-                                        activities-section__permalink__post__info-list__terms__term"><?= $cat_terms_list[0] ?></span><!--
-                                    <?php endif; ?>
-                                 --></span><!--
-                            --></li>
-					            <?php endif; ?>
+                                     --><span class="main-section__post__info-list__info__term-container"><!--
+                                            <?php if ( count( $cat_terms_list ) > 1 ): ?>
+                                                <?php for( $i = 0; $i < count( $cat_terms_list ); $i++ ): ?>
+                                                    --><span class="main-section__post__info-list__info__term"><?= ($i == 0 ? $cat_terms_list[$i] : ', ' . $cat_terms_list[$i]) ?></span><!--
+                                                <?php endfor; ?>
+                                            <?php else: ?>
+                                                --><span class="main-section__post__info-list__info__term"><?= $cat_terms_list[0] ?></span><!--
+                                            <?php endif; ?>
+                                     --></span><!--
+                                 --></li>
+                                <?php endif; ?>
                             </ul>
                         </article>
                     </a>
@@ -169,17 +157,17 @@
             <div class="main-section__posts-container">
 	            <?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
                     <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
-                        <article class="main-section__permalink__post artists-section__permalink__post" aria-labelledby="artists-section__permalink__post__title">
-                            <div class="main-section__permalink__post__top">
+                        <article class="main-section__post artists-section__post" aria-labelledby="artists-section__post__title">
+                            <div class="main-section__post__top">
 					            <?php $img_320 =  get_field('thumbnail'); ?>
-                                <div class="main-section__permalink__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
-                                    <h3 class="main-section__permalink__post__title artists-section__permalink__post__title" id="artists-section__permalink__post__title" role="heading" aria-level="3">
+                                <div class="main-section__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
+                                    <h3 class="main-section__post__title artists-section__post__title" id="artists-section__post__title" role="heading" aria-level="3">
 							            <?php the_title(); ?>
                                     </h3>
                                 </div>
 					            <?php if ($img_320): ?>
                                     <img
-                                            class="main-section__permalink__post__thumbnail artists-section__permalink__post__thumbnail"
+                                            class="main-section__post__thumbnail artists-section__post__thumbnail"
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                             width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
@@ -187,59 +175,59 @@
                                     >
 					            <?php endif; ?>
                             </div>
-                            <ul class="main-section__permalink__post__info-list artists-section__permalink__post__info-list">
+                            <ul class="main-section__post__info-list artists-section__post__info-list">
 					            <?php
 					            $places_terms_list = ec_get_terms_for_current_activity('places', $post);
 					            $cat_terms_list = ec_get_terms_for_current_activity('cat', $post);
 					            ?>
 					            <?php if ( count( $places_terms_list ) > 0 ): ?>
-                                    <li class="main-section__permalink__post__info-list__info
-                                    main-section__permalink__post__info-list__terms
-                                    activities-section__permalink__post__info-list__info
-                                    activities-section__permalink__post__info-list__terms">
-                                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__permalink__post__info-list__place-icon">
+                                    <li class="main-section__post__info-list__info
+                                    main-section__post__info-list__terms
+                                    activities-section__post__info-list__info
+                                    activities-section__post__info-list__terms">
+                                        <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__post__info-list__place-icon">
                                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                             <path d="M0 0h24v24H0z" fill="none"/>
                                         </svg><!--
                             <?php if ( count( $places_terms_list ) > 1 ): ?>
                                 <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
-                                    --><span class="main-section__permalink__post__info-list__info__term
-                                                main-section__permalink__post__info-list__terms__term
-                                                activities-section__permalink__post__info-list__info__term
-                                                activities-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
+                                    --><span class="main-section__post__info-list__info__term
+                                                main-section__post__info-list__terms__term
+                                                activities-section__post__info-list__info__term
+                                                activities-section__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
                                 <?php endfor; ?>
                             <?php else: ?>
-                                --><span class="main-section__permalink__post__info-list__info__term
-                                            main-section__permalink__post__info-list__terms__term
-                                            activities-section__permalink__post__info-list__info__term
-                                            activities-section__permalink__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
+                                --><span class="main-section__post__info-list__info__term
+                                            main-section__post__info-list__terms__term
+                                            activities-section__post__info-list__info__term
+                                            activities-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
 	                        <?php endif; ?>
                             --></li>
 					            <?php endif; ?>
 					
 					            <?php if ( count( $cat_terms_list ) > 0 ): ?>
-                                    <li class="main-section__permalink__post__info-list__info
-                                    main-section__permalink__post__info-list__terms
-                                    main-section__permalink__post__info-list__cat-terms
-                                    artists-section__permalink__post__info-list__info
-                                    artists-section__permalink__post__info-list__terms">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__permalink__post__info-list__cat-icon">
+                                    <li class="main-section__post__info-list__info
+                                    main-section__post__info-list__terms
+                                    main-section__post__info-list__cat-terms
+                                    artists-section__post__info-list__info
+                                    artists-section__post__info-list__terms">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__post__info-list__cat-icon">
                                             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
                                             <line x1="7" y1="7" x2="7" y2="7"/>
                                         </svg><!--
-                                --><span class="main-section__permalink__post__info-list__info__term-container"><!--
+                                --><span class="main-section__post__info-list__info__term-container"><!--
                             <?php if ( count( $cat_terms_list ) > 1 ): ?>
                                 <?php for( $i = 0; $i < count( $cat_terms_list ); $i++ ): ?>
-                                    --><span class="main-section__permalink__post__info-list__info__term
-                                                main-section__permalink__post__info-list__terms__term
-                                                artists-section__permalink__post__info-list__info__term
-                                                artists-section__permalink__post__info-list__terms__term"><?= ($i == 0 ? $cat_terms_list[$i] : ', ' . $cat_terms_list[$i]) ?></span><!--
+                                    --><span class="main-section__post__info-list__info__term
+                                                main-section__post__info-list__terms__term
+                                                artists-section__post__info-list__info__term
+                                                artists-section__post__info-list__terms__term"><?= ($i == 0 ? $cat_terms_list[$i] : ', ' . $cat_terms_list[$i]) ?></span><!--
                                 <?php endfor; ?>
                             <?php else: ?>
-                                --><span class="main-section__permalink__post__info-list__info__term
-                                            main-section__permalink__post__info-list__terms__term
-                                            artists-section__permalink__post__info-list__info__term
-                                            artists-section__permalink__post__info-list__terms__term"><?= $cat_terms_list[0] ?></span><!--
+                                --><span class="main-section__post__info-list__info__term
+                                            main-section__post__info-list__terms__term
+                                            artists-section__post__info-list__info__term
+                                            artists-section__post__info-list__terms__term"><?= $cat_terms_list[0] ?></span><!--
                             <?php endif; ?>
                             --></span><!--
                         --></li>

@@ -7,3 +7,42 @@
   border-radius: 0;
   border: none;
 }
+
+@mixin permalinkAndCurrentPostContainer(){
+  display: block;
+  width: 320px;
+  margin-bottom: $spacing-l;
+  text-decoration: none;
+
+  &:hover, &:focus{
+    outline-color: $color0;
+  }
+}
+
+@mixin mainSectionTitle($bgColor, $txtColor){
+  background-color: $bgColor;
+  color: $txtColor;
+  padding: 0.438rem 0;
+  margin-bottom: $spacing-s;
+  margin-top: 0;
+  font-size: $titles-font-size-h2;
+
+  span{
+    display: block;
+    margin: 0 auto;
+    padding-left: $spacing-xs;
+    padding-right: $spacing-xs;
+  }
+
+  @media screen and (min-width: 1021px){
+    span{
+      max-width: 1021px;
+    }
+  }
+
+  @media screen and (min-width: 1091px){
+    span{
+      max-width: 1091px;
+    }
+  }
+}

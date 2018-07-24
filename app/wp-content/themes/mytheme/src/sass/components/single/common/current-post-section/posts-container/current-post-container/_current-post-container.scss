@@ -1,0 +1,5 @@
+.current-post-container{
+  @include permalinkAndCurrentPostContainer();
+  width: auto;
+  margin-bottom: 0;
+}

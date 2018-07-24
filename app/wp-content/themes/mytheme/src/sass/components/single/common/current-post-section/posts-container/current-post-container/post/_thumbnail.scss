@@ -1,0 +1,10 @@
+.current-section__post__thumbnail{
+  //margin-left: auto;
+  //margin-right: auto;
+
+  @media screen and (min-width: 1021px) {
+    //margin-left: 0;
+    max-width: 530px;
+    margin-right: $spacing-l;
+  }
+}

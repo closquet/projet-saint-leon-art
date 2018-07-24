@@ -1,0 +1,11 @@
+.main-section__post__artists-list__artist__permalink{
+  color: $color4;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+  font-weight: 600;
+
+  &:hover, &:focus{
+    border-color: $color4;
+  }
+}

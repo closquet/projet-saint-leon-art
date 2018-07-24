@@ -1,13 +1,5 @@
 .main-section__permalink {
-  display: block;
-  width: 320px;
-  margin-bottom: $spacing-l;
-  color: $color4;
-  text-decoration: none;
-
-  &:hover, &:focus{
-    outline-color: $color0;
-  }
+  @include permalinkAndCurrentPostContainer();
 
   @media screen and (min-width: 671px) {
     &:nth-child(2n + 1) {

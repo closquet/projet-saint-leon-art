@@ -1,0 +1,11 @@
+.main-section__post__artists-list__artist{
+  display: inline-block;
+
+  &:not(:first-child):before{
+    content: ',';
+  }
+
+  &:last-child:not(:first-child):before{
+    content: '\0000a0et';
+  }
+}
