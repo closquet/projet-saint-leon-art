@@ -1,5 +1,13 @@
 .main-section__post__info-list__info__term-container{
   display: inline-block;
-  max-width: 255px;
+  max-width: 88%;
   vertical-align: top;
+
+  @media screen and (min-width: 690px){
+    max-width: 91%;
+  }
+
+  @media screen and (min-width: 1091px){
+    max-width: 93%;
+  }
 }

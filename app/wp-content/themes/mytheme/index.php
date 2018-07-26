@@ -276,7 +276,6 @@
                         </div>
 				    <?php endif; ?>
 			    <?php endforeach; ?>
-
             </section>
 	    <?php endif; ?>
     </div>

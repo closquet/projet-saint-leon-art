@@ -1,0 +1,14 @@
+.current-artist-section__post__works__images-top-container{
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: $spacing-xs;
+  justify-content: center;
+
+  @media screen and (min-width: 1021px){
+    width: 66%;
+    margin-right: $spacing-xs/2;
+    margin-bottom: 0;
+    justify-content: normal;
+  }
+}

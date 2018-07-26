@@ -391,6 +391,8 @@ function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in)
 	
 	return new wp_query($arg);
 }
+
+
 /*
  * get terms for current activity from a taxonomy
 
@@ -407,6 +409,20 @@ function ec_get_terms_for_current_activity($taxonomy, $artist = null)
 		foreach (wp_get_post_terms($an_artist, $taxonomy) as $a_term){
 			!in_array( $a_term->name, $terms_list) && $terms_list[] =  $a_term->name;
 		}
+	}
+	return $terms_list;
+}
+
+
+/*
+ * get terms for current artist from a taxonomy
+
+ */
+function ec_get_terms_for_current_artist($post_id, $taxonomy)
+{
+	$terms_list = [];
+	foreach (wp_get_post_terms($post_id, $taxonomy) as $a_term){
+		!in_array( $a_term->name, $terms_list) && $terms_list[] =  $a_term->name;
 	}
 	return $terms_list;
 }

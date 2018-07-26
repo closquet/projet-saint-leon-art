@@ -1,0 +1,12 @@
+.link{
+  color: $color4;
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover, &:focus{
+    color: $color5;
+    border-color: $color5;
+    outline: 0;
+  }
+}

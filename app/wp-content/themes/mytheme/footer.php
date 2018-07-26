@@ -61,7 +61,7 @@
                     <?php endforeach; ?>
                 </ul>
                 <p class="footer-info-and-links-section__copyright">
-                    &copy; 2018 - Saint Léon'art designed by <a href="https://eric-closquet.be">Eric Closquet</a>
+                    &copy; 2018 - Saint Léon'art designed by <a class="link" href="https://eric-closquet.be">Eric Closquet</a>
                 </p>
             </section>
         </footer>

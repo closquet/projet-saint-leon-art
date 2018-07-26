@@ -14,6 +14,7 @@
 @import "base/titles";
 @import "base/page";
 @import "base/main";
+@import "base/link";
 
 
 @import "components/common/header/top-bar";
@@ -37,14 +38,16 @@
 @import "components/common/main/main-section/posts-container/permalink/post/top/title-container/title";
 @import "components/common/main/main-section/posts-container/permalink/post/top/thumbnail";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info-list";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/info";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/presentation";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/calendar-icon";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/clock-icon";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/place-icon";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/cat-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/info";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/presentation";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/calendar-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/clock-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/place-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/cat-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/email-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/phone-icon";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/date/day";
-@import "components/common/main/main-section/posts-container/permalink/post/info-list/cat-term";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/cat-term";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info/term-container";
 @import "components/common/main/main-section/posts-container/permalink/post/artists-list/artists-list";
 @import "components/common/main/main-section/posts-container/permalink/post/artists-list/artist/artist";
@@ -63,6 +66,9 @@
 @import "components/common/footer/footer-info-and-links-section/links-list/item/item";
 @import "components/common/footer/footer-info-and-links-section/links-list/item/link";
 
+
+
+
 @import "components/homepage/main/intro-cta/info-list/info-list";
 @import "components/homepage/main/intro-cta/info-list/item";
 @import "components/homepage/main/intro-cta/place";
@@ -79,6 +85,10 @@
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/thumbnail";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list";
 @import "components/single/common/main-section/title";
+
+@import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/works";
+@import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/images-top-container";
+@import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/image";
 
 
 

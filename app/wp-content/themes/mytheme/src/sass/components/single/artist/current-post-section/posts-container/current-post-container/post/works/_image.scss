@@ -1,0 +1,33 @@
+.current-artist-section__post__works__image{
+  height: auto;
+  width: 100%;
+  border: 2px solid $color2;
+
+  &--1, &--2{
+    width: 0;
+    flex-shrink: 1;
+    flex-basis: 50%;
+  }
+
+  &--1{
+    margin-right: $spacing-xs/2;
+  }
+
+  &--2{
+    margin-left: $spacing-xs/2;
+  }
+
+  @media screen and (min-width: 1021px){
+    width: 32.3%;
+
+    &--1, &--2{
+      width: 0;
+      flex-shrink: 1;
+      flex-basis: 50%;
+    }
+
+    &--3{
+      margin-left: $spacing-xs/2;
+    }
+  }
+}
