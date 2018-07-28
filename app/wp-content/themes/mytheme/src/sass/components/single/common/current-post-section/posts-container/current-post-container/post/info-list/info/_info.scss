@@ -1,0 +1,9 @@
+.current-post-section__post__info-list__info{
+
+  &:first-child{
+    @media screen and (min-width: 1021px) {
+      margin-top: 0;
+    }
+  }
+
+}

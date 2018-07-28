@@ -83,8 +83,10 @@
 @import "components/single/common/current-post-section/posts-container/current-post-container/current-post-container";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/post";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/thumbnail";
-@import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list";
+@import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list/info-list";
 @import "components/single/common/main-section/title";
+@import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list/info/info";
+@import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list/info/term-container";
 
 @import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/works";
 @import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/images-top-container";

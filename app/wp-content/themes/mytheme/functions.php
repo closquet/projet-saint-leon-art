@@ -394,6 +394,30 @@ function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in)
 
 
 /*
+ * get artists that have same terms of chosen terms.
+ */
+function ec_get_artists_from_terms($terms_list, $taxonomy, $post_not_in)
+{
+	//find artist(s) with same terms of "cat" taxonomy
+	$artists_list = new WP_Query();
+	$artists_list -> query([
+		'post_type' => 'artistes',
+		'post__not_in' => [$post_not_in],
+		'showposts' => '3',
+		'orderby' => 'rand',
+		'tax_query' => [
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'slug',
+				'terms'    => $terms_list??'',
+			]
+		],
+	]);
+	return $artists_list;
+}
+
+
+/*
  * get terms for current activity from a taxonomy
 
  */

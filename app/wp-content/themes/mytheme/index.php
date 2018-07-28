@@ -248,6 +248,8 @@
                 </a>
             </div>
         </section>
+        
+        
 	    <?php $instagram_data = ec_get_instagram_feed(); ?>
 	    <?php if ($instagram_data): ?>
             <section class="main-section instagram-section container" aria-labelledby="instagram-section__title">
