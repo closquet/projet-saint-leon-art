@@ -7,18 +7,18 @@
     }
   }
 
-  @media screen and (min-width: 1020px) {
+  @media screen and (min-width: 1021px) {
     &:nth-child(2n + 1) {
       margin-right: 0;
     }
 
-    &:nth-child(1n):not(:nth-last-child(1)) {
+    &:not(:nth-child(3n)) {
       margin-right: $spacing-xs;
     }
   }
 
   @media screen and (min-width: 1091px) {
-    &:nth-child(1n):not(:nth-last-child(1)) {
+    &:not(:nth-child(3n)) {
       margin-right: $spacing-l;
     }
   }
