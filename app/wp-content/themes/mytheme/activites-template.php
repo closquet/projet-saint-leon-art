@@ -2,23 +2,80 @@
 /*
  * Template Name: Les activités
  */
+
+$items = new WP_Query();
+$cat = null;
+$date = null;
+$place = null;
+isset($_GET['cat']) && $_GET['cat'] != '' && $cat = $_GET['cat'];
+isset($_GET['date']) && $_GET['date'] != '' && $date = $_GET['date'];
+isset($_GET['place']) && $_GET['place'] != '' && $place = $_GET['place'];
+
+if( $cat || $date || $place ){
+    $items = ec_get_activities_from_filters( $cat, $date, $place);
+}else{
+    $items->query([
+        'post_type' => 'activites',
+        'orderby' => 'date'
+    ]);
+}
 ?>
 
 <?php get_header(); ?>
 <div class="content container">
     <section class="main-section current-post-section" aria-labelledby="activities-section__title">
         <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
-                <span>
-                    Les activités
-                </span>
+            <span>
+                Les activités (<?= $items->post_count ?>)
+            </span>
         </h2>
-		<?php
-		$items = new WP_Query();
-		$items->query([
-			'post_type' => 'activites',
-			'orderby' => 'date'
-		]);
-		?>
+        <div class="main-section-section__filter-form-container">
+            <form class="main-section-section__filter-form-container__form" action="/activites" method="get">
+                <div class="main-section-section__filter-form-container__form__field-container">
+                    <label for="cat-field">Catégorie</label>
+		            <?php
+		            $arg = [
+			            'taxonomy' => 'cat',
+			            'hide_empty' => false,
+			            'field'    => 'slug',
+		            ];
+		            $cat_terms = get_terms($arg);
+		            ?>
+                    <select name="cat" id="cat-field">
+                        <option value="<?= $cat??'' ?>"><?= isset($cat) ? ucfirst( str_replace( '-', ' ', $cat) ) : 'Catégorie' ?></option>
+			            <?php foreach($cat_terms as $cat_term): ?>
+                            <option value="<?= $cat_term->slug ?>"><?= $cat_term->name ?></option>
+			            <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="main-section-section__filter-form-container__form__field-container">
+                    <label for="place-field">Lieu</label>
+		            <?php
+		            $arg = [
+			            'taxonomy' => 'places',
+			            'hide_empty' => false,
+			            'field'    => 'slug',
+		            ];
+		            $place_terms = get_terms($arg);
+		            ?>
+                    <select name="place" id="place-field">
+                        <option value="<?= $place??'' ?>"><?= isset($place) ? ucfirst( str_replace( '-', ' ', $place) ) : 'Lieu' ?></option>
+			            <?php foreach($place_terms as $place_term): ?>
+                            <option value="<?= $place_term->slug ?>"><?= $place_term->name ?></option>
+			            <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="main-section-section__filter-form-container__form__field-container">
+                    <label for="date-field">Date</label>
+                    <input type="date" name="date" id="date-field" value="<?= $date??'' ?>">
+                </div>
+                <div class="btn1-container activities-section__all-posts-page-link-container main-section__all-posts-page-link-container">
+                    <button class="btn1 main-section__all-posts-page-link activities-section__all-posts-page-link">
+                        Filtrer
+                    </button>
+                </div>
+            </form>
+        </div>
         <div class="main-section__posts-container">
 			<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
                 <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">

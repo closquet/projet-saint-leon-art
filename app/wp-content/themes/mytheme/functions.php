@@ -2,12 +2,13 @@
 // filter for acf sub field (repeater) query for activities'dates
 function my_activities_dates( $where ) {
 	
-	$where = str_replace("meta_key = 'quand_%", "meta_key LIKE 'quand_%", $where);
+	$where = str_replace("meta_key = 'quand_$", "meta_key LIKE 'quand_%", $where);
 	
 	return $where;
 }
-
 add_filter('posts_where', 'my_activities_dates');
+
+
 
 
 /*
@@ -346,7 +347,7 @@ function ec_get_instagram_feed()
 /*
  * get activities that have same (artist's) terms of chosen terms.
  */
-function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in)
+function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in = [])
 {
 	//find artist(s) with same terms of "cat" taxonomy
 	$artists_list_for_query = new WP_Query();
@@ -387,6 +388,107 @@ function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in)
 		'showposts' => '3',
 		'orderby' => 'rand',
 		'meta_query' => $meta_query
+	];
+	
+	return new wp_query($arg);
+}
+
+
+/*
+ * get activities from filters.
+ */
+function ec_get_activities_from_filters($cat, $date, $place)
+{
+	//find artist(s) with same terms of "cat" taxonomy
+	$artists_list_for_query = new WP_Query();
+	
+	if($cat && $place){
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'tax_query' => [
+				[
+					'relation' => 'AND',
+					[
+						'taxonomy' => 'cat',
+						'field'    => 'slug',
+						'terms'    => $cat,
+					],
+					[
+						'taxonomy' => 'places',
+						'field'    => 'slug',
+						'terms'    => $place,
+					],
+				],
+				
+			],
+		]);
+	}elseif($cat && !$place){
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'tax_query' => [
+				[
+					'taxonomy' => 'cat',
+					'field'    => 'slug',
+					'terms'    => $cat,
+				],
+			],
+		]);
+	}elseif($place && !$cat){
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'tax_query' => [
+				[
+					'taxonomy' => 'places',
+					'field'    => 'slug',
+					'terms'    => $place,
+				],
+			],
+		]);
+	}else{
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+		]);
+	}
+	
+	
+	
+	if (!$artists_list_for_query->have_posts()){
+		return new wp_query();
+	}
+	
+	//get only the IDs of the artists previously found
+	$Artist_id_list = [];
+	foreach ($artists_list_for_query->posts as $artist){
+		$Artist_id_list[] = '"' . $artist->ID . '"';
+	}
+	
+	//build meta query to have a dynamic array of what we search for the CAT filter
+	$cat_filter = ['relation' => 'OR'];
+	foreach ($Artist_id_list as $value) {
+		$cat_filter[] = [
+			'key'       => 'artistes',
+			'value'     => $value,
+			'compare'   => 'LIKE',
+		];
+	}
+	
+	//add date filter to the query
+	$date = str_replace( '-', '', $date);
+	$date_filter[] = ['relation' => 'AND'];
+	$date_filter[] = [
+		'key'       => 'quand_$_date',
+		'value'     => $date,
+		'compare'   => 'LIKE',
+	];
+	
+	//build the arg for the get_posts instruction
+	$arg = [
+		'post_type' => 'activites',
+		'orderby' => 'date',
+		'meta_query' => [
+			$cat_filter,
+			$date_filter
+		]
 	];
 	
 	return new wp_query($arg);
