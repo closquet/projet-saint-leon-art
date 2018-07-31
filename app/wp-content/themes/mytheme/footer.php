@@ -34,13 +34,13 @@
                                     <svg class="button newsletter-section__submit__icon" version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
                                         <style type="text/css">
-                                            .st0{fill:#861C48;}
-                                            .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                                            .newsletter-section__submit__icon__circle{fill:#861C48;}
+                                            .newsletter-section__submit__icon__arrow{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
                                         </style>
                                         <g>
-                                            <circle class="st0" cx="12" cy="12" r="12"/>
+                                            <circle class="newsletter-section__submit__icon__circle" cx="12" cy="12" r="12"/>
                                         </g>
-                                        <polyline class="st1" points="10.4,6.8 15.6,12 10.4,17.2 "/>
+                                        <polyline class="newsletter-section__submit__icon__arrow" points="10.4,6.8 15.6,12 10.4,17.2 "/>
                                     </svg>
                                 </button>
                             </div>

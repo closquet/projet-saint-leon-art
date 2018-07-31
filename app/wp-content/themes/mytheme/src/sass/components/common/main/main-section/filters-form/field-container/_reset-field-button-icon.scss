@@ -1,0 +1,23 @@
+.main-section__filters-form__field-container__reset-field-button-icon{
+  display: block;
+  width: 20px;
+  stroke: red;
+  transform: scale(0.8);
+  transition: transform 0.2s;
+
+  &__background{
+    fill: $color8;
+  }
+
+  &__cross{
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-miterlimit:10;
+  }
+}
+
+.main-section__filters-form__field-container__reset-field-button:hover{
+  .main-section__filters-form__field-container__reset-field-button-icon{
+    transform: scale(1);
+  }
+}

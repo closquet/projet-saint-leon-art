@@ -1,0 +1,18 @@
+.main-section__filters-form__field-container{
+  width: 100%;
+  max-width: 271px;
+  overflow: hidden;
+  margin-bottom: $spacing-s;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+  position: relative;
+
+  &:not(.date){
+    background: #fff url(../images/drop-down-arrow.svg)  97% center / 24px no-repeat ;
+  }
+
+  @media screen and (min-width: 1260px) {
+    margin-bottom: 0;
+  }
+}

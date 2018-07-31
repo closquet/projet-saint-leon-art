@@ -3,7 +3,6 @@
  * Template Name: Les activités
  */
 
-$items = new WP_Query();
 $cat = null;
 $date = null;
 $place = null;
@@ -11,14 +10,11 @@ isset($_GET['cat']) && $_GET['cat'] != '' && $cat = $_GET['cat'];
 isset($_GET['date']) && $_GET['date'] != '' && $date = $_GET['date'];
 isset($_GET['place']) && $_GET['place'] != '' && $place = $_GET['place'];
 
-if( $cat || $date || $place ){
-    $items = ec_get_activities_from_filters( $cat, $date, $place);
-}else{
-    $items->query([
-        'post_type' => 'activites',
-        'orderby' => 'date'
-    ]);
-}
+$temp = $wp_query;
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$wp_query = null;
+$wp_query = new WP_Query();
+$wp_query = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites');
 ?>
 
 <?php get_header(); ?>
@@ -26,13 +22,13 @@ if( $cat || $date || $place ){
     <section class="main-section current-post-section" aria-labelledby="activities-section__title">
         <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
             <span>
-                Les activités (<?= $items->post_count ?>)
+                Les activités (<?= $wp_query->found_posts ?>)
             </span>
         </h2>
-        <div class="main-section-section__filter-form-container">
-            <form class="main-section-section__filter-form-container__form" action="/activites" method="get">
-                <div class="main-section-section__filter-form-container__form__field-container">
-                    <label for="cat-field">Catégorie</label>
+        <form class="main-section__filters-form" action="http://saintleonart2.test/?page_id=13" method="get">
+            <div class="main-section__filters-form__item">
+                <div class="main-section__filters-form__field-container">
+                    <label class="main-section__filters-form__field-container__label" for="cat-field">La catégorie</label>
 		            <?php
 		            $arg = [
 			            'taxonomy' => 'cat',
@@ -41,15 +37,32 @@ if( $cat || $date || $place ){
 		            ];
 		            $cat_terms = get_terms($arg);
 		            ?>
-                    <select name="cat" id="cat-field">
-                        <option value="<?= $cat??'' ?>"><?= isset($cat) ? ucfirst( str_replace( '-', ' ', $cat) ) : 'Catégorie' ?></option>
+                    <select class="main-section__filters-form__field-container__field" name="cat" id="cat-field">
+                        <option value="">Toutes</option>
 			            <?php foreach($cat_terms as $cat_term): ?>
-                            <option value="<?= $cat_term->slug ?>"><?= $cat_term->name ?></option>
+                            <option value="<?= $cat_term->slug ?>"<?= $cat_term->slug === $cat ? ' selected' : '' ?>><?= $cat_term->name ?></option>
 			            <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="main-section-section__filter-form-container__form__field-container">
-                    <label for="place-field">Lieu</label>
+                <button class="main-section__filters-form__field-container__reset-field-button" title="&#10148; Vider le champ catégorie!" onclick="document.getElementById('cat-field').selectedIndex=0; return false">
+                    <span class="visually-hidden">Vider le champ Catégorie!</span>
+                    <svg class="main-section__filters-form__field-container__reset-field-button-icon"
+                         version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                    <g class="main-section__filters-form__field-container__reset-field-button-icon__cross" id="cross">
+                        <line x1="7.1" y1="7.1" x2="16.9" y2="16.9"/>
+                        <line x1="16.9" y1="7.1" x2="7.1" y2="16.9"/>
+                    </g>
+                        <g class="main-section__filters-form__field-container__reset-field-button-icon__circle" id="circle">
+                            <path d="M12,1c6.1,0,11,4.9,11,11s-4.9,11-11,11S1,18.1,1,12S5.9,1,12,1 M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0L12,0z"/>
+                        </g>
+                </svg>
+                </button>
+            </div>
+
+            <div class="main-section__filters-form__item">
+                <div class="main-section__filters-form__field-container">
+                    <label class="main-section__filters-form__field-container__label" for="place-field">Le lieu</label>
 		            <?php
 		            $arg = [
 			            'taxonomy' => 'places',
@@ -58,26 +71,59 @@ if( $cat || $date || $place ){
 		            ];
 		            $place_terms = get_terms($arg);
 		            ?>
-                    <select name="place" id="place-field">
-                        <option value="<?= $place??'' ?>"><?= isset($place) ? ucfirst( str_replace( '-', ' ', $place) ) : 'Lieu' ?></option>
+                    <select class="main-section__filters-form__field-container__field" name="place" id="place-field">
+                        <option value="">Tous</option>
 			            <?php foreach($place_terms as $place_term): ?>
-                            <option value="<?= $place_term->slug ?>"><?= $place_term->name ?></option>
+                            <option value="<?= $place_term->slug ?>"<?= $place_term->slug === $place ? ' selected' : '' ?>><?= $place_term->name ?></option>
 			            <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="main-section-section__filter-form-container__form__field-container">
-                    <label for="date-field">Date</label>
-                    <input type="date" name="date" id="date-field" value="<?= $date??'' ?>">
+                <button class="main-section__filters-form__field-container__reset-field-button" title="&#10148; Vider le champ lieu!" onclick="document.getElementById('place-field').selectedIndex=0; return false">
+                    <span class="visually-hidden">Vider le champ Lieu!</span>
+                    <svg class="main-section__filters-form__field-container__reset-field-button-icon"
+                         version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                    <g class="main-section__filters-form__field-container__reset-field-button-icon__cross" id="cross">
+                        <line x1="7.1" y1="7.1" x2="16.9" y2="16.9"/>
+                        <line x1="16.9" y1="7.1" x2="7.1" y2="16.9"/>
+                    </g>
+                        <g class="main-section__filters-form__field-container__reset-field-button-icon__circle" id="circle">
+                            <path d="M12,1c6.1,0,11,4.9,11,11s-4.9,11-11,11S1,18.1,1,12S5.9,1,12,1 M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0L12,0z"/>
+                        </g>
+                </svg>
+                </button>
+            </div>
+
+            <div class="main-section__filters-form__item">
+                <div class="main-section__filters-form__field-container date">
+                    <label class="main-section__filters-form__field-container__label date" for="date-field">La date</label>
+                    <input class="main-section__filters-form__field-container__field" type="date" name="date" id="date-field" value="<?= $date??'' ?>">
                 </div>
-                <div class="btn1-container activities-section__all-posts-page-link-container main-section__all-posts-page-link-container">
-                    <button class="btn1 main-section__all-posts-page-link activities-section__all-posts-page-link">
-                        Filtrer
-                    </button>
-                </div>
-            </form>
-        </div>
+                <button class="main-section__filters-form__field-container__reset-field-button" title="&#10148; Vider le champ date!" onclick="document.getElementById('date-field').value=''; return false">
+                    <span class="visually-hidden">Vider le champ Date!</span>
+                    <svg class="main-section__filters-form__field-container__reset-field-button-icon"
+                         version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                    <g class="main-section__filters-form__field-container__reset-field-button-icon__cross" id="cross">
+                        <line x1="7.1" y1="7.1" x2="16.9" y2="16.9"/>
+                        <line x1="16.9" y1="7.1" x2="7.1" y2="16.9"/>
+                    </g>
+                        <g class="main-section__filters-form__field-container__reset-field-button-icon__circle" id="circle">
+                            <path d="M12,1c6.1,0,11,4.9,11,11s-4.9,11-11,11S1,18.1,1,12S5.9,1,12,1 M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0L12,0z"/>
+                        </g>
+                </svg>
+                </button>
+            </div>
+            <input type="hidden" name="page_id" value="13">
+            <div class="btn1-container main-section__filters-form__submit-container">
+                <button class="btn1">
+                    Filtrer
+                </button>
+            </div>
+        </form>
+        
         <div class="main-section__posts-container">
-			<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
+			<?php if( $wp_query->have_posts() ): while( $wp_query->have_posts() ): $wp_query->the_post();?>
                 <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
                     <article class="main-section__post activities-section__post" aria-labelledby="activities-section__post__title">
                         <div class="main-section__post__top">
@@ -160,13 +206,19 @@ if( $cat || $date || $place ){
                         </ul>
                     </article>
                 </a>
-			<?php endwhile; else: ?>
-                <p>
-                    Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
-                </p>
-			<?php endif; ?>
+			<?php endwhile; ?>
         </div>
-
+        <nav class="main-section__pagination">
+        
+            <div class="nav-previous alignleft"><?php next_posts_link( 'Older posts' ); ?></div>
+            <div class="nav-next alignright"><?php previous_posts_link( 'Newer posts' ); ?></div>
+        </nav>
+			<?php else: ?>
+                <p class="main-section__posts-container__no-result">
+                    Aucun résultat &#9785;
+                </p>
+        </div>
+			<?php endif; $wp_query = null; $wp_query = $temp;  ?>
     </section>
 </div>
 

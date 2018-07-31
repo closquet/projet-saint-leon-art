@@ -1,0 +1,16 @@
+.main-section__filters-form__field-container__reset-field-button{
+  background-color: transparent;
+  border: 0;
+  position: absolute;
+  right: -30px;
+  top: 22px;
+  margin: .2rem 0;
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1021px) {
+    right: -25px;
+  }
+}

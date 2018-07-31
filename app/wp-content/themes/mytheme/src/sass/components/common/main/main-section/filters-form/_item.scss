@@ -1,0 +1,12 @@
+.main-section__filters-form__item{
+  width: 280px;
+  position: relative;
+  margin-right: 17px;
+
+  @media screen and (min-width: 1021px) {
+    &:not(:nth-last-child(2)){
+      margin-right: $spacing-l;
+    }
+
+  }
+}

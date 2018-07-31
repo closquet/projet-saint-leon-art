@@ -393,105 +393,139 @@ function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in = [])
 	return new wp_query($arg);
 }
 
+/*
+ * get posts from filters.
+ */
+function ec_get_posts_from_filters($cat, $date, $place, $paged, $post_type)
+{
+	switch ($post_type){
+		case 'activites':
+			return ec_get_activities_from_filters($cat, $date, $place, $paged);
+			break;
+		case 'artistes':
+			return ec_get_artists_from_filters($cat, $place, $paged);
+			break;
+	}
+	return new WP_Query();
+}
+
 
 /*
- * get activities from filters.
+ * get artists from filters.
  */
-function ec_get_activities_from_filters($cat, $date, $place)
+function ec_get_artists_from_filters($cat, $place, $paged)
 {
-	//find artist(s) with same terms of "cat" taxonomy
-	$artists_list_for_query = new WP_Query();
-	
-	if($cat && $place){
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'tax_query' => [
-				[
-					'relation' => 'AND',
+	if( $cat || $place ){
+		//find artist(s) with same terms of "cat" taxonomy
+		$artists_list_for_query = new WP_Query();
+		
+		if($cat && $place){
+			$artists_list_for_query -> query([
+				'post_type' => 'artistes',
+				'tax_query' => [
+					[
+						'relation' => 'AND',
+						[
+							'taxonomy' => 'cat',
+							'field'    => 'slug',
+							'terms'    => $cat,
+						],
+						[
+							'taxonomy' => 'places',
+							'field'    => 'slug',
+							'terms'    => $place,
+						],
+					],
+				
+				],
+			]);
+		}elseif($cat && !$place){
+			$artists_list_for_query -> query([
+				'post_type' => 'artistes',
+				'tax_query' => [
 					[
 						'taxonomy' => 'cat',
 						'field'    => 'slug',
 						'terms'    => $cat,
 					],
+				],
+			]);
+		}elseif($place && !$cat){
+			$artists_list_for_query -> query([
+				'post_type' => 'artistes',
+				'posts_per_page' => $paged ? 3 : -1,
+				'paged' => $paged,
+				'tax_query' => [
 					[
 						'taxonomy' => 'places',
 						'field'    => 'slug',
 						'terms'    => $place,
 					],
 				],
-				
-			],
-		]);
-	}elseif($cat && !$place){
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'tax_query' => [
-				[
-					'taxonomy' => 'cat',
-					'field'    => 'slug',
-					'terms'    => $cat,
-				],
-			],
-		]);
-	}elseif($place && !$cat){
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'tax_query' => [
-				[
-					'taxonomy' => 'places',
-					'field'    => 'slug',
-					'terms'    => $place,
-				],
-			],
-		]);
-	}else{
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-		]);
+			]);
+		}else{
+			$artists_list_for_query -> query([
+				'post_type' => 'artistes',
+			]);
+		}
 	}
-	
-	
-	
-	if (!$artists_list_for_query->have_posts()){
-		return new wp_query();
-	}
-	
-	//get only the IDs of the artists previously found
-	$Artist_id_list = [];
-	foreach ($artists_list_for_query->posts as $artist){
-		$Artist_id_list[] = '"' . $artist->ID . '"';
-	}
-	
-	//build meta query to have a dynamic array of what we search for the CAT filter
-	$cat_filter = ['relation' => 'OR'];
-	foreach ($Artist_id_list as $value) {
-		$cat_filter[] = [
-			'key'       => 'artistes',
-			'value'     => $value,
+	return $artists_list_for_query;
+}
+
+
+/*
+ * get activities from filters.
+ */
+function ec_get_activities_from_filters($cat, $date, $place, $paged)
+{
+	if( $cat || $date || $place ){
+		
+		$artists_list_for_query = ec_get_artists_from_filters($cat, $place, null);
+		//get only the IDs of the artists previously found
+		$Artist_id_list = [];
+		foreach ($artists_list_for_query->posts as $artist){
+			$Artist_id_list[] = '"' . $artist->ID . '"';
+		}
+		
+		//build meta query to have a dynamic array of what we search for the CAT filter
+		$cat_filter = ['relation' => 'OR'];
+		foreach ($Artist_id_list as $value) {
+			$cat_filter[] = [
+				'key'       => 'artistes',
+				'value'     => $value,
+				'compare'   => 'LIKE',
+			];
+		}
+		
+		//add date filter to the query
+		$date = str_replace( '-', '', $date);
+		$date_filter[] = ['relation' => 'AND'];
+		$date_filter[] = [
+			'key'       => 'quand_$_date',
+			'value'     => $date,
 			'compare'   => 'LIKE',
 		];
+		
+		//build the arg for the get_posts instruction
+		$arg = [
+			'post_type' => 'activites',
+			'orderby' => 'date',
+			'posts_per_page' => 3,
+			'paged' => $paged,
+			'meta_query' => [
+				$cat_filter,
+				$date_filter
+			]
+		];
+	}else{
+		$arg = [
+			'post_type' => 'activites',
+			'orderby' => 'date',
+			'posts_per_page' => 3,
+			'paged' => $paged,
+		];
 	}
-	
-	//add date filter to the query
-	$date = str_replace( '-', '', $date);
-	$date_filter[] = ['relation' => 'AND'];
-	$date_filter[] = [
-		'key'       => 'quand_$_date',
-		'value'     => $date,
-		'compare'   => 'LIKE',
-	];
-	
-	//build the arg for the get_posts instruction
-	$arg = [
-		'post_type' => 'activites',
-		'orderby' => 'date',
-		'meta_query' => [
-			$cat_filter,
-			$date_filter
-		]
-	];
-	
-	return new wp_query($arg);
+	return new WP_Query($arg);
 }
 
 
@@ -592,3 +626,7 @@ function ec_get_activities_from_dates($dates_list, $post_not_in)
 	
 	return new wp_query($arg);
 }
+
+/*
+ * Handle the pagination (src: http://www.geekpress.fr/pagination-wordpress-sans-plugin/)
+ */

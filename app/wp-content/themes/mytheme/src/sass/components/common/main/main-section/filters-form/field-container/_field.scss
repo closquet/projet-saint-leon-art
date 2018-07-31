@@ -1,0 +1,43 @@
+.main-section__filters-form__field-container__field{
+  width: 106%;
+  padding: 32px 0 6px 14px;
+  font-family: $labour-font;
+  font-size: $titles-font-size-h3;
+  color: $color4;
+  border: 0;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
+
+  &:hover{
+    cursor: text;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-clear-button{
+    display: none;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    padding: 7px 19px;
+    margin-top: -23px;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  &[type="date"]{
+    background: url(../images/date-picker.svg)  92% center / 30px no-repeat ;
+    padding-bottom: 10px;
+
+    &:hover{
+      cursor: text;
+    }
+  }
+}

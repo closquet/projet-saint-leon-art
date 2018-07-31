@@ -1,0 +1,16 @@
+.main-section__filters-form__field-container__label{
+  padding: 4px 0 0 18px;
+  display: block;
+  font-family: $labour-font;
+  font-size: $titles-font-size-h3;
+  font-weight: 600;
+  color: $color4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+
+  &.date{
+    padding-left: 13px;
+  }
+}
