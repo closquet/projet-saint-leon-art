@@ -415,60 +415,61 @@ function ec_get_posts_from_filters($cat, $date, $place, $paged, $post_type)
  */
 function ec_get_artists_from_filters($cat, $place, $paged)
 {
-	if( $cat || $place ){
-		//find artist(s) with same terms of "cat" taxonomy
-		$artists_list_for_query = new WP_Query();
-		
-		if($cat && $place){
-			$artists_list_for_query -> query([
-				'post_type' => 'artistes',
-				'tax_query' => [
-					[
-						'relation' => 'AND',
-						[
-							'taxonomy' => 'cat',
-							'field'    => 'slug',
-							'terms'    => $cat,
-						],
-						[
-							'taxonomy' => 'places',
-							'field'    => 'slug',
-							'terms'    => $place,
-						],
-					],
-				
-				],
-			]);
-		}elseif($cat && !$place){
-			$artists_list_for_query -> query([
-				'post_type' => 'artistes',
-				'tax_query' => [
+	$artists_list_for_query = new WP_Query();
+	
+	//find artist(s) with same terms of "cat" taxonomy
+	if($cat && $place){
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'tax_query' => [
+				[
+					'relation' => 'AND',
 					[
 						'taxonomy' => 'cat',
 						'field'    => 'slug',
 						'terms'    => $cat,
 					],
-				],
-			]);
-		}elseif($place && !$cat){
-			$artists_list_for_query -> query([
-				'post_type' => 'artistes',
-				'posts_per_page' => $paged ? 3 : -1,
-				'paged' => $paged,
-				'tax_query' => [
 					[
 						'taxonomy' => 'places',
 						'field'    => 'slug',
 						'terms'    => $place,
 					],
 				],
-			]);
-		}else{
-			$artists_list_for_query -> query([
-				'post_type' => 'artistes',
-			]);
-		}
+			
+			],
+		]);
+	}elseif($cat && !$place){
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'tax_query' => [
+				[
+					'taxonomy' => 'cat',
+					'field'    => 'slug',
+					'terms'    => $cat,
+				],
+			],
+		]);
+	}elseif($place && !$cat){
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'posts_per_page' => $paged ? 3 : -1,
+			'paged' => $paged,
+			'tax_query' => [
+				[
+					'taxonomy' => 'places',
+					'field'    => 'slug',
+					'terms'    => $place,
+				],
+			],
+		]);
+	}else{
+		$artists_list_for_query -> query([
+			'post_type' => 'artistes',
+			'posts_per_page' => $paged ? 3 : -1,
+			'paged' => $paged,
+		]);
 	}
+	
 	return $artists_list_for_query;
 }
 
@@ -481,10 +482,15 @@ function ec_get_activities_from_filters($cat, $date, $place, $paged)
 	if( $cat || $date || $place ){
 		
 		$artists_list_for_query = ec_get_artists_from_filters($cat, $place, null);
+		
 		//get only the IDs of the artists previously found
 		$Artist_id_list = [];
 		foreach ($artists_list_for_query->posts as $artist){
 			$Artist_id_list[] = '"' . $artist->ID . '"';
+		}
+		
+		if(!$Artist_id_list){
+			return new WP_Query();
 		}
 		
 		//build meta query to have a dynamic array of what we search for the CAT filter
@@ -560,7 +566,7 @@ function ec_get_artists_from_terms($terms_list, $taxonomy, $post_not_in)
 function ec_get_terms_for_current_activity($taxonomy, $artist = null)
 {
 	if(!$artist){
-		$artists_list = get_field('artistes', $post->ID);
+		$artists_list = get_field('artistes', get_the_ID());
 	}else{
 		$artists_list = $artist;
 	}
@@ -626,7 +632,3 @@ function ec_get_activities_from_dates($dates_list, $post_not_in)
 	
 	return new wp_query($arg);
 }
-
-/*
- * Handle the pagination (src: http://www.geekpress.fr/pagination-wordpress-sans-plugin/)
- */

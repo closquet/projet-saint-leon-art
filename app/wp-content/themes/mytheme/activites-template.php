@@ -2,22 +2,24 @@
 /*
  * Template Name: Les activités
  */
-
-$cat = null;
-$date = null;
-$place = null;
-isset($_GET['cat']) && $_GET['cat'] != '' && $cat = $_GET['cat'];
-isset($_GET['date']) && $_GET['date'] != '' && $date = $_GET['date'];
-isset($_GET['place']) && $_GET['place'] != '' && $place = $_GET['place'];
-
-$temp = $wp_query;
-$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-$wp_query = null;
-$wp_query = new WP_Query();
-$wp_query = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites');
 ?>
 
 <?php get_header(); ?>
+<?php
+$cat = null;
+$date = null;
+$place = null;
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+isset($_REQUEST['cat']) && $_REQUEST['cat'] != '' && $cat = $_REQUEST['cat'];
+isset($_REQUEST['date']) && $_REQUEST['date'] != '' && $date = $_REQUEST['date'];
+isset($_REQUEST['place']) && $_REQUEST['place'] != '' && $place = $_REQUEST['place'];
+
+$temp_query = $wp_query;
+$wp_query   = NULL;
+$wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites');
+?>
+
 <div class="content container">
     <section class="main-section current-post-section" aria-labelledby="activities-section__title">
         <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
@@ -25,7 +27,9 @@ $wp_query = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites')
                 Les activités (<?= $wp_query->found_posts ?>)
             </span>
         </h2>
-        <form class="main-section__filters-form" action="http://saintleonart2.test/?page_id=13" method="get">
+        <form class="main-section__filters-form" method="get" action="">
+        <input type="hidden" name="page_id" value="13">
+        <input type="hidden" name="paged" value="1">
             <div class="main-section__filters-form__item">
                 <div class="main-section__filters-form__field-container">
                     <label class="main-section__filters-form__field-container__label" for="cat-field">La catégorie</label>
@@ -114,7 +118,7 @@ $wp_query = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites')
                 </svg>
                 </button>
             </div>
-            <input type="hidden" name="page_id" value="13">
+            
             <div class="btn1-container main-section__filters-form__submit-container">
                 <button class="btn1">
                     Filtrer
@@ -206,20 +210,19 @@ $wp_query = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites')
                         </ul>
                     </article>
                 </a>
-			<?php endwhile; ?>
-        </div>
-        <nav class="main-section__pagination">
-        
-            <div class="nav-previous alignleft"><?php next_posts_link( 'Older posts' ); ?></div>
-            <div class="nav-next alignright"><?php previous_posts_link( 'Newer posts' ); ?></div>
-        </nav>
-			<?php else: ?>
+			<?php endwhile; else: ?>
                 <p class="main-section__posts-container__no-result">
                     Aucun résultat &#9785;
                 </p>
+			<?php endif; ?>
         </div>
-			<?php endif; $wp_query = null; $wp_query = $temp;  ?>
+	    <?php if ( $wp_query->found_posts > 3 ): ?>
+            <nav class="main-section__pagination" style="text-align:center;">
+			    <?php previous_posts_link( 'précédent' ); ?> -+- <?php next_posts_link( 'suivant', $wp_query->max_num_pages ); ?>
+            </nav>
+	    <?php endif; ?>
     </section>
 </div>
 
+<?php wp_reset_postdata(); ?>
 <?php get_footer(); ?>
