@@ -216,9 +216,22 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites
                 </p>
 			<?php endif; ?>
         </div>
-	    <?php if ( $wp_query->found_posts > 3 ): ?>
-            <nav class="main-section__pagination" style="text-align:center;">
-			    <?php previous_posts_link( 'précédent' ); ?> -+- <?php next_posts_link( 'suivant', $wp_query->max_num_pages ); ?>
+	    <?php if ( $wp_query->found_posts > 3 ):
+            $paged == $wp_query->max_num_pages ? $next = false : $next = true;
+            $paged == 1 ? $previous = false : $previous = true;
+            ?>
+            <nav class="main-section__pagination">
+	            <?php if($previous): ?>
+                    <a class="main-section__pagination__link previous btn1" href="/activites/page/<?= $paged-1 . '/?' ?><?php echo 'place='.$place??''; echo '&cat='.$cat??''; echo '&date='.$date??''; ?>">Précédent</a>
+	            <?php else: ?>
+                    <span class="main-section__pagination__link previous btn1 disable">Précédent</span>
+	            <?php endif; ?>
+                <span class="main-section__pagination__current-page"><?= $paged ?></span>
+	            <?php if($next): ?>
+                    <a class="main-section__pagination__link next btn1" href="/activites/page/<?= $paged+1 . '/?' ?><?php echo 'place='.$place??''; echo '&cat='.$cat??''; echo '&date='.$date??''; ?>">Suivant</a>
+	            <?php else: ?>
+                    <sapn class="main-section__pagination__link next btn1 disable">Suivant</sapn>
+	            <?php endif; ?>
             </nav>
 	    <?php endif; ?>
     </section>

@@ -6,8 +6,3 @@
 
   transition: box-shadow 0.3s;
 }
-
-.main-section__permalink:hover .main-section__post__thumbnail,
-.main-section__permalink:focus .main-section__post__thumbnail{
-  box-shadow: 0 0 26px 5px $color8;
-}

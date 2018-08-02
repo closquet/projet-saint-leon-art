@@ -14,15 +14,3 @@
 .no-image .main-section__post__title{
   background-color: rgba($color3, 0.3);
 }
-
-.main-section__permalink:hover .main-section__post__title,
-.main-section__permalink:focus .main-section__post__title{
-  background-color: rgba($color8, .7);
-  //transform: rotate(4deg);
-  transform: scale(0.95);
-}
-
-.main-section__permalink:hover .no-image .main-section__post__title,
-.main-section__permalink:focus .no-image .main-section__post__title{
-  background-color: rgba($color8, 0.4);;
-}

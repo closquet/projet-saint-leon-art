@@ -7,13 +7,16 @@
   min-width: 158px;
   text-align: center;
   border-radius: 25px 0 25px 0;
-  border: 1px solid transparent;
+  border: 1px solid $color4;
   transition: 0.3s;
+
+  &:hover{
+    cursor: pointer;
+  }
 
   &:hover, &:focus{
     color: $color4;
-    background-color: $color1;
-    border-color: $color4;
+    background-color: $color0;
     outline-color: $color0;
   }
 }
