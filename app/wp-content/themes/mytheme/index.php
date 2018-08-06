@@ -14,19 +14,19 @@
                 <li class="intro-cta__info-list__item intro-cta__place"><?php the_field('lieu'); ?></li>
             </ul>
             <p class="p-summary intro-cta__teasing">
-                <?php the_field( 'presentation'); ?>
+				<?php the_field( 'presentation'); ?>
             </p>
             <div class="btn1-container intro-cta__link-container">
                 <a class="u-url btn1 intro-cta__link" href="/a-propos">
                     En savoir plus
                 </a>
             </div>
-        
-	    <?php else: ?>
+		
+		<?php else: ?>
             <p>
                 CTA manquant
             </p>
-	    <?php endif; ?>
+		<?php endif; ?>
     </div>
 
     <div class="content container">
@@ -36,25 +36,25 @@
                     Activités
                 </span>
             </h2>
-		    <?php
-		    $items->query([
-			    'post_type' => 'activites',
-			    'showposts' => '3',
-			    'orderby' => 'rand'
-		    ]);
-		    ?>
+			<?php
+			$items->query([
+				'post_type' => 'activites',
+				'showposts' => '3',
+				'orderby' => 'rand'
+			]);
+			?>
             <div class="main-section__posts-container">
-	            <?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
+				<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
                     <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
                         <article class="main-section__post activities-section__post" aria-labelledby="activities-section__post__title">
                             <div class="main-section__post__top">
-					            <?php $img_320 =  get_field('thumbnail'); ?>
+								<?php $img_320 =  get_field('thumbnail'); ?>
                                 <div class="main-section__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
                                     <h3 class="main-section__post__title activities-section__post__title" id="activities-section__post__title" role="heading" aria-level="3">
-							            <?php the_title(); ?>
+										<?php the_title(); ?>
                                     </h3>
                                 </div>
-					            <?php if ($img_320): ?>
+								<?php if ($img_320): ?>
                                     <img
                                             class="main-section__post__thumbnail activities-section__post__thumbnail"
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
@@ -62,10 +62,10 @@
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
                                             alt="<?php echo $img_320['alt']; ?>"
                                     >
-					            <?php endif; ?>
+								<?php endif; ?>
                             </div>
                             <ul class="main-section__post__info-list activities-section__post__info-list">
-					            <?php foreach(get_field('quand') as $item): ?>
+								<?php foreach(get_field('quand') as $item): ?>
                                     <li class="main-section__post__info-list__info activities-section__post__info-list__info  activities-section__post__info-list__date">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__post__info-list__calendar-icon">
                                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -81,12 +81,12 @@
                                         </svg><!--
                                      --><span class="main-section__post__info-list__date__time "> de <time class="main-section__post__info-list__date__time__from" datetime="<?= $item['heure_de_debut'] ?>"><?= $item['heure_de_debut'] ?></time> à <time class="main-section__post__info-list__date__time__to" datetime="<?= $item['heure_de_fin'] ?>"><?= $item['heure_de_fin'] ?></time></span>
                                     </li>
-					            <?php endforeach; ?>
-					            <?php
-					            $places_terms_list = ec_get_terms_for_current_activity('places');
-					            $cat_terms_list = ec_get_terms_for_current_activity('cat');
-					            ?>
-					            <?php if ( count( $places_terms_list ) > 0 ): ?>
+								<?php endforeach; ?>
+								<?php
+								$places_terms_list = ec_get_terms_for_current_activity('places');
+								$cat_terms_list = ec_get_terms_for_current_activity('cat');
+								?>
+								<?php if ( count( $places_terms_list ) > 0 ): ?>
                                     <li class="main-section__post__info-list__info">
                                         <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__post__info-list__place-icon">
                                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -106,8 +106,8 @@
                                                         activities-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
                                         <?php endif; ?>
                                  --></li>
-					            <?php endif; ?>
-					            <?php if ( count( $cat_terms_list ) > 0 ): ?>
+								<?php endif; ?>
+								<?php if ( count( $cat_terms_list ) > 0 ): ?>
                                     <li class="main-section__post__info-list__info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-section__post__info-list__cat-icon">
                                             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
@@ -123,17 +123,17 @@
                                             <?php endif; ?>
                                      --></span><!--
                                  --></li>
-                                <?php endif; ?>
+								<?php endif; ?>
                             </ul>
                         </article>
                     </a>
-	            <?php endwhile; else: ?>
+				<?php endwhile; else: ?>
                     <p>
                         Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
                     </p>
-	            <?php endif; ?>
+				<?php endif; ?>
             </div>
-		    
+
             <div class="btn1-container activities-section__all-posts-page-link-container main-section__all-posts-page-link-container">
                 <a class="btn1 main-section__all-posts-page-link activities-section__all-posts-page-link" href="<?php echo get_page_link(13); ?>">
                     Toutes les activités
@@ -147,25 +147,25 @@
                     Artistes
                 </span>
             </h2>
-		    <?php
-		    $items->query([
-			    'post_type' => 'artistes',
-			    'showposts' => '3',
-			    'orderby' => 'rand'
-		    ]);
-		    ?>
+			<?php
+			$items->query([
+				'post_type' => 'artistes',
+				'showposts' => '3',
+				'orderby' => 'rand'
+			]);
+			?>
             <div class="main-section__posts-container">
-	            <?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
+				<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
                     <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
                         <article class="main-section__post artists-section__post" aria-labelledby="artists-section__post__title">
                             <div class="main-section__post__top">
-					            <?php $img_320 =  get_field('thumbnail'); ?>
+								<?php $img_320 =  get_field('thumbnail'); ?>
                                 <div class="main-section__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
                                     <h3 class="main-section__post__title artists-section__post__title" id="artists-section__post__title" role="heading" aria-level="3">
-							            <?php the_title(); ?>
+										<?php the_title(); ?>
                                     </h3>
                                 </div>
-					            <?php if ($img_320): ?>
+								<?php if ($img_320): ?>
                                     <img
                                             class="main-section__post__thumbnail artists-section__post__thumbnail"
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
@@ -173,14 +173,14 @@
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
                                             alt="<?php echo $img_320['alt']; ?>"
                                     >
-					            <?php endif; ?>
+								<?php endif; ?>
                             </div>
                             <ul class="main-section__post__info-list artists-section__post__info-list">
-					            <?php
-					            $places_terms_list = ec_get_terms_for_current_artist($post->ID, 'places');
-					            $cat_terms_list = ec_get_terms_for_current_artist($post->ID, 'cat');
-					            ?>
-					            <?php if ( count( $places_terms_list ) > 0 ): ?>
+								<?php
+								$places_terms_list = ec_get_terms_for_current_artist($post->ID, 'places');
+								$cat_terms_list = ec_get_terms_for_current_artist($post->ID, 'cat');
+								?>
+								<?php if ( count( $places_terms_list ) > 0 ): ?>
                                     <li class="main-section__post__info-list__info
                                     main-section__post__info-list__terms
                                     activities-section__post__info-list__info
@@ -203,9 +203,9 @@
                                             activities-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
 	                        <?php endif; ?>
                             --></li>
-					            <?php endif; ?>
-					
-					            <?php if ( count( $cat_terms_list ) > 0 ): ?>
+								<?php endif; ?>
+								
+								<?php if ( count( $cat_terms_list ) > 0 ): ?>
                                     <li class="main-section__post__info-list__info
                                     main-section__post__info-list__terms
                                     main-section__post__info-list__cat-terms
@@ -231,27 +231,27 @@
                             <?php endif; ?>
                             --></span><!--
                         --></li>
-					            <?php endif; ?>
+								<?php endif; ?>
                             </ul>
                         </article>
                     </a>
-	            <?php endwhile; else: ?>
+				<?php endwhile; else: ?>
                     <p>
                         Il n&rsquo;y a pas encore d&rsquo;articles pour cette section.
                     </p>
-	            <?php endif; ?>
+				<?php endif; ?>
             </div>
-		    
+
             <div class="btn1-container artists-section__all-posts-page-link-container main-section__all-posts-page-link-container">
                 <a class="btn1 main-section__all-posts-page-link artists-section__all-posts-page-link" href="<?php echo get_page_link(17); ?>">
                     Tous les artistes
                 </a>
             </div>
         </section>
-        
-        
-	    <?php $instagram_data = ec_get_instagram_feed(); ?>
-	    <?php if ($instagram_data): ?>
+		
+		
+		<?php $instagram_data = ec_get_instagram_feed(); ?>
+		<?php if ($instagram_data): ?>
             <section class="main-section instagram-section container" aria-labelledby="instagram-section__title">
                 <h2 class="main-section__title instagram-section__title" id="instagram-section__title" role="heading" aria-level="2">
                     <span>
@@ -259,27 +259,27 @@
                     </span>
                 </h2>
                 <div class="main-section__feed instagram-section__feed">
-				    <?php foreach ($instagram_data as $item): ?>
-					    <?php $width = $item->images->low_resolution->width; $height = $item->images->low_resolution->height; $url = $item->images->low_resolution->url; ?>
+					<?php foreach ($instagram_data as $item): ?>
+						<?php $width = $item->images->low_resolution->width; $height = $item->images->low_resolution->height; $url = $item->images->low_resolution->url; ?>
                         <img class="main-section__feed__image instagram-section__feed__image"
                              src="<?= $url ?>"
                              alt="Image récente provenant du compte Instagram de Saintléonart"
                              width="<?= $width ?>"
                              height="<?= $height ?>">
-					    <?php //var_dump( $item->images->low_resolution ); ?>
-				    <?php endforeach; ?>
+						<?php //var_dump( $item->images->low_resolution ); ?>
+					<?php endforeach; ?>
                 </div>
-			    <?php foreach (wp_get_nav_menu_items(ec_get_nav_id('other')) as $item): ?>
-				    <?php if ($item->title == 'Instagram'): ?>
+				<?php foreach (wp_get_nav_menu_items(ec_get_nav_id('other')) as $item): ?>
+					<?php if ($item->title == 'Instagram'): ?>
                         <div class="btn1-container instagram-section__all-posts-page-link-container main-section__all-posts-page-link-container">
                             <a class="btn1 main-section__all-posts-page-link instagram-section__all-posts-page-link" href="<?= $item->url ?>">
                                 Voir le reste sur Instagram
                             </a>
                         </div>
-				    <?php endif; ?>
-			    <?php endforeach; ?>
+					<?php endif; ?>
+				<?php endforeach; ?>
             </section>
-	    <?php endif; ?>
+		<?php endif; ?>
     </div>
-    
+
 <?php get_footer(); ?>

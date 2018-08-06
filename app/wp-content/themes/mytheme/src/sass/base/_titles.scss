@@ -1,11 +1,21 @@
 h1,h2,h3,h4,h5,h6{
   font-family: $titles-font;
 }
+
 h2{
   font-size: $titles-font-size-h2;
   font-weight: 400;
 }
+
 h3{
   font-size: $titles-font-size-h3;
+  font-weight: 400;
+}
+
+.current-page-title{
+  @include mainSectionTitle($color8, $color4);
+  left: 0;
+  height: auto;
+  text-align: center;
   font-weight: 400;
 }
