@@ -335,7 +335,7 @@ function ec_get_instagram_feed()
 	//var_dump( $data);
 	if(curl_errno($curl)){
 		echo '<script>console.error(\'backend error -> Instagram API : ' . curl_error($curl) . '\')</script>';
-	}elseif ($curl_return->meta->error_message){
+	}elseif (isset($curl_return->meta->error_message)){
 		echo '<script>console.error(\'backend error -> Instagram API : ' . $curl_return->meta->error_message . '\')</script>';
 	}else{
 		return $curl_return->data;
@@ -403,7 +403,7 @@ function ec_get_posts_from_filters($cat, $date, $place, $paged, $post_type)
 			return ec_get_activities_from_filters($cat, $date, $place, $paged);
 			break;
 		case 'artistes':
-			return ec_get_artists_from_filters($cat, $place, $paged);
+			return ec_get_artists_from_filters($cat, $place, $date, $paged);
 			break;
 	}
 	return new WP_Query();
@@ -413,64 +413,64 @@ function ec_get_posts_from_filters($cat, $date, $place, $paged, $post_type)
 /*
  * get artists from filters.
  */
-function ec_get_artists_from_filters($cat, $place, $paged)
+function ec_get_artists_from_filters($cat, $place, $date, $paged)
 {
-	$artists_list_for_query = new WP_Query();
-	
-	//find artist(s) with same terms of "cat" taxonomy
-	if($cat && $place){
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'tax_query' => [
-				[
-					'relation' => 'AND',
-					[
-						'taxonomy' => 'cat',
-						'field'    => 'slug',
-						'terms'    => $cat,
-					],
-					[
-						'taxonomy' => 'places',
-						'field'    => 'slug',
-						'terms'    => $place,
-					],
-				],
-			
-			],
-		]);
-	}elseif($cat && !$place){
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'tax_query' => [
-				[
-					'taxonomy' => 'cat',
-					'field'    => 'slug',
-					'terms'    => $cat,
-				],
-			],
-		]);
-	}elseif($place && !$cat){
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'posts_per_page' => $paged ? 3 : -1,
-			'paged' => $paged,
-			'tax_query' => [
-				[
-					'taxonomy' => 'places',
-					'field'    => 'slug',
-					'terms'    => $place,
-				],
-			],
-		]);
-	}else{
-		$artists_list_for_query -> query([
-			'post_type' => 'artistes',
-			'posts_per_page' => $paged ? 3 : -1,
-			'paged' => $paged,
-		]);
+	if($date){
+		$activities_list_for_query = ec_get_activities_from_date($date);
+		
+		//get only the IDs of the activities artists previously found
+		$artists_id_list_from_date = [];
+		foreach ($activities_list_for_query->posts as $activities){
+			$artists_id_list_from_date[] = get_field( 'artistes', $activities->ID)[0];
+		}
+		
+		if(!$artists_id_list_from_date){
+			return new WP_Query();
+		}
 	}
 	
-	return $artists_list_for_query;
+	$arg = [
+		'post_type' => 'artistes',
+	];
+	$paged && ($arg['paged'] = $paged) && $arg['posts_per_page'] = 3;
+	$date && $arg['post__in'] = $artists_id_list_from_date;
+	$cat || $place && $arg['tax_query'][0]['relation'] = 'AND';
+	$cat && $arg['tax_query'][0][] = [
+		'taxonomy' => 'cat',
+		'field'    => 'slug',
+		'terms'    => $cat,
+	];
+	$place && $arg['tax_query'][0][] = [
+		'taxonomy' => 'places',
+		'field'    => 'slug',
+		'terms'    => $place,
+	];
+	return  new WP_Query($arg);
+}
+
+/*
+ * get activities from date.
+ */
+function ec_get_activities_from_date($date)
+{
+	//add date filter to the query
+	$date = str_replace( '-', '', $date);
+	$date_filter[] = [
+		'key'       => 'quand_$_date',
+		'value'     => $date,
+		'compare'   => 'LIKE',
+	];
+	
+	//build the arg for the get_posts instruction
+	$arg = [
+		'post_type' => 'activites',
+		'orderby' => 'date',
+		'meta_query' => [
+			$date_filter
+		]
+	];
+	
+	return new WP_Query($arg);
 }
 
 
@@ -481,22 +481,22 @@ function ec_get_activities_from_filters($cat, $date, $place, $paged)
 {
 	if( $cat || $date || $place ){
 		
-		$artists_list_for_query = ec_get_artists_from_filters($cat, $place, null);
+		$artists_list_for_query = ec_get_artists_from_filters($cat, $place, null, null);
 		
 		//get only the IDs of the artists previously found
-		$Artist_id_list = [];
+		$artist_id_list = [];
 		foreach ($artists_list_for_query->posts as $artist){
 			$Artist_id_list[] = '"' . $artist->ID . '"';
 		}
 		
-		if(!$Artist_id_list){
+		if(!$artist_id_list){
 			return new WP_Query();
 		}
 		
 		//build meta query to have a dynamic array of what we search for the CAT filter
-		$cat_filter = ['relation' => 'OR'];
-		foreach ($Artist_id_list as $value) {
-			$cat_filter[] = [
+		$cat_and_place_filter = ['relation' => 'OR'];
+		foreach ($artist_id_list as $value) {
+			$cat_and_place_filter[] = [
 				'key'       => 'artistes',
 				'value'     => $value,
 				'compare'   => 'LIKE',
@@ -519,7 +519,7 @@ function ec_get_activities_from_filters($cat, $date, $place, $paged)
 			'posts_per_page' => 3,
 			'paged' => $paged,
 			'meta_query' => [
-				$cat_filter,
+				$cat_and_place_filter,
 				$date_filter
 			]
 		];

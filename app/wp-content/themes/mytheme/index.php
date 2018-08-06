@@ -177,8 +177,8 @@
                             </div>
                             <ul class="main-section__post__info-list artists-section__post__info-list">
 					            <?php
-					            $places_terms_list = ec_get_terms_for_current_activity('places', $post);
-					            $cat_terms_list = ec_get_terms_for_current_activity('cat', $post);
+					            $places_terms_list = ec_get_terms_for_current_artist($post->ID, 'places');
+					            $cat_terms_list = ec_get_terms_for_current_artist($post->ID, 'cat');
 					            ?>
 					            <?php if ( count( $places_terms_list ) > 0 ): ?>
                                     <li class="main-section__post__info-list__info

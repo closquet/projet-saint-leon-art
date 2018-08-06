@@ -1,6 +1,6 @@
 .main-section__permalink {
   @include permalinkAndCurrentPostContainer();
-  padding: 10px;
+  padding: $spacing-s;
   transition: 0.4s;
 
   &:hover, &:focus{

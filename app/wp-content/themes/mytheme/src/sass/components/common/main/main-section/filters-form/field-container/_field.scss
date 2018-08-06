@@ -8,10 +8,7 @@
   background-color: transparent;
   position: relative;
   z-index: 1;
-
-  &:hover{
-    cursor: text;
-  }
+  transition: background-color 0.3s;
 
   &::-webkit-inner-spin-button,
   &::-webkit-clear-button{
@@ -31,6 +28,10 @@
   &:hover{
     cursor: pointer;
   }
+  &:hover, &:focus{
+    background-color: rgba($color12, 0.2);
+    outline: 0;
+  }
 
   &[type="date"]{
     background: url(../images/date-picker.svg)  92% center / 30px no-repeat ;
@@ -38,6 +39,9 @@
 
     &:hover{
       cursor: text;
+    }
+    &:hover, &:focus{
+      background: rgba($color12, 0.2) url(../images/date-picker.svg)  92% center / 30px no-repeat ;
     }
   }
 }
