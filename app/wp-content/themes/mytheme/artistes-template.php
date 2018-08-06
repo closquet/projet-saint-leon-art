@@ -21,7 +21,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
 ?>
 
 <div class="content container">
-    <div class="main-section current-post-section" aria-labelledby="activities-section__title">
+    <section class="main-section current-post-section" aria-labelledby="activities-section__title">
         <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
             <span>
                 Les artistes (<?= $wp_query->found_posts ?>)
@@ -217,7 +217,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
 				<?php endif; ?>
             </nav>
 		<?php endif; ?>
-    </div>
+    </section>
 </div>
 
 <?php wp_reset_postdata(); ?>

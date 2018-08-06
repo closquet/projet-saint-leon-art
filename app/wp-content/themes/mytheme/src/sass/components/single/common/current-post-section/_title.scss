@@ -1,0 +1,6 @@
+.current-post-section__title{
+  @include mainSectionTitle($color8, $color4);
+  left: 0;
+  height: auto;
+  text-align: center;
+}

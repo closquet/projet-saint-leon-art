@@ -21,12 +21,12 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites
 ?>
 
 <div class="content container">
-    <h1 class="current-page-title" role="heading" aria-level="1">
-        <span>
-            Les activités (<?= $wp_query->found_posts ?>)
-        </span>
-    </h1>
-    <div class="main-section current-post-section">
+    <section class="main-section current-post-section" aria-labelledby="activities-section__title">
+        <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
+            <span>
+                Les activités (<?= $wp_query->found_posts ?>)
+            </span>
+        </h2>
         <form class="main-section__filters-form" method="get" action="">
         <input type="hidden" name="page_id" value="13">
         <input type="hidden" name="paged" value="1">
@@ -234,7 +234,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites
 	            <?php endif; ?>
             </nav>
 	    <?php endif; ?>
-    </div>
+    </section>
 </div>
 
 <?php wp_reset_postdata(); ?>

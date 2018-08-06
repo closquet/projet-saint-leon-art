@@ -103,6 +103,28 @@ function ec_init_types()
 		]
 	]);
 	
+	register_post_type('cta', [
+		'label' => 'CTA',
+		'labels' => [
+			'singular_name' => 'cta',
+			'add_new' => 'Ajouter un cta',
+			'all_items' => 'Tous les artistes'
+		],
+		'description' => 'Type d\'article permettant d\'éditer des CTA présent dans le site site.',
+		'public' => true,
+		'capability_type' => 'post',
+		'capabilities' => [
+			//'create_posts' => 'do_not_allow',
+			//'delete_posts' => 'do_not_allow',
+		],
+		'supports' => [
+			'title',
+			'editor',
+			'thumbnail',
+			'excerpt'
+		]
+	]);
+	
 	register_taxonomy('cat', [ 'artistes'], [
 		'label' => 'Types d\'oeuvre',
 		'labels' => [
@@ -263,35 +285,35 @@ function ec_the_human_date_from_html_date($html_date_format, $new_delimiter = '/
 /*
  * get the cta stlyle and create a <style> html tag
  */
-function ec_get_the_cta_style(int $post_id, string $class_name, string $uri, string $field_name){
+function ec_get_the_cta_style(int $post_id, string $class_name, string $uri){
 	
 	if ( $_SERVER['REQUEST_URI'] == $uri ){
 		return '
-			
+			<style>
 				' . $class_name . '{
-					background-image:url( ' . get_field( $field_name, $post_id )['sizes']['1366_prev'] . ');
+					background-image:url( ' . get_field( 'image_de_fond', $post_id )['sizes']['1366_prev'] . ');
 					background-repeat: no-repeat;
 					background-position: center;
 					background-size: cover;
 				}
 				@media (max-width: 740px) {
 					' . $class_name . '{
-						background-image:url( ' . get_field( $field_name, $post_id)['sizes']['740_prev'] . ');
+						background-image:url( ' . get_field( 'image_de_fond', $post_id)['sizes']['740_prev'] . ');
 					}
 				}
 				@media (max-width: 320px) {
 					' . $class_name . '{
-						background-image:url( ' . get_field( $field_name, $post_id)['sizes']['320_prev'] . ');
+						background-image:url( ' . get_field( 'image_de_fond', $post_id)['sizes']['320_prev'] . ');
 					}
 				}
-			';
+			</style>';
 	}
 }
 /*
  * output the cta stlyle and create a <style> html tag
  */
-function ec_the_cta_style(int $post_id, string $class_name, string $uri, string $field_name){
-	echo ec_get_the_cta_style($post_id, $class_name, $uri, $field_name);
+function ec_the_cta_style(int $post_id, string $class_name, string $uri){
+	echo ec_get_the_cta_style($post_id, $class_name, $uri);
 }
 
 function ec_get_instagram_feed()
@@ -609,15 +631,4 @@ function ec_get_activities_from_dates($dates_list, $post_not_in)
 	];
 	
 	return new wp_query($arg);
-}
-
-
-/*
- * little debug function to show the content of a variable with html <pre>
- */
-function ec_show_var($var, bool $printr = null)
-{
-	echo '<pre style="position:absolute;z-index: 999999;background-color:#fff;padding: 2em;top: 50px;border: 2px red solid;">[<br>';
-	$printr ? print_r($var . '<br>') : var_dump($var);
-	echo ']</pre>';
 }
