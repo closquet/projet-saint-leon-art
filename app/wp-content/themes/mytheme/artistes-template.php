@@ -22,7 +22,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
 
 <h1 class="current-page-title" role="heading" aria-level="1">
     <span>
-        Les artistes (<?= $wp_query->found_posts ?>)
+        <?php the_title() ?> (<?= $wp_query->found_posts ?>)
     </span>
 </h1>
 <div class="content">
