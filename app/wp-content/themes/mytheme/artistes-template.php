@@ -21,7 +21,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
 ?>
 
 <div class="content container">
-    <section class="main-section current-post-section" aria-labelledby="activities-section__title">
+    <div class="main-section current-post-section" aria-labelledby="activities-section__title">
         <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
             <span>
                 Les artistes (<?= $wp_query->found_posts ?>)
@@ -218,8 +218,12 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
 				<?php endif; ?>
             </nav>
 		<?php endif; ?>
+<<<<<<< HEAD
         <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
     </section>
+=======
+    </div>
+>>>>>>> parent of 9182cb4... Revert "bug"
 </div>
 
 <?php wp_reset_postdata(); ?>

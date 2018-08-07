@@ -30,8 +30,8 @@
   span{
     display: block;
     margin: 0 auto;
-    padding-left: $spacing-xs;
-    padding-right: $spacing-xs;
+    padding-left: $spacing-xs + $spacing-s;
+    padding-right: $spacing-xs + $spacing-s;
   }
 
   @media screen and (min-width: 1021px){

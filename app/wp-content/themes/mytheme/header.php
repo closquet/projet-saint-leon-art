@@ -16,8 +16,9 @@
         <meta name="author" content="Eric Closquet">
         <meta name="keywords" content="Province de Liège, Art, Artiste, Saint Léonard, Lencreuse, Parcours artistique">
         <link rel="shortcut icon" href="<?php ec_asset('../favicon.png');?>">
-        
-        <?php ec_the_cta_style( 23, '.intro-cta__info-list', '/');?>
+        <style>
+            <?php //ec_the_cta_style( $post->ID, '.intro-cta__info-list', '/', 'intro_image');?>
+        </style>
         
         <?php wp_head(); ?>
     </head>
