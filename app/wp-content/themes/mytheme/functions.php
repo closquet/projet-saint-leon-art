@@ -56,6 +56,12 @@ function remove_menus () {
 	}
 }
 add_action('admin_menu', 'remove_menus');
+function remove_menu_items(){
+	remove_menu_page( 'themes.php' );
+	remove_submenu_page( 'options-general.php','options-permalink.php' ); // just show this page destroy pagination and need reset previous DB state
+	remove_submenu_page( 'options-general.php','options-reading.php' ); // edit the content make bug in pagination
+}
+add_action( 'admin_menu', 'remove_menu_items', 999 );
 
 
 
@@ -344,14 +350,14 @@ function ec_get_activities_from_terms($terms_list, $taxonomy, $post_not_in = [])
 	}
 	
 	//get only the IDs of the artists previously found
-	$Artist_id_list = [];
+	$artist_id_list = [];
 	foreach ($artists_list_for_query->posts as $artist){
-		$Artist_id_list[] = '"' . $artist->ID . '"';
+		$artist_id_list[] = '"' . $artist->ID . '"';
 	}
 	
 	//build meta query to have a dynamic array of what we search
 	$meta_query = ['relation' => 'OR'];
-	foreach ($Artist_id_list as $value) {
+	foreach ($artist_id_list as $value) {
 		$meta_query[] = [
 			'key'       => 'artistes',
 			'value'     => $value,

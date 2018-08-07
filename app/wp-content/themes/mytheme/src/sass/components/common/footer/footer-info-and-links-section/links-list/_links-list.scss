@@ -5,4 +5,26 @@
   margin-right: auto;
   margin-top: $spacing-m;
   padding-left: 0;
+
+  @media screen and (min-width: 360px){
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    max-width: 330px;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 840px){
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1021px;
+    padding-left: $spacing-xs;
+    padding-right: $spacing-xs;
+    justify-content: normal;
+  }
+
+  @media screen and (min-width: 1091px){
+    max-width: 1091px;
+  }
 }

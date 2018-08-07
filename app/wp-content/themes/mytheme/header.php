@@ -17,7 +17,7 @@
         <meta name="keywords" content="Province de Liège, Art, Artiste, Saint Léonard, Lencreuse, Parcours artistique">
         <link rel="shortcut icon" href="<?php ec_asset('../favicon.png');?>">
         <style>
-            <?php //ec_the_cta_style( $post->ID, '.intro-cta__info-list', '/', 'intro_image');?>
+            <?php ec_the_cta_style( 129, '.intro-cta__info-list', '/', 'image_de_fond');?>
         </style>
         
         <?php wp_head(); ?>

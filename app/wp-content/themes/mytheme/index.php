@@ -1,35 +1,21 @@
 <?php //setlocale(LC_ALL, 'fr_BE.utf8'); ?>
 <?php get_header(); ?>
     <div class="cta-container intro-cta">
-		<?php
-		$items = new WP_Query();
-		$items->query([
-			'post_type' => 'cta',
-			'p' => '23'
-		]);
-		?>
-		<?php if( $items->have_posts() ): $items->the_post(); ?>
-            <ul class="intro-cta__info-list">
-                <li class="intro-cta__info-list__item intro-cta__date"><?php the_field('date'); ?></li>
-                <li class="intro-cta__info-list__item intro-cta__place"><?php the_field('lieu'); ?></li>
-            </ul>
-            <p class="p-summary intro-cta__teasing">
-				<?php the_field( 'presentation'); ?>
-            </p>
-            <div class="btn1-container intro-cta__link-container">
-                <a class="u-url btn1 intro-cta__link" href="/a-propos">
-                    En savoir plus
-                </a>
-            </div>
-		
-		<?php else: ?>
-            <p>
-                CTA manquant
-            </p>
-		<?php endif; ?>
+        <ul class="intro-cta__info-list">
+            <li class="intro-cta__info-list__item intro-cta__date"><?php the_field('date', 129); ?></li>
+            <li class="intro-cta__info-list__item intro-cta__place"><?php the_field('lieu', 129); ?></li>
+        </ul>
+        <p class="p-summary intro-cta__teasing">
+            <?php the_field( 'presentation', 129); ?>
+        </p>
+        <div class="btn1-container intro-cta__link-container">
+            <a class="u-url btn1 intro-cta__link" href="/a-propos">
+                En savoir plus
+            </a>
+        </div>
     </div>
 
-    <div class="content container">
+    <div class="content">
         <section class="main-section activities-section" aria-labelledby="activities-section__title">
             <h2 class="main-section__title activities-section__title" id="activities-section__title" role="heading" aria-level="2">
                 <span>
@@ -37,13 +23,14 @@
                 </span>
             </h2>
 			<?php
+            $items = new WP_Query();
 			$items->query([
 				'post_type' => 'activites',
 				'showposts' => '3',
 				'orderby' => 'rand'
 			]);
 			?>
-            <div class="main-section__posts-container">
+            <div class="main-section__posts-container container">
 				<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post();?>
                     <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
                         <article class="main-section__post activities-section__post" aria-labelledby="activities-section__post__title">
@@ -154,7 +141,7 @@
 				'orderby' => 'rand'
 			]);
 			?>
-            <div class="main-section__posts-container">
+            <div class="main-section__posts-container container">
 				<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
                     <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
                         <article class="main-section__post artists-section__post" aria-labelledby="artists-section__post__title">
@@ -252,7 +239,7 @@
 		
 		<?php $instagram_data = ec_get_instagram_feed(); ?>
 		<?php if ($instagram_data): ?>
-            <section class="main-section instagram-section container" aria-labelledby="instagram-section__title">
+            <section class="main-section instagram-section" aria-labelledby="instagram-section__title">
                 <h2 class="main-section__title instagram-section__title" id="instagram-section__title" role="heading" aria-level="2">
                     <span>
                         Nos derniers posts Instagram

@@ -20,14 +20,14 @@ $wp_query   = NULL;
 $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes');
 ?>
 
-<div class="content container">
-    <div class="main-section current-post-section" aria-labelledby="activities-section__title">
-        <h2 class="main-section__title current-post-section__title" id="activities-section__title" role="heading" aria-level="2">
-            <span>
-                Les artistes (<?= $wp_query->found_posts ?>)
-            </span>
-        </h2>
-        <form class="main-section__filters-form" method="get" action="">
+<h1 class="current-page-title" role="heading" aria-level="1">
+    <span>
+        Les artistes (<?= $wp_query->found_posts ?>)
+    </span>
+</h1>
+<div class="content">
+    <div class="main-section  main-section--alone-on-top">
+        <form class="main-section__filters-form container" method="get" action="">
             <input type="hidden" name="page_id" value="13">
             <input type="hidden" name="paged" value="1">
             <div class="main-section__filters-form__item">
@@ -126,20 +126,20 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
             </div>
         </form>
 
-        <div class="main-section__posts-container">
+        <div class="main-section__posts-container container">
 			<?php if( $wp_query->have_posts() ): while( $wp_query->have_posts() ): $wp_query->the_post();?>
-                <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
-                    <article class="main-section__post activities-section__post" aria-labelledby="activities-section__post__title">
+                <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
+                    <article class="main-section__post artists-section__post" aria-labelledby="artists-section__post__title">
                         <div class="main-section__post__top">
 							<?php $img_320 =  get_field('thumbnail'); ?>
                             <div class="main-section__post__title-container<?= !($img_320)? ' no-image' : '' ?>">
-                                <h3 class="main-section__post__title activities-section__post__title" id="activities-section__post__title" role="heading" aria-level="3">
+                                <h3 class="main-section__post__title artists-section__post__title" id="artists-section__post__title" role="heading" aria-level="3">
 									<?php the_title(); ?>
                                 </h3>
                             </div>
 							<?php if ($img_320): ?>
                                 <img
-                                        class="main-section__post__thumbnail activities-section__post__thumbnail"
+                                        class="main-section__post__thumbnail artists-section__post__thumbnail"
                                         src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                         width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                         height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
@@ -147,7 +147,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
                                 >
 							<?php endif; ?>
                         </div>
-                        <ul class="main-section__post__info-list activities-section__post__info-list">
+                        <ul class="main-section__post__info-list artists-section__post__info-list">
 							<?php
 							$places_terms_list = ec_get_terms_for_current_artist($post->ID, 'places');
 							$cat_terms_list = ec_get_terms_for_current_artist($post->ID, 'cat');
@@ -162,14 +162,14 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
                                             <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
                                                 --><span class="main-section__post__info-list__info__term
                                                             main-section__post__info-list__terms__term
-                                                            activities-section__post__info-list__info__term
-                                                            activities-section__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
+                                                            artists-section__post__info-list__info__term
+                                                            artists-section__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
                                             <?php endfor; ?>
                                         <?php else: ?>
                                             --><span class="main-section__post__info-list__info__term
                                                         main-section__post__info-list__terms__term
-                                                        activities-section__post__info-list__info__term
-                                                        activities-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
+                                                        artists-section__post__info-list__info__term
+                                                        artists-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
                                         <?php endif; ?>
                                  --></li>
 							<?php endif; ?>
@@ -212,18 +212,12 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
                 <span class="main-section__pagination__current-page"><?= $paged ?></span>
 				<?php if($next): ?>
                     <a class="main-section__pagination__link next btn1" href="/artistes/page/<?= $paged+1 . '/?' ?><?php echo 'place='.$place??''; echo '&cat='.$cat??''; echo '&date='.$date??''; ?>">Suivant</a>
-                    <a class="main-section__pagination__link next btn1" href="/artistes/page/<?= $paged+1 ?>">Suivant</a>
 				<?php else: ?>
                     <sapn class="main-section__pagination__link next btn1 disable">Suivant</sapn>
 				<?php endif; ?>
             </nav>
 		<?php endif; ?>
-<<<<<<< HEAD
-        <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
-    </section>
-=======
     </div>
->>>>>>> parent of 9182cb4... Revert "bug"
 </div>
 
 <?php wp_reset_postdata(); ?>

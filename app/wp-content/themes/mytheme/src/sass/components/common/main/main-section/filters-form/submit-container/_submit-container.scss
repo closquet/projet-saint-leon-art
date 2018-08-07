@@ -1,10 +1,4 @@
 .main-section__filters-form__submit-container{
   width: 100%;
   text-align: center;
-
-  @media screen and (min-width: 1260px) {
-    width: auto;
-    position: absolute;
-    left: 92%;
-  }
 }

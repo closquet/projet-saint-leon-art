@@ -1,14 +1,14 @@
 <?php get_header(); ?>
 
-<div class="content container">
+<h1 class="current-page-title" role="heading" aria-level="1">
+        <span>
+            <?php the_title(); ?>
+        </span>
+</h1>
+<div class="content">
     <div class="main-section current-post-section current-artist-section">
-        <h1 class="main-section__title current-post-section__title current-artist-section__title" id="current-artist-section__title" role="heading" aria-level="1">
-                <span>
-                    <?php the_title(); ?>
-                </span>
-        </h1>
         <div class="main-section__posts-container current-post-section__posts-container">
-            <div class="current-post-container current-activity-container">
+            <div class="current-post-container container current-artist-container">
 				<?php if( have_posts() ): while( have_posts() ): the_post(); ?>
                     <article class="main-section__post current-section__post current-artist-section__post" aria-labelledby="current-artist-section__title">
                         <?php $img_740 =  get_field('thumbnail'); ?>
@@ -123,7 +123,7 @@
 		$items = new WP_Query();
 		$items = ec_get_artists_from_terms($main_post_cat_terms_list, 'cat', $main_post_id);
 		?>
-        <div class="main-section__posts-container">
+        <div class="main-section__posts-container container">
 			<?php if( $items->have_posts() ): while( $items->have_posts() ): $items->the_post(); ?>
                 <a class="main-section__permalink artists-section__permalink" href="<?php the_permalink(); ?>">
                     <article class="main-section__post artists-section__post" aria-labelledby="artists-section__post__title">
@@ -152,8 +152,8 @@
 							<?php if ( count( $places_terms_list ) > 0 ): ?>
                                 <li class="main-section__post__info-list__info
                                     main-section__post__info-list__terms
-                                    activities-section__post__info-list__info
-                                    activities-section__post__info-list__terms">
+                                    artists-section__post__info-list__info
+                                    artists-section__post__info-list__terms">
                                     <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="main-section__post__info-list__place-icon">
                                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                         <path d="M0 0h24v24H0z" fill="none"/>
@@ -162,14 +162,14 @@
                                 <?php for( $i = 0; $i < count( $places_terms_list ); $i++ ): ?>
                                     --><span class="main-section__post__info-list__info__term
                                                 main-section__post__info-list__terms__term
-                                                activities-section__post__info-list__info__term
-                                                activities-section__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
+                                                artists-section__post__info-list__info__term
+                                                artists-section__post__info-list__terms__term"><?= ($i == 0 ? $places_terms_list[$i] : ', ' . $places_terms_list[$i]) ?></span><!--
                                 <?php endfor; ?>
                             <?php else: ?>
                                 --><span class="main-section__post__info-list__info__term
                                             main-section__post__info-list__terms__term
-                                            activities-section__post__info-list__info__term
-                                            activities-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
+                                            artists-section__post__info-list__info__term
+                                            artists-section__post__info-list__terms__term"><?= $places_terms_list[0] ?></span><!--
 	                        <?php endif; ?>
                             --></li>
 							<?php endif; ?>
@@ -217,7 +217,6 @@
             </a>
         </div>
     </section>
-    
 </div>
 
 <?php get_footer(); ?>

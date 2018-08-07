@@ -55,13 +55,14 @@ function validate() {
 
 
 
-
+//END
 
 function mainFunction() {
 
     burgerMenuLink.on( 'click', handleBurgerMenuClick);
     Array.from(mainNavLinks).map( link => link.addEventListener('click', handleMainNavLinksClick) );
     $("#mc-embedded-subscribe").bind("click", validate);
+    $("html").easeScroll();
 
 }
 

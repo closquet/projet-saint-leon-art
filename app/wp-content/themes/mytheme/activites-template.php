@@ -20,14 +20,14 @@ $wp_query   = NULL;
 $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites');
 ?>
 
-<div class="content container">
-    <h1 class="current-page-title" role="heading" aria-level="1">
-        <span>
-            Les activités (<?= $wp_query->found_posts ?>)
-        </span>
-    </h1>
-    <div class="main-section current-post-section">
-        <form class="main-section__filters-form" method="get" action="">
+<h1 class="current-page-title" role="heading" aria-level="1">
+    <span>
+        Les activités (<?= $wp_query->found_posts ?>)
+    </span>
+</h1>
+<div class="content">
+    <div class="main-section  main-section--alone-on-top">
+        <form class="main-section__filters-form container" method="get" action="">
         <input type="hidden" name="page_id" value="13">
         <input type="hidden" name="paged" value="1">
             <div class="main-section__filters-form__item">
@@ -126,7 +126,7 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites
             </div>
         </form>
         
-        <div class="main-section__posts-container">
+        <div class="main-section__posts-container container">
 			<?php if( $wp_query->have_posts() ): while( $wp_query->have_posts() ): $wp_query->the_post();?>
                 <a class="main-section__permalink activities-section__permalink" href="<?php the_permalink(); ?>">
                     <article class="main-section__post activities-section__post" aria-labelledby="activities-section__post__title">
@@ -234,13 +234,8 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites
 	            <?php endif; ?>
             </nav>
 	    <?php endif; ?>
-<<<<<<< HEAD
-        <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
-    </section>
-=======
     </div>
->>>>>>> parent of 9182cb4... Revert "bug"
 </div>
 
-<?php wp_reset_postdata(); wp_reset_query(); ?>
+<?php wp_reset_postdata(); ?>
 <?php get_footer(); ?>

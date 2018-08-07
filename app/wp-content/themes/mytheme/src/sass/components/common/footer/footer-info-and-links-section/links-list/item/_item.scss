@@ -1,4 +1,22 @@
 .footer-info-and-links-section__links-list__item{
   list-style-type: none;
   border-top: 1px solid $color3;
+
+  @media screen and (min-width: 360px){
+    width: 50%;
+    border: 0;
+    display: flex;
+    &:nth-child(2n){justify-content: flex-end;}
+    &:last-child{justify-content: center;}
+  }
+
+  @media screen and (min-width: 840px){
+    width: auto;
+    flex-basis: 20%;
+    border: 0;
+
+    &:nth-child(n){justify-content: center;}
+    &:first-child{justify-content: flex-start;}
+    &:last-child{justify-content: flex-end;}
+  }
 }

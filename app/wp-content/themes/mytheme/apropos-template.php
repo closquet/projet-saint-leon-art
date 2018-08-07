@@ -10,7 +10,7 @@
 $wp_query  = new WP_Query();
 ?>
 
-<div class="content container">
+<div class="content">
     <h1 class="current-page-title" role="heading" aria-level="1">
         <span>
             À propos
