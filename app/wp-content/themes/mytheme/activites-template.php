@@ -234,8 +234,9 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'activites
 	            <?php endif; ?>
             </nav>
 	    <?php endif; ?>
+        <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
     </section>
 </div>
 
-<?php wp_reset_postdata(); ?>
+<?php wp_reset_postdata(); wp_reset_query(); ?>
 <?php get_footer(); ?>

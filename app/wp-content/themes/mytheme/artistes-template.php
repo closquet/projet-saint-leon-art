@@ -212,11 +212,13 @@ $wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes'
                 <span class="main-section__pagination__current-page"><?= $paged ?></span>
 				<?php if($next): ?>
                     <a class="main-section__pagination__link next btn1" href="/artistes/page/<?= $paged+1 . '/?' ?><?php echo 'place='.$place??''; echo '&cat='.$cat??''; echo '&date='.$date??''; ?>">Suivant</a>
+                    <a class="main-section__pagination__link next btn1" href="/artistes/page/<?= $paged+1 ?>">Suivant</a>
 				<?php else: ?>
                     <sapn class="main-section__pagination__link next btn1 disable">Suivant</sapn>
 				<?php endif; ?>
             </nav>
 		<?php endif; ?>
+        <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
     </section>
 </div>
 

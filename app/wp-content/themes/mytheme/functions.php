@@ -486,7 +486,7 @@ function ec_get_activities_from_filters($cat, $date, $place, $paged)
 		//get only the IDs of the artists previously found
 		$artist_id_list = [];
 		foreach ($artists_list_for_query->posts as $artist){
-			$Artist_id_list[] = '"' . $artist->ID . '"';
+			$artist_id_list[] = '"' . $artist->ID . '"';
 		}
 		
 		if(!$artist_id_list){
