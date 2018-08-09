@@ -5,4 +5,8 @@
   text-align: right;
   font-style: italic;
   color: $color3;
+
+  @media screen and (min-width: 1021px) {
+    text-align: left;
+  }
 }

@@ -56,7 +56,7 @@
                     </h2>
                     <ul class="footer-info-and-links-section__links-list">
 			            <?php foreach (wp_get_nav_menu_items(ec_get_nav_id('footer')) as $item): ?>
-                            <li class="footer-info-and-links-section__links-list__item footer-info-and-links-section__links-list__item__link--<?= lcfirst($item->title) ?>">
+                            <li class="footer-info-and-links-section__links-list__item footer-info-and-links-section__links-list__item--<?= lcfirst($item->title) ?>">
                                 <a class="footer-info-and-links-section__links-list__item__link footer-info-and-links-section__links-list__item__link--<?= lcfirst($item->title) ?>" href="<?= $item->url ?>"><?= $item->title ?></a>
                             </li>
 			            <?php endforeach; ?>
@@ -64,6 +64,24 @@
                 </section>
             </div>
             <div class="bottom">
+                <div class="footer__partners-list-container">
+                    <div class="footer__partners-list container">
+		                <?php $partners = get_field( 'partners', 66); ?>
+		                <?php foreach ( $partners as $partner ) : ?>
+                            <a class="footer__partners-list__partner" href="<?= get_sub_field('partner-url'); ?>" title="Se rendre sur le site web de&nbsp;: <?= get_sub_field('partner-name') ?>">
+				                <?php
+				                $size = 'logo';
+				                $svg_width = 150;
+				                $img = $partner['partner-logo'];
+				                $img_width = $img['sizes'][$size . '-width'] > 1 ? 'width="' . $img['sizes'][$size . '-width'] . '"' : 'width="'. $svg_width .'"';
+				                $img_height = $img['sizes'][$size . '-height'] > 1 ? 'height="' . $img['sizes'][$size . '-height'] . '"' : '';
+				                $img_src = 'src="' . $img['sizes'][$size] . '"';
+				                ?>
+                                <img class="footer__partners-list__partner-logo" <?= $img_src . ' ' . $img_width . ' ' . $img_height ?>>
+                            </a>
+		                <?php endforeach;?>
+                    </div>
+                </div>
                 <p class="footer-info-and-links-section__copyright">
                     &copy; 2018 - Saint Léon'art designed by <a class="link" href="https://eric-closquet.be">Eric Closquet</a>
                 </p>

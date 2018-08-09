@@ -15,6 +15,7 @@
 @import "base/page";
 @import "base/main";
 @import "base/link";
+@import "base/paragraph";
 
 
 @import "components/common/header/top-bar";
@@ -77,6 +78,10 @@
 @import "components/common/footer/footer-info-and-links-section/links-list/links-list";
 @import "components/common/footer/footer-info-and-links-section/links-list/item/item";
 @import "components/common/footer/footer-info-and-links-section/links-list/item/link";
+@import "components/common/footer/partners-list/partners-list-container";
+@import "components/common/footer/partners-list/partners-list";
+@import "components/common/footer/partners-list/partner";
+@import "components/common/footer/partners-list/partner-logo";
 
 
 
@@ -89,19 +94,28 @@
 @import "components/homepage/main/instagram-section/feed/feed";
 @import "components/homepage/main/instagram-section/feed/image";
 
+@import "components/single/common/main-section/title";
+@import "components/single/common/current-post-section/sub-title";
 @import "components/single/common/current-post-section/current-post-section";
 @import "components/single/common/current-post-section/posts-container/posts-container";
 @import "components/single/common/current-post-section/posts-container/current-post-container/current-post-container";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/post";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/thumbnail";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list/info-list";
-@import "components/single/common/main-section/title";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list/info/info";
 @import "components/single/common/current-post-section/posts-container/current-post-container/post/info-list/info/term-container";
 
 @import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/works";
 @import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/images-top-container";
 @import "components/single/artist/current-post-section/posts-container/current-post-container/post/works/image";
+
+
+
+
+@import "components/partenaires/main-section/introduction";
+@import "components/partenaires/main-section/partners-list/partners-list";
+@import "components/partenaires/main-section/partners-list/partner";
+@import "components/partenaires/main-section/partners-list/partner-logo";
 
 
 

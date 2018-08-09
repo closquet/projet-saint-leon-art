@@ -5,7 +5,7 @@
             <li class="intro-cta__info-list__item intro-cta__date"><?php the_field('date', 129); ?></li>
             <li class="intro-cta__info-list__item intro-cta__place"><?php the_field('lieu', 129); ?></li>
         </ul>
-        <p class="p-summary intro-cta__teasing">
+        <p class="p-summary intro-cta__teasing container">
             <?php the_field( 'presentation', 129); ?>
         </p>
         <div class="btn1-container intro-cta__link-container">

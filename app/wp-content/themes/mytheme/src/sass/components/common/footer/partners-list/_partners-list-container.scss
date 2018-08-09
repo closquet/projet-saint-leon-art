@@ -1,0 +1,13 @@
+.footer__partners-list-container{
+  display: none;
+  background-color: $color13;
+  padding: $spacing-xs 0;
+  margin-bottom: -1.1rem;
+  @media screen and (min-width: 1021px){
+    display: block;
+  }
+}
+
+.partenaires .footer__partners-list-container{
+  display: none;
+}

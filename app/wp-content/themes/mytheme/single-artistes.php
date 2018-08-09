@@ -81,13 +81,16 @@
                                     --><a class="link" href="tel:<?= get_field( 'telephone') ?>"><?= get_field( 'telephone') ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (get_field( 'presentation')): ?>
-                                <li class="main-section__post__info-list__info main-section__post__info-list__presentation">
-                                    <?= get_field( 'presentation') ?>
-                                </li>
-                            <?php endif; ?>
                         </ul>
+	                    <?php if (get_field( 'presentation')): ?>
+                            <div class="main-section__post__presentation">
+                                <?= get_field( 'presentation') ?>
+                            </div>
+	                    <?php endif; ?>
                         <?php if( have_rows('exemples_oeuvres') ): $current_row = 0; ?>
+                            <h2 class="current-post-section__sub-title" role="heading" aria-level="2">
+                                Quelques-unes de ses réalisations
+                            </h2>
                             <div class="current-artist-section__post__works">
                                     <?php while(have_rows( 'exemples_oeuvres')): the_row(); $current_row++ ?>
                                         <?php if($current_row === 1): ?>

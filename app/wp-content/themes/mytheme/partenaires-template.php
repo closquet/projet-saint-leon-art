@@ -5,31 +5,37 @@
 ?>
 
 <?php get_header(); ?>
-<?php
-$cat = null;
-$date = null;
-$place = null;
-$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-
-isset($_REQUEST['cat']) && $_REQUEST['cat'] != '' && $cat = $_REQUEST['cat'];
-isset($_REQUEST['date']) && $_REQUEST['date'] != '' && $date = $_REQUEST['date'];
-isset($_REQUEST['place']) && $_REQUEST['place'] != '' && $place = $_REQUEST['place'];
-
-$temp_query = $wp_query;
-$wp_query   = NULL;
-$wp_query   = ec_get_posts_from_filters( $cat, $date, $place, $paged, 'artistes');
-?>
-
 <h1 class="current-page-title" role="heading" aria-level="1">
     <span>
-        Les artistes (<?= $wp_query->found_posts ?>)
+        <?php the_title() ?>
     </span>
 </h1>
 <div class="content">
     <div class="main-section main-section--alone-on-top">
-        <div class="main-section__posts-container">
-        
-        </div>
+        <?php if(get_field('introduction')): ?>
+            <div class="main-section__introduction container">
+		        <?php the_field('introduction') ?>
+            </div>
+        <?php endif; ?>
+	    <?php if(get_field('partners')): ?>
+            <div class="main-section__partners-list container">
+	            <?php while ( have_rows('partners') ) : the_row();?>
+                    <a class="main-section__partners-list__partner" href="<?= get_sub_field('partner-url'); ?>" title="Se rendre sur le site web de&nbsp;: <?= get_sub_field('partner-name') ?>">
+                        <?php
+                            $size = 'logo';
+                            $svg_width = 150;
+                            $img = get_sub_field('partner-logo');
+                            $img_width = $img['sizes'][$size . '-width'] > 1 ? 'width="' . $img['sizes'][$size . '-width'] . '"' : 'width="'. $svg_width .'"';
+                            $img_height = $img['sizes'][$size . '-height'] > 1 ? 'height="' . $img['sizes'][$size . '-height'] . '"' : '';
+                            $img_src = 'src="' . $img['sizes'][$size] . '"';
+                        ?>
+                        <img class="main-section__partners-list__partner-logo" <?= $img_src . ' ' . $img_width . ' ' . $img_height ?>>
+                    </a>
+	            <?php endwhile;?>
+            </div>
+	    <?php endif; ?>
+
+     
     </div>
 </div>
 

@@ -17,6 +17,8 @@ add_filter('posts_where', 'my_activities_dates');
 if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'post-thumbnails' );
 	// additional image sizes
+	add_image_size( 'logo', 150, 150, false );
+	
 	add_image_size( 'avatar', 150, 150, true );
 	
 	add_image_size( '320_prev', 320, 187, true );

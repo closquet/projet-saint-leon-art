@@ -78,12 +78,12 @@
                                  --></span><!--
                              --></li>
                             <?php endif; ?>
-                            <?php if (get_field( 'presentation')): ?>
-                                <li class="main-section__post__info-list__info main-section__post__info-list__presentation">
-                                    <?= get_field( 'presentation') ?>
-                                </li>
-                            <?php endif; ?>
                         </ul>
+	                    <?php if (get_field( 'presentation')): ?>
+                            <div class="main-section__post__presentation">
+                                <?= get_field( 'presentation') ?>
+                            </div>
+	                    <?php endif; ?>
                         <?php if (get_field( 'artistes')): ?>
                             <ul class="main-section__post__artists-list current-post-section__post__artists-list">
                                 Par <?php foreach(get_field('artistes') as $item): ?><!--
