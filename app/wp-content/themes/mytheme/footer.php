@@ -68,7 +68,7 @@
                     <div class="footer__partners-list container">
 		                <?php $partners = get_field( 'partners', 66); ?>
 		                <?php foreach ( $partners as $partner ) : ?>
-                            <a class="footer__partners-list__partner" href="<?= get_sub_field('partner-url'); ?>" title="Se rendre sur le site web de&nbsp;: <?= get_sub_field('partner-name') ?>">
+                            <a class="footer__partners-list__partner" href="<?= get_sub_field('partner-url'); ?>" title="Se rendre sur le site web de&nbsp;: <?= $partner['partner-name'] ?>">
 				                <?php
 				                $size = 'logo';
 				                $svg_width = 150;
