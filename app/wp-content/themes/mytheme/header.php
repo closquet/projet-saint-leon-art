@@ -23,7 +23,7 @@
         <?php wp_head(); ?>
     </head>
 
-    <body itemscope itemtype="http://schema.org/NGO" class="h-card " <?php //body_class(); ?>>
+    <body itemscope itemtype="http://schema.org/NGO" class="h-card <?= $post->post_name??'' ?>" <?php //body_class(); ?>>
         <header class="top-bar" role="banner">
                 <h1 class="site-title <?php //if( have_posts() ) echo 'visually-hidden' ?>" role="heading" aria-level="1" >
                     <a class="site-title__link" href="http://<?= $_SERVER['HTTP_HOST'] ?>">
