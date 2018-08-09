@@ -28,6 +28,11 @@
 @import "components/common/header/site-title/site-title__link";
 @import "components/common/header/burger-link";
 @import "components/common/main/btn1";
+@import "components/common/main/cta/cta-backgroung-visibility";
+@import "components/common/main/cta/cta";
+@import "components/common/main/cta/teasing";
+@import "components/common/main/cta/link-container";
+@import "components/common/main/cta/link";
 @import "components/common/main/main-section/main-section";
 @import "components/common/main/main-section/pagination/pagination";
 @import "components/common/main/main-section/pagination/current-page";
@@ -86,11 +91,10 @@
 
 
 
-@import "components/homepage/main/intro-cta/info-list/info-list";
-@import "components/homepage/main/intro-cta/info-list/item";
-@import "components/homepage/main/intro-cta/place";
-@import "components/homepage/main/intro-cta/teasing";
-@import "components/homepage/main/intro-cta/link-container";
+@import "components/homepage/main/intro/info-list/info-list";
+@import "components/homepage/main/intro/info-list/item";
+@import "components/homepage/main/intro/place";
+@import "components/homepage/main/intro/teasing";
 @import "components/homepage/main/instagram-section/feed/feed";
 @import "components/homepage/main/instagram-section/feed/image";
 

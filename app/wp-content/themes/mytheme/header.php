@@ -1,4 +1,10 @@
-<?php $currenturl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
+<?php
+$currenturl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+global $wp_query;
+$post_obj = $wp_query->get_queried_object();
+global $page_ID;
+$page_ID = $post_obj ? $post_obj->ID : 129;
+?>
 <!DOCTYPE html>
 <html lang="fr-BE" class="no-js">
 
@@ -17,7 +23,8 @@
         <meta name="keywords" content="Province de Liège, Art, Artiste, Saint Léonard, Lencreuse, Parcours artistique">
         <link rel="shortcut icon" href="<?php ec_asset('../favicon.png');?>">
         <style>
-            <?php ec_the_cta_style( 129, '.intro-cta__info-list', '/', 'image_de_fond');?>
+            <?php ec_the_cta_style( 129, '.intro__info-list', '/', 'image_de_fond');?>
+            <?php ec_the_cta_style( $page_ID, '.cta', 'all', 'cta-image');?>
         </style>
         
         <?php wp_head(); ?>

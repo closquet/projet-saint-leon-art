@@ -1,15 +1,15 @@
 <?php //setlocale(LC_ALL, 'fr_BE.utf8'); ?>
 <?php get_header(); ?>
-    <div class="cta-container intro-cta">
-        <ul class="intro-cta__info-list">
-            <li class="intro-cta__info-list__item intro-cta__date"><?php the_field('date', 129); ?></li>
-            <li class="intro-cta__info-list__item intro-cta__place"><?php the_field('lieu', 129); ?></li>
+    <div class="intro">
+        <ul class="intro__info-list">
+            <li class="intro__info-list__item intro-cta__date"><?php the_field('date', 129); ?></li>
+            <li class="intro__info-list__item intro-cta__place"><?php the_field('lieu', 129); ?></li>
         </ul>
-        <p class="p-summary intro-cta__teasing container">
+        <p class="p-summary intro__teasing container">
             <?php the_field( 'presentation', 129); ?>
         </p>
-        <div class="btn1-container intro-cta__link-container">
-            <a class="u-url btn1 intro-cta__link" href="/a-propos">
+        <div class="btn1-container cta__link-container">
+            <a class="u-url btn1" href="/a-propos">
                 En savoir plus
             </a>
         </div>

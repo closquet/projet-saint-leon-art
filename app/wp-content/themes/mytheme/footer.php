@@ -1,5 +1,20 @@
         <?php wp_footer(); ?>
         </main>
+        <?php $cta = get_field('cta-text'); ?>
+        <?php global $page_ID; if(get_field('cta-enable', $page_ID)): ?>
+            <div class="cta">
+                <div class="cta-backgroung-visibility">
+                    <p class="p-summary cta__teasing container">
+				        <?php the_field( 'cta-text', $page_ID); ?>
+                    </p>
+                    <div class="btn1-container cta__link-container">
+                        <a class="btn1 cta__link" href="<?php the_field( 'cta-link-url', $page_ID); ?>">
+					        <?php the_field( 'cta-link-title', $page_ID); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
         <footer class="site-footer">
             <div class="top">
                 <section class="newsletter-section container" aria-labelledby="newsletter-section__title">

@@ -273,7 +273,7 @@ function ec_the_human_date_from_html_date($html_date_format, $new_delimiter = '/
  */
 function ec_get_the_cta_style(int $post_id, string $class_name, string $uri, string $field_name){
 	
-	if ( $_SERVER['REQUEST_URI'] == $uri ){
+	if ( $_SERVER['REQUEST_URI'] == $uri || $uri ==='all'){
 		return '
 			
 				' . $class_name . '{
