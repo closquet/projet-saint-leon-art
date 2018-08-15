@@ -27,21 +27,27 @@
   margin-top: 0;
   font-size: $titles-font-size-h2;
 
-  span{
+  & > span{
     display: block;
     margin: 0 auto;
     padding-left: $spacing-xs;
     padding-right: $spacing-xs;
   }
 
+  @media screen and (min-width: 686px) {
+    & > span{
+      max-width: 686px;
+    }
+  }
+
   @media screen and (min-width: 1021px){
-    span{
+    & > span{
       max-width: 1021px;
     }
   }
 
   @media screen and (min-width: 1091px){
-    span{
+    & > span{
       max-width: 1091px;
     }
   }

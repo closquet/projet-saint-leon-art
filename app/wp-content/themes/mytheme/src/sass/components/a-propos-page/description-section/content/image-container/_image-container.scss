@@ -1,0 +1,14 @@
+.description-section__content__image-container{
+  width: 100%;
+  //max-width: 32rem;
+
+  @media screen and (min-width: 1021px){
+    margin-left: $spacing-l;
+    max-width: 621px;
+    padding-top: 0.4rem;
+  }
+
+  @media screen and (min-width: 1091px){
+    max-width: 691px;
+  }
+}

@@ -1,8 +1,52 @@
 .newsletter-section__form__result{
   position: absolute;
-  top: 47px;
+  top: 40px;
   width: 100%;
   text-align: center;
   color: red;
   display: none;
+}
+
+.mc4wp-notice, .mc4wp-success, .mc4wp-error{
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  top: 60px;
+  left: 0;
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: $spacing-xs;
+
+  p{
+    max-width: 100%;
+  }
+}
+
+.form-notice-back{
+  color: $color2;
+  font-size: 16px;
+  border: 1px solid $color2;
+  padding: 0 0.4em;
+}
+
+.form-notice-close{
+  font-size: 14px;
+  color: $color2;
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  border-bottom: 1px solid $color2;
+  cursor: pointer;
+}
+
+.mc4wp-notice, .mc4wp-error{
+  background-color: $color6;
+  border: 1px solid $color7;
+  color: $color16;
+}
+.mc4wp-success{
+  background-color: $color14;
+  border: 1px solid $color12
+;
+  color: $color15;
 }

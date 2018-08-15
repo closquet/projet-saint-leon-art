@@ -1,0 +1,17 @@
+.press-area-section__content__intro__text{
+  p{
+    max-width: 100%;
+  }
+
+  :first-child{
+    margin-top: 0;
+  }
+
+  @media screen and (min-width: 1021px){
+    max-width: 320px;
+
+    :last-child{
+      margin-bottom: 0;
+    }
+  }
+}

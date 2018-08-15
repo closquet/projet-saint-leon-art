@@ -1,0 +1,11 @@
+.press-area-section__content__posts__post__title{
+  color: $color3;
+  font-weight: 400;
+  margin-bottom: $spacing-xxs;
+  //margin-top: $spacing-m;
+  margin-top: 0;
+}
+
+.press-area-section__content__posts__post:first-child .press-area-section__content__posts__post__title{
+  //margin-top: 0;
+}

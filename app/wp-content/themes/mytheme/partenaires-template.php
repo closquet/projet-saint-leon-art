@@ -28,8 +28,9 @@
                             $img_width = $img['sizes'][$size . '-width'] > 1 ? 'width="' . $img['sizes'][$size . '-width'] . '"' : 'width="'. $svg_width .'"';
                             $img_height = $img['sizes'][$size . '-height'] > 1 ? 'height="' . $img['sizes'][$size . '-height'] . '"' : '';
                             $img_src = 'src="' . $img['sizes'][$size] . '"';
+                            $img_alt = 'alt="' . ($img['alt']??'') . '"';
                         ?>
-                        <img class="main-section__partners-list__partner-logo" <?= $img_src . ' ' . $img_width . ' ' . $img_height ?>>
+                        <img class="main-section__partners-list__partner-logo" <?= $img_src . ' ' . $img_width . ' ' . $img_height . ' ' . $img_alt ?>>
                     </a>
 	            <?php endwhile;?>
             </div>

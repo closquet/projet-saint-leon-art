@@ -1,12 +1,13 @@
-.link{
-  color: $color4;
+.link, p a{
+  color: $color5;
   border-bottom: 1px solid transparent;
   text-decoration: none;
   transition: 0.3s;
+  font-weight: 600;
 
   &:hover, &:focus{
-    color: $color5;
-    border-color: $color5;
+    color: $color4;
+    border-color: $color4;
     outline: 0;
   }
 }

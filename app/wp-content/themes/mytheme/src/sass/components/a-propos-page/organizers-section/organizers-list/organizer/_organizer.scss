@@ -1,0 +1,35 @@
+.main-section__content__organizers-list__organizer{
+  margin-bottom: $spacing-l;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  background-color: rgba($color4, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+
+  @media screen and (min-width: 686px) {
+    max-width: 303px;
+
+    &:nth-child(2n + 1){
+      margin-right: $spacing-l;
+
+    }
+  }
+
+  @media screen and (min-width: 1021px) {
+    max-width: 320px;
+  }
+
+  @media screen and (min-width: 1091px) {
+    &:nth-child(1n){
+      margin-right: $spacing-l;
+    }
+
+    &:nth-child(3n){
+      margin-right: 0;
+    }
+
+  }
+}

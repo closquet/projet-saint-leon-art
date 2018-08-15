@@ -11,11 +11,13 @@
 @import "tools/mixins";
 
 
+@import "base/strong";
 @import "base/titles";
 @import "base/page";
 @import "base/main";
 @import "base/link";
 @import "base/paragraph";
+@import "base/fields";
 
 
 @import "components/common/header/top-bar";
@@ -64,6 +66,7 @@
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info/cat-icon";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info/email-icon";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info/phone-icon";
+@import "components/common/main/main-section/posts-container/permalink/post/info-list/info/person-icon";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/date/day";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info/cat-term";
 @import "components/common/main/main-section/posts-container/permalink/post/info-list/info/term-container";
@@ -91,12 +94,12 @@
 
 
 
-@import "components/homepage/main/intro/info-list/info-list";
-@import "components/homepage/main/intro/info-list/item";
-@import "components/homepage/main/intro/place";
-@import "components/homepage/main/intro/teasing";
-@import "components/homepage/main/instagram-section/feed/feed";
-@import "components/homepage/main/instagram-section/feed/image";
+@import "components/home-page/main/intro/info-list/info-list";
+@import "components/home-page/main/intro/info-list/item";
+@import "components/home-page/main/intro/place";
+@import "components/home-page/main/intro/teasing";
+@import "components/home-page/main/instagram-section/feed/feed";
+@import "components/home-page/main/instagram-section/feed/image";
 
 @import "components/single/common/main-section/title";
 @import "components/single/common/current-post-section/sub-title";
@@ -116,10 +119,83 @@
 
 
 
-@import "components/partenaires/main-section/introduction";
-@import "components/partenaires/main-section/partners-list/partners-list";
-@import "components/partenaires/main-section/partners-list/partner";
-@import "components/partenaires/main-section/partners-list/partner-logo";
+@import "components/partenaires-page/main-section/introduction";
+@import "components/partenaires-page/main-section/partners-list/partners-list";
+@import "components/partenaires-page/main-section/partners-list/partner";
+@import "components/partenaires-page/main-section/partners-list/partner-logo";
+
+
+
+
+@import "components/a-propos-page/description-section/content/content";
+@import "components/a-propos-page/description-section/content/text";
+@import "components/a-propos-page/description-section/content/image-container/image-container";
+@import "components/a-propos-page/description-section/content/image-container/image";
+
+@import "components/a-propos-page/organizers-section/organizers-list/organizers-list";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/organizer";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/introduction";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/info-container";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/name";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/url-and-other-list/url-and-other-list";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/url-and-other-list/other-link-icon";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/url-and-other-list/social-links-list/social-links-list";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/url-and-other-list/social-links-list/item";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/info-container/url-and-other-list/social-links-list/link";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/image-container/image-container";
+@import "components/a-propos-page/organizers-section/organizers-list/organizer/image-container/image";
+
+@import "components/a-propos-page/press-area-section/press-area-section";
+@import "components/a-propos-page/press-area-section/content/intro/intro";
+@import "components/a-propos-page/press-area-section/content/intro/text";
+@import "components/a-propos-page/press-area-section/content/intro/image-container/image-container";
+@import "components/a-propos-page/press-area-section/content/intro/image-container/image";
+@import "components/a-propos-page/press-area-section/content/posts/posts";
+@import "components/a-propos-page/press-area-section/content/posts/posts-content";
+@import "components/a-propos-page/press-area-section/content/posts/title";
+@import "components/a-propos-page/press-area-section/content/posts/post/post";
+@import "components/a-propos-page/press-area-section/content/posts/post/title";
+@import "components/a-propos-page/press-area-section/content/posts/post/description";
+
+
+
+
+@import "components/contacter-page/contact-form-section/intro";
+@import "components/contacter-page/contact-form-section/content";
+@import "components/contacter-page/contact-form-section/wpcf7-form";
+@import "components/contacter-page/contact-form-section/contact-form-field-container";
+@import "components/contacter-page/contact-form-section/wpcf7-form-control-wrap";
+@import "components/contacter-page/contact-form-section/contact-form-label";
+@import "components/contacter-page/contact-form-section/label-required";
+@import "components/contacter-page/contact-form-section/contact-form-field";
+@import "components/contacter-page/contact-form-section/wpcf7-not-valid-tip";
+@import "components/contacter-page/contact-form-section/wpcf7-response-output";
+@import "components/contacter-page/contact-form-section/asterisk-info";
+@import "components/contacter-page/contact-form-section/contact-form-submit-container";
+@import "components/contacter-page/contact-form-section/contact-form-image-container";
+@import "components/contacter-page/contact-form-section/contact-form-image";
+
+@import "components/contacter-page/contact-info-section/intro";
+@import "components/contacter-page/contact-info-section/contact-list/contact-list";
+@import "components/contacter-page/contact-info-section/contact-list/info-list/info-list";
+@import "components/contacter-page/contact-info-section/contact-list/info-list/item";
+
+
+
+
+@import "components/pratique-page/parking-and-tec-container";
+@import "components/pratique-page/course-section/content";
+@import "components/pratique-page/course-section/intro";
+@import "components/pratique-page/course-section/map-container";
+@import "components/pratique-page/course-section/map";
+
+@import "components/pratique-page/parking-section/parking-section";
+@import "components/pratique-page/parking-section/parking-list";
+
+@import "components/pratique-page/tec-section/tec-section";
+@import "components/pratique-page/tec-section/tec-list";
+
+
 
 
 

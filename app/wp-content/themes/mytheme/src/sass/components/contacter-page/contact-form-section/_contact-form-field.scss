@@ -1,0 +1,23 @@
+.contact-form-field{
+  padding: 0;
+  padding-left: $spacing-xs;
+  border: 2px solid $color9;
+  min-height: 40px;
+
+  &.wpcf7-not-valid{
+    color: $color16;
+  }
+
+  &[name="your-message"]{
+    padding-top: 0.5rem;
+    padding-left: 0.6rem;
+  }
+
+  &:focus{
+    border-color: $color17;
+    outline: 0;
+    background-color: $color14;
+  }
+
+
+}

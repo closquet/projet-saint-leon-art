@@ -1,0 +1,7 @@
+.parking-section{
+  @media screen and (min-width: 1021px) {
+    width: 320px;
+    margin-right: $spacing-l;
+    flex-shrink: 0;
+  }
+}

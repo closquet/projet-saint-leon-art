@@ -47,7 +47,7 @@
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                             width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
-                                            alt="<?php echo $img_320['alt']; ?>"
+                                            alt="<?php echo ($img_320['alt']??'') ?>"
                                     >
 								<?php endif; ?>
                             </div>
@@ -158,7 +158,7 @@
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                             width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
-                                            alt="<?php echo $img_320['alt']; ?>"
+                                            alt="<?php echo ($img_320['alt']??'') ?>"
                                     >
 								<?php endif; ?>
                             </div>
@@ -245,15 +245,17 @@
                         Nos derniers posts Instagram
                     </span>
                 </h2>
-                <div class="main-section__feed instagram-section__feed">
+                <div class="main-section__feed instagram-section__feed container">
 					<?php foreach ($instagram_data as $item): ?>
-						<?php $width = $item->images->low_resolution->width; $height = $item->images->low_resolution->height; $url = $item->images->low_resolution->url; ?>
-                        <img class="main-section__feed__image instagram-section__feed__image"
-                             src="<?= $url ?>"
-                             alt="Image récente provenant du compte Instagram de Saintléonart"
-                             width="<?= $width ?>"
-                             height="<?= $height ?>">
-						<?php //var_dump( $item->images->low_resolution ); ?>
+						<?php $width = $item->images->low_resolution->width;
+						$height = $item->images->low_resolution->height;
+						$url = $item->images->low_resolution->url; ?>
+                        <a class="main-section__feed__image instagram-section__feed__image" href="<?= $item->link ?>" title="Afficher cette image sur instagram">
+                            <img src="<?= $url ?>"
+                                 width="<?= $width ?>"
+                                 height="<?= $height ?>"
+                                 alt="<?= ($item->caption->text??'Image récente provenant du compte Instagram de Saintléonart') ?>">
+                        </a>
 					<?php endforeach; ?>
                 </div>
 				<?php foreach (wp_get_nav_menu_items(ec_get_nav_id('other')) as $item): ?>

@@ -1,0 +1,8 @@
+.wpcf7-form{
+  max-width: 32rem;
+
+  @media screen and (min-width: 1021px) {
+    margin-right: $spacing-l;
+    width: 320px;
+  }
+}

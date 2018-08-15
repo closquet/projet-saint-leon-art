@@ -1,0 +1,11 @@
+.course-section__map-container{
+  margin-top: .4rem;
+  width: 100%;
+  height: 254px;
+  position: relative;
+  border: 2px solid $color2;
+  overflow: hidden;
+
+  @media screen and (min-width: 1021px) {
+  }
+}

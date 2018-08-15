@@ -1,0 +1,9 @@
+.contact-form-section__intro{
+  @media screen and (min-width: 1021px) {
+    max-width: 320px;
+  }
+
+  p:first-child{
+    margin-top: 0;
+  }
+}

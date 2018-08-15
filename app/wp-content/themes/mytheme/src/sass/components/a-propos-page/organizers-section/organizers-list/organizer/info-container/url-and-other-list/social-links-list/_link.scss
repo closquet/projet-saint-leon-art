@@ -1,0 +1,29 @@
+.main-section__content__organizers-list__organizer__info-container__url-and-other-list__social-links-list__link{
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+
+  &:before{
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  &--facebook{
+    background-image: url(../images/facebook.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &--twitter{
+    background-image: url(../images/twitter.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &--instagram{
+    background-image: url(../images/instagram.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}

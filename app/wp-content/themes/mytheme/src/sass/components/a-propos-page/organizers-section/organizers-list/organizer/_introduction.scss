@@ -1,0 +1,13 @@
+.main-section__content__organizers-list__organizer__introduction{
+  order: 3;
+  width: 100%;
+  margin-top: $spacing-xxs;
+
+  p:first-child{
+    margin-top: 0;
+  }
+
+  p:last-child{
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,11 @@
+.contact-form-image-container{
+  display: none;
+  height: 25.6rem;
+  overflow: hidden;
+  border: 2px solid $color2;
+  margin-top: 0.4rem;
+
+  @media screen and (min-width: 1021px) {
+    display: block;
+  }
+}

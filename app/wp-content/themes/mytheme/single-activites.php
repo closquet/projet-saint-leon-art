@@ -18,7 +18,7 @@
                                     src="<?php echo $img_740['sizes']['740_prev']; ?>"
                                     width="<?php echo $img_740['sizes']['740_prev-width']; ?>"
                                     height="<?php echo $img_740['sizes']['740_prev-height']; ?>"
-                                    alt="<?php echo $img_740['alt']; ?>"
+                                    alt="<?php echo ($img_740['alt']??'') ?>"
                             >
                         <?php endif; ?>
                         <ul class="main-section__post__info-list current-section__post__info-list">
@@ -126,7 +126,7 @@
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                             width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
-                                            alt="<?php echo $img_320['alt']; ?>"
+                                            alt="<?php echo ($img_320['alt']??'') ?>"
                                     >
                                 <?php endif; ?>
                             </div>
@@ -231,7 +231,7 @@
                                             src="<?php echo $img_320['sizes']['320_prev']; ?>"
                                             width="<?php echo $img_320['sizes']['320_prev-width']; ?>"
                                             height="<?php echo $img_320['sizes']['320_prev-height']; ?>"
-                                            alt="<?php echo $img_320['alt']; ?>"
+                                            alt="<?php echo ($img_320['alt']??'') ?>"
                                     >
                                 <?php endif; ?>
                             </div>

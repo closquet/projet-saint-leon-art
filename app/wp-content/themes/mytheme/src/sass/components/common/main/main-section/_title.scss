@@ -1,3 +1,30 @@
 .main-section__title{
   @include mainSectionTitle($color4, $color8);
 }
+
+body:not(.homepage) .main-section__title{
+  @media screen and (max-width: 686px) {
+    display: inline-block;
+    border-radius: 0 25px 25px 0;
+  }
+}
+
+.main-section--alone-on-top .main-section__title{
+  @media screen and (min-width: 686px) {
+    background-color: $color0;
+    color: $color4;
+    padding: 0;
+    margin-bottom: $spacing-xxs;
+  }
+}
+
+.main-section__title--no-bar{
+  background-color: $color0;
+  color: $color4;
+  padding: 0;
+  margin-bottom: $spacing-xxs;
+
+  span{
+    padding-left: 0;
+  }
+}

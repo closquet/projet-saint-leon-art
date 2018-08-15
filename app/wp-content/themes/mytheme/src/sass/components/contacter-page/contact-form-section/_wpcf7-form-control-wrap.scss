@@ -1,0 +1,9 @@
+.wpcf7-form-control-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  flex: 5;
+
+  &.your-message{
+    width: 100%;
+  }
+}

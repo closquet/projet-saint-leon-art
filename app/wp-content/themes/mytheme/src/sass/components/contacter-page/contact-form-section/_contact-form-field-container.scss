@@ -1,0 +1,9 @@
+.contact-form-field-container{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-xs;
+
+  &--message{
+    flex-wrap: wrap;
+  }
+}

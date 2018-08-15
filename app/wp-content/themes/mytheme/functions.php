@@ -1,4 +1,31 @@
 <?php
+/*
+Plugin Name: Mailhog SMTP
+Version: 1.0
+License: GPL2
+*/
+function mailhog_phpmailer_smtp( $phpmailer ) {
+	$phpmailer->Host = 'mailhog';
+	$phpmailer->Port = 1025;
+	$phpmailer->IsSMTP();
+}
+add_action( 'phpmailer_init', 'mailhog_phpmailer_smtp' );
+
+/*
+ * Allow .SVG file
+ */
+function cc_mime_types($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
+
+//add favicon to admin
+add_action('admin_head', 'show_favicon');
+function show_favicon() {
+	echo '<link href="/wp-content/themes/mytheme/assets/../favicon.png" rel="icon" type="image/x-icon">';
+}
+
 // filter for acf sub field (repeater) query for activities'dates
 function my_activities_dates( $where ) {
 	
@@ -24,6 +51,8 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_image_size( '320_prev', 320, 187, true );
 	
 	add_image_size( '740_prev', 740, 432, true );
+	
+	add_image_size( '740_prev_banner', 740, 215, true );
 	
 	add_image_size( '1366_prev', 1366, 798, true );
 }
@@ -628,4 +657,17 @@ function ec_show_var($var, bool $printr = null)
 	echo '<pre style="position:absolute;z-index: 999999;background-color:#fff;padding: 2em;top: 50px;border: 2px red solid;">[<br>';
 	$printr ? print_r($var . '<br>') : var_dump($var);
 	echo ']</pre>';
+}
+
+/*
+ *
+ */
+function ec_get_image_attr_from_acf_field(string $size_name, $img)
+{
+	$size = $size_name;
+	$img_width = 'width="' . $img['sizes'][$size . '-width'] . '"';
+	$img_height = 'height="' . $img['sizes'][$size . '-height'] . '"';
+	$img_src = 'src="' . $img['sizes'][$size] . '"';
+	$img_alt = 'alt="' . ($img['alt']??'') . '"';
+	return $img_src . ' ' . $img_width . ' ' . $img_height . ' ' . $img_alt;
 }
